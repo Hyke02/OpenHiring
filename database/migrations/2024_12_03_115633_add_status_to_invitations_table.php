@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('vacancies', function (Blueprint $table) {
+        Schema::table('invatations', function (Blueprint $table) {
             $table->integer('status')->default(0);
         });
     }
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('vacancies', function (Blueprint $table) {
-            //
+//            $table->dropColumn('status');
         });
     }
 };
