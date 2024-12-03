@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Invitation;
+use App\Models\Invatation;
 use Illuminate\Http\Request;
 
 class InvitationController extends Controller
@@ -14,13 +14,20 @@ class InvitationController extends Controller
 
     public function store(Request $request)
     {
-        $invitation = new Invitation();
+        $invitation = new Invatation();
 
         // als er op accepteer wordt geklikt status gaat naar 1 (accepted) of op afwijzen naar 2(denied)
-        if (isset($_POST['accept_button'])) {
+
+        if ($request->input('action') === '1') {
             $invitation->status = 1;
-        } else if (isset($_POST['deny_button'])) {
+        } elseif ($request->input('action') === '2') {
             $invitation->status = 2;
         }
+
+        $invitation->user_id = 1;
+        $invitation->vacancy_id = 1;
+
+        $invitation->save();
+        dd($invitation);
     }
 }
