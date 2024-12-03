@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('invatations', function (Blueprint $table) {
-//            $table->integer('status')->default(0);
+            $table->timestamp('created_at')->nullable()->after('created_at');
+            $table->timestamp('updated_at')->nullable()->after('updated_at');
         });
     }
 
@@ -21,8 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('vacancies', function (Blueprint $table) {
-//            $table->dropColumn('status');
+        Schema::table('invatations', function (Blueprint $table) {
+            //
         });
     }
 };
