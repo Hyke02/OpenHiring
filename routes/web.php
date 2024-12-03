@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,8 +18,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/invitation', function (){
-    return view('invitation');
-})
+Route::get('/invitation', [InvitationController::class, 'index'])->name('invitation.index');
+
 
 require __DIR__.'/auth.php';
