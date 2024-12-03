@@ -19,6 +19,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/invitation', [InvitationController::class, 'index'])->name('invitation.index');
+Route::POST('/invitation', [InvitationController::class, 'store'])->name('invitation.store');
 
 
 require __DIR__.'/auth.php';

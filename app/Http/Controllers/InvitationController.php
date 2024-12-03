@@ -10,4 +10,9 @@ class InvitationController extends Controller
     {
         return view('invitation/invitation');
     }
+
+    public function store()
+    {
+
+    }
 }
