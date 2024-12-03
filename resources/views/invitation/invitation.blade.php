@@ -1,0 +1,3 @@
+<x-invitation>
+
+</x-invitation>
