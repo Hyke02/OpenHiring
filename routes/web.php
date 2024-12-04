@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VacancyController;
 use Illuminate\Support\Facades\Route;
@@ -18,7 +19,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__ . '/auth.php';
+Route::get('/invitation', [InvitationController::class, 'index'])->name('invitation.index');
+Route::POST('/invitation', [InvitationController::class, 'store'])->name('invitation.store');
+
+
+require __DIR__.'/auth.php';
 
 // Routes voor Vacatures
 Route::get('/vacancy', [VacancyController::class, 'index'])->name('vacancy.index');
