@@ -21,7 +21,6 @@
                     <button type="submit" name="action" value="2" class="px-16 py-4 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400">X</button>
                 </div>
             </div>
-            <x-button>Datum wijzigen</x-button>
         </div>
     </form>
 </div>
