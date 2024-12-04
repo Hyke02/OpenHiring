@@ -18,6 +18,8 @@ return new class extends Migration
             $table->bigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->bigInteger('vacancy_id');
+            $table->tinyInteger('status')->default(0);
+            $table->date('date');
             $table->timestamps();
         });
 
