@@ -12,6 +12,6 @@ class Sector extends Model
 
     public function vactures()
     {
-        return $this->hasMany(Vacature::class);
+        return $this->hasMany(vacancy::class);
     }
 }
