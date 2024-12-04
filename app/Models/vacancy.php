@@ -3,7 +3,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class vacature extends Model
+class vacancy extends Model
 {
     protected $fillable = [
 

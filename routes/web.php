@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\VacaturesController;
+use App\Http\Controllers\VacancyController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -21,13 +21,13 @@ Route::middleware('auth')->group(function () {
 require __DIR__ . '/auth.php';
 
 // Routes voor Vacatures
-Route::get('/vacatures', [VacaturesController::class, 'index'])->name('vacatures.index');
+Route::get('/vacancy', [VacancyController::class, 'index'])->name('vacancy.index');
 Route::middleware('auth')->group(function () {
-    Route::get('/vacatures/create', [VacaturesController::class, 'create'])->name('vacatures.create');
-    Route::post('/vacatures', [VacaturesController::class, 'store'])->name('vacatures.store');
-    Route::get('/vacatures/{id}/edit', [VacaturesController::class, 'edit'])->name('vacatures.edit');
-    Route::put('/vacatures/{id}', [VacaturesController::class, 'update'])->name('vacatures.update');
-    Route::delete('/vacatures/{id}', [VacaturesController::class, 'destroy'])->name('vacatures.destroy');
+    Route::get('/vacancy/create', [VacancyController::class, 'create'])->name('vacancy.create');
+    Route::post('/vacancy', [VacancyController::class, 'store'])->name('vacancy.store');
+    Route::get('/vacancy/{id}/edit', [VacancyController::class, 'edit'])->name('vacancy.edit');
+    Route::put('/vacancy/{id}', [VacancyController::class, 'update'])->name('vacancy.update');
+    Route::delete('/vacancy/{id}', [VacancyController::class, 'destroy'])->name('vacancy.destroy');
 });
-Route::get('/vacatures/{id}', [VacaturesController::class, 'show'])->name('vacatures.show');
+Route::get('/vacancy/{id}', [VacancyController::class, 'show'])->name('vacancy.show');
 
