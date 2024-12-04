@@ -10,5 +10,11 @@
 <body>
 <h2>{{$vacancy->company_name}}</h2>
 <h1>{{$vacancy->vacancy_name}}</h1>
+<img src="{{ asset('storage/images/8665257_clock_watch_icon.svg') }}" alt="Clock Icon">
+<img src="{{ asset('storage/images/3669413_location_ic_on_icon.svg') }}" alt="Location Icon">
+<img src="{{ asset('storage/images/3669346_ic_symbol_euro_icon.svg') }}" alt="Euro Icon">
+<img src="{{ asset('storage/images/8541636_clipboard_list_icon.svg') }}" alt="Clipboard Icon">
+<img src="{{ asset('storage/images/9004762_search_find_zoom_magnifier_icon.svg') }}" alt="Search Icon">
+
 </body>
 </html>
