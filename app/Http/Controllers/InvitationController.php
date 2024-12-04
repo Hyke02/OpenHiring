@@ -24,6 +24,10 @@ class InvitationController extends Controller
             $invitation->status = 2;
         }
 
+        $invitation->date=$request->input('date', now()->format('d-m-Y'));
+//        $invitation->date='4-12-2024';
+
+
         $invitation->user_id = 1;
         $invitation->vacancy_id = 1;
 
