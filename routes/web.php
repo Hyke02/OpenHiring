@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\VacaturesController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -17,4 +18,16 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
+
+// Routes voor Vacatures
+Route::get('/vacatures', [VacaturesController::class, 'index'])->name('vacatures.index');
+Route::middleware('auth')->group(function () {
+    Route::get('/vacatures/create', [VacaturesController::class, 'create'])->name('vacatures.create');
+    Route::post('/vacatures', [VacaturesController::class, 'store'])->name('vacatures.store');
+    Route::get('/vacatures/{id}/edit', [VacaturesController::class, 'edit'])->name('vacatures.edit');
+    Route::put('/vacatures/{id}', [VacaturesController::class, 'update'])->name('vacatures.update');
+    Route::delete('/vacatures/{id}', [VacaturesController::class, 'destroy'])->name('vacatures.destroy');
+});
+Route::get('/vacatures/{id}', [VacaturesController::class, 'show'])->name('vacatures.show');
+
