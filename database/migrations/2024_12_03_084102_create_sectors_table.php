@@ -9,17 +9,17 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
-        Schema::disableForeignKeyConstraints();
-
-        Schema::create('sectors', function (Blueprint $table) {
-            $table->id()->foreign('vacancies.sector_id');
-            $table->bigInteger('name');
-        });
-
-        Schema::enableForeignKeyConstraints();
+        if (!Schema::hasTable('sectors')) {
+            Schema::create('sectors', function (Blueprint $table) {
+                $table->id();
+                $table->integer('name');
+            });
+        }
     }
+
+
 
     /**
      * Reverse the migrations.
