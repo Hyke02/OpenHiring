@@ -34,7 +34,7 @@ class VacancyController extends Controller
             $vacancyQuery->where('sector_id', $request->sector);
         }
 
-        $vacancies = $vacancyQuery->where('is_active', 1)->get();
+        $vacancies = $vacancyQuery->get();
 
         return view('vacancy.index', compact('sectors', 'vacancies'));
     }

@@ -2,7 +2,7 @@
 <div class="flex relative">
     <div class="flex items-center m-[10px]">
         <x-nav-link href="{{ route('dashboard') }}">
-            <img src="/storage/images/logo-oh.png" alt="Open hiring logo" class="h-[150px] w-[150px]">
+            <img src="../storage/images/logo-oh.png" alt="Open hiring logo" class="h-[150px] w-[150px]">
         </x-nav-link>
     </div>
 

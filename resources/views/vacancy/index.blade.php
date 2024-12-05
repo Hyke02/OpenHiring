@@ -45,25 +45,25 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 m-4 ">
         @foreach ($vacancies as $vacancy)
             <div class="bg-white shadow rounded-lg overflow-hidden border border-[#444343]">
-            <h1 class="text-lg font-semibold px-4 py-2">{{ $vacancy->vacancy_name }}</h1>
+            <h1 class="text-lg font-semibold px-4 py-2">{{ $vacancy->name }}</h1>
                 <h2 class="text-lg font px-4 py-2">{{ $vacancy->company_name }} - {{ $vacancy->location }}</h2>
 
                 <div class="flex flex-row justify-between p-4">
                     <div class="flex flex-col gap-4 mb-4 lg:mb-0 w-full lg:w-2/3">
                         <div class="border-3 border-[#E2ECC8] bg-[#D6E2B5] inline-flex items-center rounded-full w-fit p-3">
-                            <p class="m-0 text-xs lg:text-sm">4/40 uur per week</p>
+                            <p class="m-0 text-xs lg:text-sm">{{ $vacancy->hours }} per week</p>
                         </div>
 
                         <div class="border-3 border-[#E2ECC8] bg-[#D6E2B5] p-3 rounded-full inline-block w-fit text-xs lg:text-sm">
-                            <p>6 tot 16,35 euro per uur</p>
+                            <p>€ {{ $vacancy->salary }} per maand netto</p>
                         </div>
 
                         <div class="flex gap-4 flex-row">
                             <div class="border-3 border-[#E2ECC8] bg-[#D6E2B5] p-3 rounded-full text-xs lg:text-sm whitespace-nowrap w-fit">
-                                <p>6 nodig</p>
+                                <p>{{ $vacancy->wanted }} nodig</p>
                             </div>
                             <div class="border-3 border-[#E2ECC8] bg-[#D6E2B5] p-3 rounded-full text-xs lg:text-sm whitespace-nowrap w-fit">
-                                <p>10 in de wacht</p>
+                                <p>1{{ $vacancy->awaiting }} in de wacht</p>
                             </div>
                         </div>
                     </div>
