@@ -6,6 +6,7 @@ use App\Models\vacancy;
 use App\Models\Sector;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class VacancyController extends Controller
 {
@@ -81,6 +82,7 @@ class VacancyController extends Controller
 
         return view('vacancy.show', compact('vacancy'));
     }
+
 
     // Formulier voor het bewerken van een bestaande vacancy
     public function edit($id)
