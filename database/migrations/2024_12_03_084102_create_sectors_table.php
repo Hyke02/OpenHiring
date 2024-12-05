@@ -15,6 +15,7 @@ return new class extends Migration
             Schema::create('sectors', function (Blueprint $table) {
                 $table->id();
                 $table->integer('name');
+                $table->timestamps();
             });
         }
     }
