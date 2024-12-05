@@ -1,12 +1,10 @@
-<div class="flex relative">
-    <div class="flex items-center m-[10px]">
-        <x-nav-link href="{{ route('dashboard') }}">
-            <img src="/storage/images/logo-oh.png" alt="Open hiring logo" class="h-[150px] w-[150px]">
-        </x-nav-link>
-    </div>
+<div class="flex relative p-6">
+    <a href="{{ route('home') }}" class="w-">
+        <img src="{{ asset('storage/images/OpenHiring-logo.svg') }}" alt="logo van open hiring" class="w-12 focus:border-indigo-600">
+    </a>
 
-    <div class="burger ml-auto text-[120px]">
-        ☰
+    <div class="burger ml-auto text-[48px]">
+        <img src="{{ asset('storage/images/burger-menu.svg') }}" alt="menu icoon" class="w-12" fill="currentcolor">
     </div>
 
     <div class="dropdown opacity-0 scale-y-0 transform origin-top absolute left-0 right-0 top-full

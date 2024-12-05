@@ -1,8 +1,6 @@
 <x-guest-layout>
     <x-slot name="slot1">
-        <div class="p-6">
-            <x-openhiring-nav></x-openhiring-nav>
-        </div>
+        <x-navigation></x-navigation>
     </x-slot>
 
     <x-slot name="slot2">
