@@ -51,7 +51,7 @@
                 <div class="flex flex-row justify-between p-4">
                     <div class="flex flex-col gap-4 mb-4 lg:mb-0 w-full lg:w-2/3">
                         <div class="border-3 border-[#E2ECC8] bg-[#D6E2B5] inline-flex items-center rounded-full w-fit p-3">
-                            <p class="m-0 text-xs lg:text-sm">4/40 uur per week</p>
+                            <p class="m-0 text-xs lg:text-sm">4-40 uur per week</p>
                         </div>
 
                         <div class="border-3 border-[#E2ECC8] bg-[#D6E2B5] p-3 rounded-full inline-block w-fit text-xs lg:text-sm">
@@ -63,7 +63,7 @@
                                 <p>6 nodig</p>
                             </div>
                             <div class="border-3 border-[#E2ECC8] bg-[#D6E2B5] p-3 rounded-full text-xs lg:text-sm whitespace-nowrap w-fit">
-                                <p>10 in de wacht</p>
+                                <p>10 wachtende</p>
                             </div>
                         </div>
                     </div>
