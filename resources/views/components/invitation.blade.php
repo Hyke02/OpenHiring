@@ -10,7 +10,7 @@
 
     <title>OpenHiring</title>
 </head>
-<body>
+<body class="bg-[#FBFCF7]">
 <main>
     {{$slot}}
 </main>
