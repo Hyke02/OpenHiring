@@ -1,3 +1,4 @@
+
 <div class="flex relative">
     <div class="flex items-center m-[10px]">
         <x-nav-link href="{{ route('dashboard') }}">
