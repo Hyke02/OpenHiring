@@ -1,3 +1,4 @@
+<x-navigation></x-navigation>
 <x-invitation>
     <h2 class="text-[30px] font-bold my-[20px] flex justify-center">U bent uitgenodigd!</h2>
 <div>
