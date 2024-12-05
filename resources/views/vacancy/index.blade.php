@@ -1,3 +1,4 @@
+
  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -7,7 +8,7 @@
 </head>
 
 <body class="overflow-x-hidden">
-
+<x-navigation></x-navigation>
 <div class="container mx-auto mt-8 max-w-full">
     <form method="GET" action="{{ route('vacancy.index') }}" class="mb-8">
         <div class="flex gap-4 items-center mb-4 m-10">
@@ -31,7 +32,7 @@
             <!-- Zoek form -->
             <div class="flex-1">
                 <input type="text" name="search" placeholder="Zoek" value="{{ request('search') }}"
-                       class="block w-full border-gray-300 rounded-md shadow-sm focus:border-[#D6E2B5]">
+                       class="block w-full border-gray-300 border-3 border-[#E2ECC8] rounded-md shadow-sm focus:border-[#D6E2B5]">
             </div>
 
             <!-- Zoek button -->

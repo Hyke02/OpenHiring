@@ -1,6 +1,6 @@
 <div class="flex relative p-6">
     <a href="{{ route('home') }}" class="w-">
-        <img src="{{ asset('storage/images/OpenHiring-logo.svg') }}" alt="logo van open hiring" class="w-12 focus:border-indigo-600">
+        <img src="{{ asset('storage/images/logo-oh.png') }}" alt="logo van open hiring" class="w-12 focus:border-indigo-600">
     </a>
 
     <div class="burger ml-auto text-[48px]">
@@ -12,7 +12,7 @@
         <nav class="text-center text-4xl flex flex-col space-y-10">
             <x-nav-link href="/profiel">Profiel</x-nav-link>
             <x-nav-link href="/mijn-vacatures">Mijn Vacatures</x-nav-link>
-            <x-nav-link href="/vacatures">Vacatures</x-nav-link>
+            <x-nav-link href="/vacancy">Vacatures</x-nav-link>
             <x-nav-link href="/login">Inloggen</x-nav-link>
             <x-nav-link href="/help">Help</x-nav-link>
         </nav>
