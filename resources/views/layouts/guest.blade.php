@@ -14,16 +14,15 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans text-gray-900 antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
-            <div>
-                <a href="/">
-                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-                </a>
-            </div>
-
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
-                {{ $slot }}
+    <body style="background-image: url('{{ asset('storage/images/openhiring_logo_10%.svg') }}')" class="slot1 flex flex-col min-h-screen bg-[#FBFCF7] bg-center bg-no-repeat font-sans text-gray-900 antialiased lg:bg-[length:25vw] sm:bg-[length:90%]">
+        @isset($slot1)
+            {{ $slot1 }}
+        @endisset
+        <div class="flex flex-col justify-center items-center flex-grow pb-10">
+            <div class="slot2 w-full sm:max-w-md px-6 py-4 overflow-hidden sm:rounded-lg">
+                @isset($slot2)
+                    {{ $slot2 }}
+                @endisset
             </div>
         </div>
     </body>
