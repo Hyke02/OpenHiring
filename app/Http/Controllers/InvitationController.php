@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Invatation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class InvitationController extends Controller
 {
@@ -28,7 +29,7 @@ class InvitationController extends Controller
 //        $invitation->date='4-12-2024';
 
 
-        $invitation->user_id = 1;
+        $invitation->user_id = Auth::user()->id;
         $invitation->vacancy_id = 1;
 
         $invitation->save();
