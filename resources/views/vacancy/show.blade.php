@@ -109,13 +109,20 @@
     </div>
 
     <!-- Solliciteer knop -->
-    <div class="mt-6">
-        <button
-            class="w-full py-3 bg-[#AA0061] text-white font-semibold rounded-full hover:bg-[#8b004e] transition duration-300"
-            onclick="solliciteer()"> <!-- Voeg onclick event toe -->
+{{--    <div class="mt-6">--}}
+{{--        <button--}}
+{{--            class="w-full py-3 bg-[#AA0061] text-white font-semibold rounded-full hover:bg-[#8b004e] transition duration-300"--}}
+{{--            onclick="solliciteer()"> <!-- Voeg onclick event toe -->--}}
+{{--            Solliciteer--}}
+{{--        </button>--}}
+{{--    </div>--}}
+    <form action="{{route('vacancy.storeUser_id')}}" method="POST">
+        @csrf
+        <button type="submit"
+            class="w-full py-3 bg-[#AA0061] text-white font-semibold rounded-full hover:bg-[#8b004e] transition duration-300"> <!-- Voeg onclick event toe -->
             Solliciteer
         </button>
-    </div>
+    </form>
 
     <script>
         function solliciteer() {
