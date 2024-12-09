@@ -6,6 +6,7 @@ use App\Models\vacancy;
 use App\Models\Sector;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class VacancyController extends Controller
 {
@@ -34,7 +35,7 @@ class VacancyController extends Controller
             $vacancyQuery->where('sector_id', $request->sector);
         }
 
-        $vacancies = $vacancyQuery->where('is_active', 1)->get();
+        $vacancies = $vacancyQuery->get();
 
         return view('vacancy.index', compact('sectors', 'vacancies'));
     }
@@ -81,6 +82,7 @@ class VacancyController extends Controller
 
         return view('vacancy.show', compact('vacancy'));
     }
+
 
     // Formulier voor het bewerken van een bestaande vacancy
     public function edit($id)

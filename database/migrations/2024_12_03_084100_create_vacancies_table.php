@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('vacancies', function (Blueprint $table) {
             $table->id()->foreign('invatations.vacancy_id');
             $table->string('name');
+            $table->string('company_name');
+            $table->string('images');
             $table->bigInteger('location_id');
             $table->bigInteger('salary');
             $table->bigInteger('sector_id');

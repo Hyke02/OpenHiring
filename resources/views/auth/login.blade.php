@@ -1,9 +1,7 @@
 <x-guest-layout>
 
     <x-slot name="slot1">
-        <div class="p-6">
-            <x-openhiring-nav></x-openhiring-nav>
-        </div>
+        <x-navigation></x-navigation>
     </x-slot>
 
     <x-slot name="slot2">
@@ -35,7 +33,7 @@
                 <div class="block mt-4">
                     <label for="remember_me" class="inline-flex items-center">
                         <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-[#AA0160] shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                        <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Onthoud mij') }}</span>
+                        <span class="ms-2 text-sm text-gray-900">{{ __('Onthoud mij') }}</span>
                     </label>
                 </div>
 
