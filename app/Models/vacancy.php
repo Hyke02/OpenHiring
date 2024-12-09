@@ -3,6 +3,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use phpDocumentor\Reflection\Location;
 
 class vacancy extends Model
 {
@@ -23,7 +24,10 @@ class vacancy extends Model
         return $this->belongsTo(User::class, 'users_id');
     }
 
-
+    public function location()
+    {
+        return $this->belongsTo(location::class);
+    }
 
 
 }
