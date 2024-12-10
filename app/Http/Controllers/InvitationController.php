@@ -30,7 +30,7 @@ class InvitationController extends Controller
 
 
         $invitation->user_id = Auth::user()->id;
-        $invitation->vacancy_id = 1;
+        $invitation->vacancy_id = $request->input('vacancy_id');
 
         $invitation->save();
         dd($invitation);

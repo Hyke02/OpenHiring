@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Invatation;
 use App\Models\vacancy;
 use App\Models\Sector;
 use Illuminate\Http\Request;
@@ -75,11 +76,22 @@ class VacancyController extends Controller
         return redirect()->route('vacancy.index')->with('success', 'Vacature succesvol aangemaakt.');
     }
 
+    public function storeUser_id(Request $request)
+    {
+        $invatation = new Invatation();
+        $invatation->user_id = Auth::id();
+        $invatation->vacancy_id = $request->vacancy_id;
+
+
+        $invatation->save();
+        dd($invatation);
+        return redirect()->route('vacancy.index');
+    }
+
     // Toon een specifieke vacancy
     public function show($id)
     {
         $vacancy = vacancy::with( 'sector')->findOrFail($id);
-
         return view('vacancy.show', compact('vacancy'));
     }
 

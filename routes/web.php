@@ -36,6 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/vacancy/{id}', [VacancyController::class, 'destroy'])->name('vacancy.destroy');
 });
 Route::get('/vacancy/{id}', [VacancyController::class, 'show'])->name('vacancy.show');
+Route::post('/vacancy/store', [VacancyController::class, 'storeUser_id'])->name('vacancy.storeUser_id');
 
 // Route voor mijn vacatures
 Route::get('/my-vacancy', [MyVacancyController::class, 'index'])->name('vacancy.index');
