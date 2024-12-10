@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Vacancy;
+use App\Models\Invatation;
+use App\Models\Location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,8 +12,9 @@ class MyVacancyController extends Controller
 {
     public function index(Request $request)
     {
-        $vacancies = Vacancy::where('user_id', Auth::user()->id)->get();
-//$vacancies = Vacancy::all();
-        return view('myVacancy',compact('vacancies'));
+        $locations = Location::all();
+        $invitations = Invatation::where('user_id', Auth::id())->with('vacancy')->get();
+
+        return view('myVacancy',compact('invitations','locations'));
     }
 }

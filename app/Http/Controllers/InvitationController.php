@@ -26,13 +26,10 @@ class InvitationController extends Controller
         }
 
         $invitation->date=$request->input('date', now()->format('d-m-Y'));
-//        $invitation->date='4-12-2024';
-
 
         $invitation->user_id = Auth::user()->id;
         $invitation->vacancy_id = $request->input('vacancy_id');
 
         $invitation->save();
-        dd($invitation);
     }
 }

@@ -76,6 +76,7 @@ class VacancyController extends Controller
         return redirect()->route('vacancy.index')->with('success', 'Vacature succesvol aangemaakt.');
     }
 
+    // user_id en vancacy_id in invatation tabel wordt gelinked
     public function storeUser_id(Request $request)
     {
         $invatation = new Invatation();
@@ -84,7 +85,6 @@ class VacancyController extends Controller
 
 
         $invatation->save();
-        dd($invatation);
         return redirect()->route('vacancy.index');
     }
 
