@@ -6,9 +6,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-@include('components.navigation')
-
-<x-info-icon>Placeholder text</x-info-icon>
+<x-navigation></x-navigation>
+<x-info-icon></x-info-icon>
 
 <body class="overflow-x-hidden">
 
