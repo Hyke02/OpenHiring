@@ -14,8 +14,8 @@
 <div class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-lg border-2 border-black">
 
     <!-- Bedrijf en vacature naam -->
-    <h2 class="text-2xl font-semibold text-gray-800">{{ $vacancy->company_name }}</h2>
-    <h1 class="text-3xl font-bold text-gray-900 mt-2">{{ $vacancy->vacancy_name }}</h1>
+    <h1 class="text-2xl font-bold text-gray-900 mt-2">{{ $vacancy->name }}</h1>
+    <h2 class="text-1.5xl font-semibold text-gray-800">{{ $vacancy->company_name }}</h2>
 
     <!-- Informatie sectie met icoontjes -->
     <div class="flex flex-wrap items-center mt-4 gap-4"> <!-- gap-4 in plaats van gap-8 -->

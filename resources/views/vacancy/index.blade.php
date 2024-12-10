@@ -45,8 +45,10 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 m-4 ">
         @foreach ($vacancies as $vacancy)
             <div class="bg-white shadow rounded-lg overflow-hidden border border-[#444343]">
+                <h1 class="text-lg font-semibold px-4 py-2">{{ $vacancy->name }}</h1>
             <h1 class="text-lg font-semibold px-4 py-2">{{ $vacancy->vacancy_name }}</h1>
                 <h2 class="text-lg font px-4 py-2">{{ $vacancy->company_name }} - {{ $vacancy->location->location }}</h2>
+
 
                 <div class="flex flex-row justify-between p-4">
                     <div class="flex flex-col gap-4 mb-4 lg:mb-0 w-full lg:w-2/3">
