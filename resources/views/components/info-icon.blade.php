@@ -9,11 +9,14 @@
 
     <div id="info-box" class="fixed inset-0 bg-white text-2xl opacity-0 scale-y-0 transform origin-top transition-all duration-300 p-5 overflow-y-auto">
         <div class="text-center">
-            <h2 class="text-5xl font-bold mb-4">Zo solliciteer je</h2>
+            <h2 class="text-3xl font-bold mb-4">Zo solliciteer je</h2>
             <x-info-content-box>content</x-info-content-box>
-            <button id="close-info" class="text-3xl bg-[#AA0061] text-white px-4 py-4 rounded-md shadow hover:bg-[#AA0061] mt-5 w-full">
+            <button
+                id="close-info"
+                class="text-2xl bg-[#AA0061] text-white px-4 py-4 rounded-md shadow hover:bg-white hover:text-[#AA0061] hover:border-[#AA0061] border-2 border-transparent mt-5 w-full">
                 sluit
             </button>
+
         </div>
     </div>
 </div>
