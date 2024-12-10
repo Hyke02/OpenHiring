@@ -13,7 +13,7 @@ class LocationFactory extends Factory
     {
         return [
             'location' => $this->faker->city(),
-            'address' => $this->faker->streetAddress(),
+            'adress' => $this->faker->streetAddress(),
         ];
     }
 }
