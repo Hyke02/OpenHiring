@@ -107,22 +107,21 @@
         </div>
     </div>
 
-    <!-- Solliciteer knop -->
-{{--    <div class="mt-6">--}}
-{{--        <button--}}
-{{--            class="w-full py-3 bg-[#AA0061] text-white font-semibold rounded-full hover:bg-[#8b004e] transition duration-300"--}}
-{{--            onclick="solliciteer()"> <!-- Voeg onclick event toe -->--}}
-{{--            Solliciteer--}}
-{{--        </button>--}}
-{{--    </div>--}}
-    <form action="{{route('vacancy.storeUser_id')}}" method="POST">
-        @csrf
-        <input type="hidden" name="vacancy_id" value="{{$vacancy->id}}">
-        <button type="submit"
-            class="w-full py-3 bg-[#AA0061] text-white font-semibold rounded-full hover:bg-[#8b004e] transition duration-300"> <!-- Voeg onclick event toe -->
-            Solliciteer
-        </button>
-    </form>
+    @if($fromMyVacancy)
+        <a href="{{ route('vacancy.index') }}" class="w-full py-3 bg-[#AA0061] text-white font-semibold rounded-full hover:bg-[#8b004e] transition duration-300 text-center block">
+            Terug naar Mijn Vacatures
+        </a>
+    @else
+
+        <form action="{{route('vacancy.storeUser_id')}}" method="POST">
+            @csrf
+            <input type="hidden" name="vacancy_id" value="{{$vacancy->id}}">
+            <button type="submit"
+                class="w-full py-3 bg-[#AA0061] text-white font-semibold rounded-full hover:bg-[#8b004e] transition duration-300"> <!-- Voeg onclick event toe -->
+                Solliciteer
+            </button>
+        </form>
+    @endif
 
     <script>
         function solliciteer() {

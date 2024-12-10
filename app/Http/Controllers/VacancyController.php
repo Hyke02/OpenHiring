@@ -89,10 +89,14 @@ class VacancyController extends Controller
     }
 
     // Toon een specifieke vacancy
-    public function show($id)
+    public function show($id, Request $request)
     {
         $vacancy = vacancy::with( 'sector')->findOrFail($id);
-        return view('vacancy.show', compact('vacancy'));
+        $invitations = Invatation::where('user_id', Auth::user()->id)->get();
+
+        $fromMyVacancy = $request->query('from') === 'my-vacancy';
+
+        return view('vacancy.show', compact('vacancy','invitations','fromMyVacancy'));
     }
 
 
