@@ -24,10 +24,9 @@
             <img src="{{ asset('storage/images/8665257_clock_watch_icon.svg') }}" alt="Clock Icon" class="w-7 h-auto">
             <span class="ml-4">4-40 uur per week</span>
         </p>
-
         <p class="flex items-center text-gray-600">
             <img src="{{ asset('storage/images/3669413_location_ic_on_icon.svg') }}" alt="Location Icon" class="w-8 h-auto">
-            <span class="ml-4">Barendrecht</span>
+            <span class="ml-4">{{$vacancy->location->location}}</span>
         </p>
         <p class="flex items-center text-gray-600">
             <img src="{{ asset('storage/images/3669346_ic_symbol_euro_icon.svg') }}" alt="Euro Icon" class="w-8 h-auto">
@@ -118,6 +117,7 @@
 {{--    </div>--}}
     <form action="{{route('vacancy.storeUser_id')}}" method="POST">
         @csrf
+        <input type="hidden" name="vacancy_id" value="{{$vacancy->id}}">
         <button type="submit"
             class="w-full py-3 bg-[#AA0061] text-white font-semibold rounded-full hover:bg-[#8b004e] transition duration-300"> <!-- Voeg onclick event toe -->
             Solliciteer

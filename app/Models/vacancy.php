@@ -3,7 +3,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use phpDocumentor\Reflection\Location;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 
 class vacancy extends Model
 {
@@ -13,20 +14,20 @@ class vacancy extends Model
 
     ];
 
-    public function sector()
+    public function sector(): BelongsTo
     {
         return $this->belongsTo(Sector::class);
     }
 
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'users_id');
     }
 
-    public function location()
+    public function location(): BelongsTo
     {
-        return $this->belongsTo(location::class);
+        return $this->belongsTo(location::class, 'location_id');
     }
 
 
