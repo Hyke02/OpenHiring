@@ -11,7 +11,7 @@
     mt-2 bg-white min-h-screen transition-all duration-300 pt-[20%]">
         <nav class="text-center text-4xl flex flex-col space-y-10">
             <x-nav-link href="/profiel">Profiel</x-nav-link>
-            <x-nav-link href="/mijn-vacatures">Mijn Vacatures</x-nav-link>
+            <x-nav-link href="/my-vacancy">Mijn Vacatures</x-nav-link>
             <x-nav-link href="/vacatures">Vacatures</x-nav-link>
             <x-nav-link href="/login">Inloggen</x-nav-link>
             <x-nav-link href="/help">Help</x-nav-link>

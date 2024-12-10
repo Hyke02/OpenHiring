@@ -27,8 +27,10 @@ return new class extends Migration
             $table->bigInteger('awaiting');
             $table->bigInteger('wanted');
             $table->bigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');
         });
 
         Schema::enableForeignKeyConstraints();

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Invatation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class InvitationController extends Controller
 {
@@ -25,13 +26,21 @@ class InvitationController extends Controller
         }
 
         $invitation->date=$request->input('date', now()->format('d-m-Y'));
-//        $invitation->date='4-12-2024';
 
-
-        $invitation->user_id = 1;
-        $invitation->vacancy_id = 1;
+        $invitation->user_id = Auth::user()->id;
+        $invitation->vacancy_id = $request->input('vacancy_id');
 
         $invitation->save();
-        dd($invitation);
+    }
+
+    public function destroy($id)
+    {
+        $invitation = Invatation::findOrFail($id);
+
+        if ($invitation->user_id === Auth::user()->id) {
+            $invitation->delete();
+            return redirect()->back();
+        }
+        return redirect()->back();
     }
 }
