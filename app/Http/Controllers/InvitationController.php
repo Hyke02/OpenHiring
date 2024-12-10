@@ -32,4 +32,15 @@ class InvitationController extends Controller
 
         $invitation->save();
     }
+
+    public function destroy($id)
+    {
+        $invitation = Invatation::findOrFail($id);
+
+        if ($invitation->user_id === Auth::user()->id) {
+            $invitation->delete();
+            return redirect()->back();
+        }
+        return redirect()->back();
+    }
 }

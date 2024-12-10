@@ -13,17 +13,18 @@ class MyVacancyController extends Controller
 
     public function index()
     {
-        $userId = Auth::id(); // Ingelogde gebruiker
+        $userId = Auth::id();
         $invitations = Invatation::where('user_id', $userId)->get();
 
         $vacanciesWithPosition = $invitations->map(function ($invitation) use ($userId) {
             $position = Invatation::where('vacancy_id', $invitation->vacancy_id)
                 ->where('created_at', '<=', $invitation->created_at)
-                ->count(); // Aantal eerdere inschrijvingen, inclusief de huidige gebruiker
+                ->count();
 
             return [
                 'vacancy' => $invitation->vacancy,
-                'position' => $position, // Dynamische positie
+                'position' => $position,
+                'invitation' => $invitation,
             ];
         });
 
