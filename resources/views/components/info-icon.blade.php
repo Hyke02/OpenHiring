@@ -1,9 +1,9 @@
 <div class="">
-    <button id="info-icon" class="z-10 m-[10px]">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1" width="50" height="50">
-            <circle cx="12" cy="12" r="10" />
-            <line x1="12" y1="10" x2="12" y2="18" stroke="currentColor" stroke-width="1" />
-            <circle cx="12" cy="7" r="1" fill="currentColor" />
+    <button id="info-icon" class="z-10 m-[10px] group">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1" width="50" height="50">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" class="group-hover:stroke-[#AA0061]" />
+            <line x1="12" y1="10" x2="12" y2="18" stroke="currentColor" stroke-width="1" class="group-hover:stroke-[#AA0061]" />
+            <circle cx="12" cy="7" r="1" fill="currentColor" class="group-hover:stroke-[#AA0061]" />
         </svg>
     </button>
 
@@ -16,10 +16,10 @@
                 class="text-2xl bg-[#AA0061] text-white px-4 py-4 rounded-md shadow hover:bg-white hover:text-[#AA0061] hover:border-[#AA0061] border-2 border-transparent mt-5 w-full">
                 sluit
             </button>
-
         </div>
     </div>
 </div>
+
 
 <script>
     const infoIcon = document.getElementById('info-icon')
