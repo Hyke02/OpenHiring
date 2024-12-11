@@ -36,10 +36,10 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        //$name = RandomNameGenerator::generate();
+        $name = RandomNameGenerator::generate();
 
         $user = User::create([
-            //'name' => $name,
+            'name' => $name,
             'email' => $request->email,
             'number' => $request->number,
             'password' => Hash::make($request->password),
