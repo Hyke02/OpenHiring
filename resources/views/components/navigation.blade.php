@@ -15,7 +15,10 @@
                 <x-nav-link href="/my-vacancy">Mijn Vacatures</x-nav-link>
                 <x-nav-link href="/vacancy">Vacatures</x-nav-link>
                 <x-nav-link href="/help">Help</x-nav-link>
-                <x-nav-link href="/logout">Uitloggen</x-nav-link>
+                <form action="{{ route('logout') }}" method="post">
+                    @csrf
+                    <x-nav-link href="javascript:void(0);" onclick="this.closest('form').submit();">Uitloggen</x-nav-link>
+                </form>
             @else
                 <x-nav-link href="/vacancy">Vacatures</x-nav-link>
                 <x-nav-link href="/help">Help</x-nav-link>
