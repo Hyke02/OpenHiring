@@ -7,8 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Application</title>
+    @vite('resources/js/app.js')
 </head>
-<body class="bg-[#FBFCF7] p-10">
+<body class="bg-[#FBFCF7]">
+
+<x-navigation></x-navigation>
+<x-info-icon>Placeholder text</x-info-icon>
 
 <!-- Vacature details -->
 <div class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-lg border-2 border-black">
@@ -24,10 +28,9 @@
             <img src="{{ asset('storage/images/8665257_clock_watch_icon.svg') }}" alt="Clock Icon" class="w-7 h-auto">
             <span class="ml-4">4-40 uur per week</span>
         </p>
-
         <p class="flex items-center text-gray-600">
             <img src="{{ asset('storage/images/3669413_location_ic_on_icon.svg') }}" alt="Location Icon" class="w-8 h-auto">
-            <span class="ml-4">Barendrecht</span>
+            <span class="ml-4">{{$vacancy->location->location}}</span>
         </p>
         <p class="flex items-center text-gray-600">
             <img src="{{ asset('storage/images/3669346_ic_symbol_euro_icon.svg') }}" alt="Euro Icon" class="w-8 h-auto">
@@ -108,13 +111,37 @@
         </div>
     </div>
 
-    <!-- Solliciteer knop -->
-    <div class="mt-6">
-        <button
-            class="w-full py-3 bg-[#AA0061] text-white font-semibold rounded-full hover:bg-[#8b004e] transition duration-300"
-            onclick="solliciteer()"> <!-- Voeg onclick event toe -->
-            Solliciteer
-        </button>
+    @auth()
+        @if($fromMyVacancy)
+            <a href="{{ route('vacancy.index') }}" class="w-full py-3 bg-[#AA0061] text-white font-semibold rounded-full hover:bg-[#8b004e] transition duration-300 text-center block">
+                Terug naar Mijn Vacatures
+            </a>
+        @else
+
+            <form action="{{route('vacancy.storeUser_id')}}" method="POST" onsubmit="confirmSubmit()">
+                @csrf
+                <input type="hidden" name="vacancy_id" value="{{$vacancy->id}}">
+                <button type="submit"
+                        class="w-full py-3 bg-[#AA0061] text-white font-semibold rounded-full hover:bg-[#8b004e] transition duration-300"> <!-- Voeg onclick event toe -->
+                    Solliciteer
+                </button>
+            </form>
+        @endif
+    @else
+        <a href="{{ route('login') }}" class="w-full py-3 bg-[#AA0061] text-white font-semibold rounded-full hover:bg-[#8b004e] transition duration-300 text-center block">
+            Login om te solliciteren
+        </a>
+    @endauth
+
+    <div id="applyModal" class="modal hidden fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50">
+        <div class="modal-content bg-white p-6 rounded-lg">
+            <h2 class="text-xl font-semibold">Bevestig Sollicitatie</h2>
+            <p>Weet je zeker dat je wilt solliciteren voor deze vacature?</p>
+            <div class="flex justify-end mt-4">
+                <button onclick="closeModal()" class="bg-gray-400 text-white py-2 px-4 rounded mr-2">Annuleren</button>
+                <button onclick="submitForm()" class="bg-[#AA0061] text-white py-2 px-4 rounded">Bevestigen</button>
+            </div>
+        </div>
     </div>
 
     <script>

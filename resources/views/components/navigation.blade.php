@@ -7,14 +7,20 @@
         <img src="{{ asset('storage/images/burger-menu.svg') }}" alt="menu icoon" class="w-12" fill="currentcolor">
     </div>
 
-    <div class="dropdown opacity-0 scale-y-0 transform origin-top absolute left-0 right-0 top-full mt-4
-                bg-white shadow-lg rounded-lg min-h-[70vh] w-full max-w-full mx-0 transition-all duration-300 pt-[15%] z-40">
-        <nav class="text-center text-3xl flex flex-col space-y-6 p-8">
-            <x-nav-link href="/profiel">Profiel</x-nav-link>
-            <x-nav-link href="/mijn-vacatures">Mijn Vacatures</x-nav-link>
-            <x-nav-link href="/vacatures">Vacatures</x-nav-link>
-            <x-nav-link href="/login">Inloggen</x-nav-link>
-            <x-nav-link href="/help">Help</x-nav-link>
+    <div class="dropdown opacity-0 scale-y-0 transform origin-top absolute left-0 right-0 top-full
+    mt-2 bg-white min-h-screen transition-all duration-300 pt-[20%]">
+        <nav class="text-center text-4xl flex flex-col space-y-10">
+            @auth()
+                <x-nav-link href="/profile">Profiel</x-nav-link>
+                <x-nav-link href="/my-vacancy">Mijn Vacatures</x-nav-link>
+                <x-nav-link href="/vacancy">Vacatures</x-nav-link>
+                <x-nav-link href="/help">Help</x-nav-link>
+                <x-nav-link href="/logout">Uitloggen</x-nav-link>
+            @else
+                <x-nav-link href="/vacancy">Vacatures</x-nav-link>
+                <x-nav-link href="/help">Help</x-nav-link>
+                <x-nav-link href="/login">Inloggen</x-nav-link>
+            @endauth
         </nav>
     </div>
 </div>
@@ -32,3 +38,4 @@
         }
     });
 </script>
+

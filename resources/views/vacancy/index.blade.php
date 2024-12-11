@@ -8,6 +8,9 @@
 
 <body class="overflow-x-hidden">
 
+<x-navigation></x-navigation>
+<x-info-icon></x-info-icon>
+
 <div class="container mx-auto mt-8 max-w-full">
     <form method="GET" action="{{ route('vacancy.index') }}" class="mb-8">
         <div class="flex gap-4 items-center mb-4 m-10">
@@ -46,7 +49,7 @@
         @foreach ($vacancies as $vacancy)
             <div class="bg-white shadow rounded-lg overflow-hidden border border-[#444343]">
             <h1 class="text-lg font-semibold px-4 py-2">{{ $vacancy->vacancy_name }}</h1>
-                <h2 class="text-lg font px-4 py-2">{{ $vacancy->company_name }} - {{ $vacancy->location }}</h2>
+                <h2 class="text-lg font px-4 py-2">{{ $vacancy->company_name }} - {{ $vacancy->location->location }}</h2>
 
                 <div class="flex flex-row justify-between p-4">
                     <div class="flex flex-col gap-4 mb-4 lg:mb-0 w-full lg:w-2/3">
@@ -80,7 +83,7 @@
                 </div>
 
                 <div class="flex justify-center mt-4">
-                    <a href="{{ route('vacancy.show', $vacancy->id) }}" class="bg-[#AA0061] text-white px-4 py-2 mb-2 rounded-md hover:bg-[#FBFCF7] mb-6">
+                    <a href="{{ route('vacancy.show', $vacancy->id) }}" class="bg-[#AA0061] text-white px-4 py-2 mb-6 rounded-full hover:bg-[#FBFCF7]">
                         Bekijk Vacature
                     </a>
                 </div>

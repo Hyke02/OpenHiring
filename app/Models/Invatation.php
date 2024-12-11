@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Invatation extends Model
@@ -10,8 +11,8 @@ class Invatation extends Model
 
     protected $fillable = ['user_id', 'vacancy_id', 'status'];
 
-    public function vacancies(): BelongsToMany
+    public function vacancy(): BelongsTo
     {
-//        return $this->belongsToMany(Vacancy::class);
+        return $this->belongsTo(Vacancy::class);
     }
 }

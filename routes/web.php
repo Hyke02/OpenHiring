@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\InvitationController;
+use App\Http\Controllers\MyVacancyController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VacancyController;
 use Illuminate\Support\Facades\Route;
@@ -16,13 +17,15 @@ Route::get('/dashboard', function () {
 Route::get('/', function(){ return view('homepage');})->name('home');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 Route::get('/invitation', [InvitationController::class, 'index'])->name('invitation.index');
 Route::POST('/invitation', [InvitationController::class, 'store'])->name('invitation.store');
+Route::delete('/invitation{id}', [InvitationController::class, 'destroy'])->name('invitation.destroy');
 
 
 require __DIR__.'/auth.php';
@@ -37,5 +40,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/vacancy/{id}', [VacancyController::class, 'destroy'])->name('vacancy.destroy');
 });
 Route::get('/vacancy/{id}', [VacancyController::class, 'show'])->name('vacancy.show');
+Route::post('/vacancy/store', [VacancyController::class, 'storeUser_id'])->name('vacancy.storeUser_id');
+
+// Route voor mijn vacatures
+Route::get('/my-vacancy', [MyVacancyController::class, 'index'])->name('my-vacancy.index');
 
 

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id()->foreign('vacancies.location_id');
             $table->string('location');
             $table->string('adress');
+            $table->timestamps();
         });
 
         Schema::enableForeignKeyConstraints();
