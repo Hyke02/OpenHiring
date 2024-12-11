@@ -42,6 +42,8 @@
                 </svg>
             </div>
         </div>
+    </div>
+</div>
 <div class="container mx-auto mt-8 max-w-full">
     <form method="GET" action="{{ route('vacancy.index') }}" class="mb-8">
         <div class="flex gap-4 items-center mb-4 m-10">
