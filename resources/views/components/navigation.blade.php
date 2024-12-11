@@ -4,7 +4,7 @@
     </a>
 
     <div class="burger ml-auto text-[48px]">
-        <img src="{{ asset('storage/images/burger-menu.svg') }}" alt="menu icoon" class="w-12" fill="currentcolor">
+        <img src="{{ asset('storage/images/burger-menu.svg') }}" alt="menu icoon" class="w-12" >
     </div>
 
     <div class="dropdown opacity-0 scale-y-0 transform origin-top absolute left-0 right-0 top-full
