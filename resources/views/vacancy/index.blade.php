@@ -6,18 +6,19 @@
     <title>OpenHiring</title>
     <link rel="icon" href="{{ asset('storage/images/logo-oh.png') }}" type="image/png">
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        #language-selector {
-            background-image: url('{{ asset('storage/images/taal_icon.png') }}');
-            background-repeat: no-repeat;
-            background-position: 10px center;
-            background-size: 20px 20px;
-            padding-left: 30px; /* ruimte voor het icoon */
-        }
-    </style>
-</head>
+     <style>
+         #language-selector {
+             background-image: url('{{ asset('storage/images/taal_icon.png') }}');
+             background-repeat: no-repeat;
+             background-position: 10px center;
+             background-size: 20px 20px;
+             padding-left: 30px; /* ruimte voor het icoon */
+         }
+     </style>
+ </head>
 <body class="overflow-x-hidden bg-gray-50">
 
+<x-navigation></x-navigation>
 <div class="container mx-auto mt-8 max-w-full">
     <!-- Language Selector -->
     <div class="flex justify-end mr-9">
@@ -41,36 +42,45 @@
                 </svg>
             </div>
         </div>
-    </div>
+<div class="container mx-auto mt-8 max-w-full">
+    <form method="GET" action="{{ route('vacancy.index') }}" class="mb-8">
+        <div class="flex gap-4 items-center mb-4 m-10">
+            <div class="flex-1">
+                <select name="sector" id="sector" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                    <option value="">Selecteer een Sector</option>
+                    @foreach ($sectors as $sector)
+                        <option value="{{ $sector->id }}" {{ request('sector') == $sector->id ? 'selected' : '' }}>
+                            {{ $sector->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
 
-    <!-- Filter Form -->
-    <form method="GET" action="{{ route('vacancy.index') }}" class="mb-8 m-10">
-        <div class="flex gap-4 items-center mb-4">
-            <select name="sector" id="sector" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
-                <option value="">Selecteer een Sector</option>
-                @foreach ($sectors as $sector)
-                    <option value="{{ $sector->id }}" {{ request('sector') == $sector->id ? 'selected' : '' }}>
-                        {{ $sector->name }}
-                    </option>
-                @endforeach
-            </select>
-            <button type="submit" class="bg-[#AA0061] text-white px-4 py-2 rounded-md shadow hover:bg-gray-600">Filter</button>
+            <div>
+                <button type="submit" class="bg-[#AA0061] text-white px-4 py-2 rounded-md shadow hover[#AA0061]">Filter</button>
+            </div>
         </div>
 
-        <div class="flex gap-4 items-center">
-            <input type="text" name="search" placeholder="Zoek" value="{{ request('search') }}" class="block w-full border-gray-300 rounded-md shadow-sm focus:border-[#D6E2B5]">
-            <button type="submit" class="bg-[#AA0061] text-white px-4 py-2 rounded-md shadow hover:bg-gray-600">Zoeken</button>
+        <div class="flex gap-4 items-center m-10">
+            <!-- Zoek form -->
+            <div class="flex-1">
+                <input type="text" name="search" placeholder="Zoek" value="{{ request('search') }}"
+                       class="block w-full border-gray-300 rounded-md shadow-sm focus:border-[#D6E2B5]">
+            </div>
+
+            <!-- Zoek button -->
+            <div>
+                <button type="submit" class="bg-[#AA0061] text-white px-4 py-2 rounded-md shadow hover:bg-gray-600">Zoeken</button>
+            </div>
         </div>
     </form>
 
-    <!-- Vacancies Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 m-4">
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 m-4 ">
         @foreach ($vacancies as $vacancy)
-            <div class="bg-white shadow-lg rounded-lg overflow-hidden border border-[#444343]">
-                <h1 class="text-lg font-semibold px-4 py-2 vacancy-title">{{ $vacancy->vacancy_name }}</h1>
-                <h2 class="text-lg px-4 py-2 vacancy-company no-translate">
-                    {{ $vacancy->company_name }} - {{ $vacancy->location }}
-                </h2>
+            <div class="bg-white shadow rounded-lg overflow-hidden border border-[#444343]">
+            <h1 class="text-lg font-semibold px-4 py-2 vacancy-title">{{ $vacancy->vacancy_name }}</h1>
+                <h2 class="text-lg font px-4 py-2 vacancy-company no-translate">{{ $vacancy->company_name }} - {{ $vacancy->location->location }}</h2>
 
                 <div class="flex flex-row justify-between p-4">
                     <div class="flex flex-col gap-4 mb-4 lg:mb-0 w-full lg:w-2/3">
@@ -92,6 +102,7 @@
                     <div class="flex justify-center lg:justify-end items-center w-full lg:w-1/3">
                         <img src="{{ asset('storage/' . $vacancy->images) }}" alt="{{ $vacancy->vacancy_name }}" class="max-w-[145px] max-h-[145px] object-cover rounded-md">
                     </div>
+
                 </div>
 
                 <div class="flex justify-center mt-4">
@@ -138,4 +149,3 @@
 </script>
 
 </body>
-</html>
