@@ -1,6 +1,6 @@
 <div class="flex relative p-6">
     <a href="{{ route('home') }}" class="w-">
-        <img src="{{ asset('storage/images/OpenHiring-logo.svg') }}" alt="logo van open hiring" class="w-12 focus:border-indigo-600">
+        <img src="{{ asset('storage/images/logo-oh.png') }}" alt="logo van open hiring" class="w-12 focus:border-indigo-600">
     </a>
 
     <div class="burger ml-auto text-[48px]">

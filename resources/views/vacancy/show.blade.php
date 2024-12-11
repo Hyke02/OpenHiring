@@ -24,8 +24,8 @@
     </div>
     <div>
         <h2 class="text-lg font-semibold text-gray-800 mt-5">{{ $vacancy->company_name }}</h2>
-        <div class="bg-[#FF2D20]/10">
-            <img src="{{ asset('storage/images/mac_logo.png') }}" alt="">
+        <div class="w-1/2 flex justify-end">
+            <img src="{{ asset('storage/images/mac_logo.png') }}" alt="" class="">
         </div>
     </div>
     {{--    icon company--}}
