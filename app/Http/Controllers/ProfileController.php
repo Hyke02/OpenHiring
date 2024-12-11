@@ -14,10 +14,6 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        $user = User::where('user_id', Auth::id())->get()
-            ->with('user')  // Eager load the user
-            ->get();
-
         return view('profile.index');
     }
     /**

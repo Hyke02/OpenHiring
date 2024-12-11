@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Word_list extends Model
 {
-    protected $fillable = ['type', 'word'];
+    protected $fillable = ['word_type', 'word'];
 
     protected $table = 'word_lists';
 }
