@@ -40,7 +40,7 @@ Route::get('/vacancy/{id}', [VacancyController::class, 'show'])->name('vacancy.s
 Route::post('/vacancy/store', [VacancyController::class, 'storeUser_id'])->name('vacancy.storeUser_id');
 
 // Route voor mijn vacatures
-Route::get('/my-vacancy', [MyVacancyController::class, 'index'])->name('vacancy.index');
+Route::get('/my-vacancy', [MyVacancyController::class, 'index'])->name('my-vacancy.index');
 
 
 

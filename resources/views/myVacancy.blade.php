@@ -10,6 +10,7 @@
 </head>
 <body class="bg-[#FBFCF7] ">
 <x-navigation></x-navigation>
+<x-info-icon></x-info-icon>
 
 <section class="ml-5 mr-5">
     @foreach($vacanciesWithPosition as $vacancyData)

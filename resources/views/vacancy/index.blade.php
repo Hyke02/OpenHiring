@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="nl">
-<head>
+ <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>OpenHiring</title>
@@ -16,9 +16,11 @@
          }
      </style>
  </head>
-<body class="overflow-x-hidden bg-gray-50">
+
+<body class="overflow-x-hidden">
 
 <x-navigation></x-navigation>
+<x-info-icon></x-info-icon>
 <div class="container mx-auto mt-8 max-w-full">
     <!-- Language Selector -->
     <div class="flex justify-end mr-9">
