@@ -82,7 +82,7 @@
                 </div>
 
                 <div class="flex justify-center mt-4">
-                    <a href="{{ route('vacancy.show', $vacancy->id) }}" class="bg-[#AA0061] text-white px-4 py-2 mb-2 rounded-full hover:bg-[#FBFCF7] mb-6">
+                    <a href="{{ route('vacancy.show', $vacancy->id) }}" class="bg-[#AA0061] text-white px-4 py-2 mb-6 rounded-full hover:bg-[#FBFCF7]">
                         Bekijk Vacature
                     </a>
                 </div>
