@@ -8,7 +8,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Application</title>
 </head>
-<body class="bg-[#FBFCF7] p-10">
+<body class="bg-[#FBFCF7]">
+
+<x-navigation></x-navigation>
 
 <!-- Vacature details -->
 <div class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-lg border-2 border-black">
@@ -107,21 +109,27 @@
         </div>
     </div>
 
-    @if($fromMyVacancy)
-        <a href="{{ route('vacancy.index') }}" class="w-full py-3 bg-[#AA0061] text-white font-semibold rounded-full hover:bg-[#8b004e] transition duration-300 text-center block">
-            Terug naar Mijn Vacatures
-        </a>
-    @else
+    @auth()
+        @if($fromMyVacancy)
+            <a href="{{ route('vacancy.index') }}" class="w-full py-3 bg-[#AA0061] text-white font-semibold rounded-full hover:bg-[#8b004e] transition duration-300 text-center block">
+                Terug naar Mijn Vacatures
+            </a>
+        @else
 
-        <form action="{{route('vacancy.storeUser_id')}}" method="POST">
-            @csrf
-            <input type="hidden" name="vacancy_id" value="{{$vacancy->id}}">
-            <button type="submit"
-                class="w-full py-3 bg-[#AA0061] text-white font-semibold rounded-full hover:bg-[#8b004e] transition duration-300"> <!-- Voeg onclick event toe -->
-                Solliciteer
-            </button>
-        </form>
-    @endif
+            <form action="{{route('vacancy.storeUser_id')}}" method="POST">
+                @csrf
+                <input type="hidden" name="vacancy_id" value="{{$vacancy->id}}">
+                <button type="submit"
+                        class="w-full py-3 bg-[#AA0061] text-white font-semibold rounded-full hover:bg-[#8b004e] transition duration-300"> <!-- Voeg onclick event toe -->
+                    Solliciteer
+                </button>
+            </form>
+        @endif
+    @else
+        <a href="{{ route('login') }}" class="w-full py-3 bg-[#AA0061] text-white font-semibold rounded-full hover:bg-[#8b004e] transition duration-300 text-center block">
+            Login om te solliciteren
+        </a>
+    @endauth
 
     <script>
         function solliciteer() {

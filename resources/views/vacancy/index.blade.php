@@ -8,6 +8,8 @@
 
 <body class="overflow-x-hidden">
 
+<x-navigation></x-navigation>
+
 <div class="container mx-auto mt-8 max-w-full">
     <form method="GET" action="{{ route('vacancy.index') }}" class="mb-8">
         <div class="flex gap-4 items-center mb-4 m-10">
@@ -80,7 +82,7 @@
                 </div>
 
                 <div class="flex justify-center mt-4">
-                    <a href="{{ route('vacancy.show', $vacancy->id) }}" class="bg-[#AA0061] text-white px-4 py-2 mb-2 rounded-md hover:bg-[#FBFCF7] mb-6">
+                    <a href="{{ route('vacancy.show', $vacancy->id) }}" class="bg-[#AA0061] text-white px-4 py-2 mb-2 rounded-full hover:bg-[#FBFCF7] mb-6">
                         Bekijk Vacature
                     </a>
                 </div>
