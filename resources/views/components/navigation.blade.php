@@ -27,7 +27,7 @@
 </div>
 
 <div id="logout-modal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 hidden">
-    <div class="bg-white p-6 rounded-lg w-1/3">
+    <div class="bg-white p-6 rounded-lg w-full mx-4 relative z-60 text-center">
         <h2 class="text-xl mb-4">Are you sure you want to log out?</h2>
         <div class="flex justify-between">
             <button id="cancel-btn" class="px-4 py-2 bg-gray-300 rounded">Cancel</button>
@@ -35,6 +35,8 @@
         </div>
     </div>
 </div>
+
+
 
 <script>
     document.querySelector('.burger').addEventListener('click', () => {
