@@ -36,10 +36,10 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        //$name = RandomNameGenerator::generate();
+        $name = RandomNameGenerator::generate();
 
         $user = User::create([
-            //'name' => $name,
+            'name' => $name,
             'email' => $request->email,
             'number' => $request->number,
             'password' => Hash::make($request->password),
@@ -49,6 +49,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('profile.dashboard', absolute: false));
+        return redirect(route('profile.index', absolute: false));
     }
 }
