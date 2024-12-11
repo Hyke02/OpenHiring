@@ -9,6 +9,7 @@
 <body class="overflow-x-hidden">
 
 <x-navigation></x-navigation>
+<x-info-icon></x-info-icon>
 
 <div class="container mx-auto mt-8 max-w-full">
     <form method="GET" action="{{ route('vacancy.index') }}" class="mb-8">

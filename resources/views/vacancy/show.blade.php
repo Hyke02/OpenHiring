@@ -12,12 +12,13 @@
 <body class="bg-[#FBFCF7]">
 
 <x-navigation></x-navigation>
+<x-info-icon>Placeholder text</x-info-icon>
 
 <!-- Vacature details -->
 <div class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-lg border-2 border-black">
 
     <!-- Bedrijf en vacature naam -->
-    <h2 class="titel text-2xl font-semibold text-gray-800">{{ $vacancy->company_name }}</h2>
+    <h2 class="text-2xl font-semibold text-gray-800">{{ $vacancy->company_name }}</h2>
     <h1 class="text-3xl font-bold text-gray-900 mt-2">{{ $vacancy->vacancy_name }}</h1>
 
     <!-- Informatie sectie met icoontjes -->
@@ -148,6 +149,7 @@
             window.location.href = "/vacancy";
         }
     </script>
+
 
 </div>
 
