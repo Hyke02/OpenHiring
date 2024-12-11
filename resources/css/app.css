@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'radikal';
+    src: url("{{ asset('fonts/radikal/RadikalTrial-Black-BF642254c139184.otf') }}") format('opentype');
+}
