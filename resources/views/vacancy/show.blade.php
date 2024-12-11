@@ -15,7 +15,18 @@
 
     <!-- Bedrijf en vacature naam -->
     <h1 class="text-2xl font-bold text-gray-900 mt-2">{{ $vacancy->name }}</h1>
-    <h2 class="text-1.5xl font-semibold text-gray-800">{{ $vacancy->company_name }}</h2>
+{{--    img live example--}}
+    <div>
+        <img src="{{$vacancy->images}}" alt="">
+    </div>
+    <div>
+        <h2 class="text-lg font-semibold text-gray-800 mt-5">{{ $vacancy->company_name }}</h2>
+        <div class="bg-[#FF2D20]/10">
+            <img src="{{ asset('storage/images/mac_logo.png') }}" alt="">
+        </div>
+    </div>
+    {{--    icon company--}}
+
 
     <!-- Informatie sectie met icoontjes -->
     <div class="flex flex-wrap items-center mt-4 gap-4"> <!-- gap-4 in plaats van gap-8 -->
