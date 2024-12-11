@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\MyVacancyController;
 use App\Http\Controllers\ProfileController;
@@ -14,8 +15,11 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/', function(){ return view('homepage');})->name('home');
+
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
@@ -26,6 +30,9 @@ Route::delete('/invitation{id}', [InvitationController::class, 'destroy'])->name
 
 
 require __DIR__.'/auth.php';
+
+//Route voor logout
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
 // Routes voor Vacatures
 Route::get('/vacancy', [VacancyController::class, 'index'])->name('vacancy.index');
@@ -41,5 +48,9 @@ Route::post('/vacancy/store', [VacancyController::class, 'storeUser_id'])->name(
 
 // Route voor mijn vacatures
 Route::get('/my-vacancy', [MyVacancyController::class, 'index'])->name('my-vacancy.index');
+
+
+
+
 
 

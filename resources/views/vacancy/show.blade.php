@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Application</title>
+    @vite('resources/js/app.js')
 </head>
 <body class="bg-[#FBFCF7]">
 
@@ -17,8 +18,19 @@
 <div class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-lg border-2 border-black">
 
     <!-- Bedrijf en vacature naam -->
-    <h2 class="text-2xl font-semibold text-gray-800">{{ $vacancy->company_name }}</h2>
-    <h1 class="text-3xl font-bold text-gray-900 mt-2">{{ $vacancy->vacancy_name }}</h1>
+    <h1 class="text-2xl font-bold text-gray-900 mt-2">{{ $vacancy->name }}</h1>
+{{--    img live example--}}
+    <div>
+        <img src="{{$vacancy->images}}" alt="">
+    </div>
+    <div>
+        <h2 class="text-lg font-semibold text-gray-800 mt-5">{{ $vacancy->company_name }}</h2>
+        <div class="w-1/2 flex justify-end">
+            <img src="{{ asset('storage/images/mac_logo.png') }}" alt="" class="">
+        </div>
+    </div>
+    {{--    icon company--}}
+
 
     <!-- Informatie sectie met icoontjes -->
     <div class="flex flex-wrap items-center mt-4 gap-4"> <!-- gap-4 in plaats van gap-8 -->
@@ -110,21 +122,37 @@
         </div>
     </div>
 
-    @if($fromMyVacancy)
-        <a href="{{ route('vacancy.index') }}" class="w-full py-3 bg-[#AA0061] text-white font-semibold rounded-full hover:bg-[#8b004e] transition duration-300 text-center block">
-            Terug naar Mijn Vacatures
-        </a>
-    @else
-
-        <form action="{{route('vacancy.storeUser_id')}}" method="POST">
-            @csrf
-            <input type="hidden" name="vacancy_id" value="{{$vacancy->id}}">
-            <button type="submit"
-                class="w-full py-3 bg-[#AA0061] text-white font-semibold rounded-full hover:bg-[#8b004e] transition duration-300"> <!-- Voeg onclick event toe -->
+    @auth()
+        @if($fromMyVacancy)
+            <a href="{{ route('vacancy.index') }}" class="w-full py-3 bg-[#AA0061] text-white font-semibold rounded-full hover:bg-[#8b004e] transition duration-300 text-center block">
+                Terug naar Mijn Vacatures
+            </a>
+        @else
+            <button
+                    class="applybutton w-full py-3 bg-[#AA0061] text-white font-semibold rounded-full hover:bg-[#8b004e] transition duration-300"> <!-- Voeg onclick event toe -->
                 Solliciteer
             </button>
-        </form>
-    @endif
+        @endif
+    @else
+        <a href="{{ route('login') }}" class="w-full py-3 bg-[#AA0061] text-white font-semibold rounded-full hover:bg-[#8b004e] transition duration-300 text-center block">
+            Login om te solliciteren
+        </a>
+    @endauth
+
+    <div id="applyModal" class="modal hidden flex fixed inset-0 items-center justify-center bg-gray-900 bg-opacity-50">
+        <div class="modal-content bg-white p-6 rounded-lg">
+            <h2 class="text-xl font-semibold">Bevestig Sollicitatie</h2>
+            <p>Weet je zeker dat je wilt solliciteren voor deze vacature?</p>
+            <form action="{{route('vacancy.storeUser_id')}}" method="POST">
+                @csrf
+                <input type="hidden" name="vacancy_id" value="{{ $vacancy->id }}">
+                <div class="flex justify-center mt-4">
+                    <button type="submit" class="bg-[#AA0061] text-white mx-2 py-2 px-4 rounded-full">Bevestigen</button>
+                    <button class="modalClose bg-gray-400 text-white mx-2 py-2 px-4 rounded-full mr-2">Annuleren</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <script>
         function solliciteer() {

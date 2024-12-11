@@ -21,12 +21,10 @@ class VacancyController extends Controller
 
         if ($searchTerm) {
             $vacancyQuery->where(function ($query) use ($searchTerm) {
-                $query->where('vacancy_name', 'LIKE', '%' . $searchTerm . '%')
+                $query->where('name', 'LIKE', '%' . $searchTerm . '%')
                     ->orWhere('company_name', 'LIKE', '%' . $searchTerm . '%')
-                    ->orWhere('location', 'LIKE', '%' . $searchTerm . '%')
-                    ->orWhereHas('user', function ($q) use ($searchTerm) {
-                        $q->where('name', 'LIKE', '%' . $searchTerm . '%');
-                    });
+                    ->orWhere('location', 'LIKE', '%' . $searchTerm . '%');
+
             });
         }
 
