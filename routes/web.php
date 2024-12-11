@@ -50,3 +50,7 @@ Route::post('/vacancy/store', [VacancyController::class, 'storeUser_id'])->name(
 Route::get('/my-vacancy', [MyVacancyController::class, 'index'])->name('my-vacancy.index');
 
 
+
+
+
+

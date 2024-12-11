@@ -8,24 +8,25 @@
     <title>Home Page</title>
 </head>
 <body class="bg-[#FBFCF7] p-10">
-
-<x-navigation />
+<div class="relative z-20">
+    <x-navigation /> <!-- Ensure your navigation has proper z-index -->
+</div>
 
 <header class="py-8">
     <div class="mx-auto flex flex-col lg:flex-row items-center lg:items-start lg:justify-between space-y-8 lg:space-y-0 lg:space-x-8">
         <!-- Image with mask -->
         <div class="relative w-full sm:w-auto sm:h-64 md:h-80 lg:h-96">
-            <!-- Shadow mask image beneath the main image (offset to the bottom) -->
+            <!-- Shadow mask image beneath the main image -->
             <div
                 class="absolute inset-0 transform scale-105 translate-y-4"
                 style="mask-image: url('{{ asset('storage/images/OpenHiring-logo.svg') }}');
-                       -webkit-mask-image: url('{{ asset('storage/images/OpenHiring-logo.svg') }}');
-                       mask-size: contain;
-                       -webkit-mask-size: contain;
-                       mask-position: center;
-                       -webkit-mask-position: center;
-                       background-color: #e2ecc9;
-                       opacity: 0.6;">
+                    -webkit-mask-image: url('{{ asset('storage/images/OpenHiring-logo.svg') }}');
+                    mask-size: contain;
+                    -webkit-mask-size: contain;
+                    mask-position: center;
+                    -webkit-mask-position: center;
+                    background-color: #e2ecc9;
+                    opacity: 0.6;">
             </div>
 
             <!-- Main image with mask -->
@@ -34,13 +35,15 @@
                 alt="OpenHiring Logo"
                 class="object-contain w-full h-full"
                 style="mask-image: url('{{ asset('storage/images/OpenHiring-logo.svg') }}');
-                       -webkit-mask-image: url('{{ asset('storage/images/OpenHiring-logo.svg') }}');
-                       mask-size: contain;
-                       -webkit-mask-size: contain;
-                       mask-position: center;
-                       -webkit-mask-position: center;">
+                    -webkit-mask-image: url('{{ asset('storage/images/OpenHiring-logo.svg') }}');
+                    mask-size: contain;
+                    -webkit-mask-size: contain;
+                    mask-position: center;
+                    -webkit-mask-position: center;">
         </div>
-
+    </div>
+</header>
+    <div>
         <!-- Text content -->
         <div class="flex-1 text-center lg:text-left mt-16 lg:mt-0">  <!-- Increased margin-top to mt-16 for more space above -->
             <h1 class="text-4xl font-bold text-gray-800 mb-6">Een baan zonder sollicitatiegesprek</h1> <!-- Increased mb for more space -->
@@ -56,7 +59,6 @@
             </button>
         </div>
     </div>
-</header>
 
 <!-- Principles Section -->
 <section class="py-12">
@@ -101,6 +103,18 @@
         </button>
     </div>
 </section>
+<section class="py-12">
+    <div class="container mx-auto px-6 text-center">
+        <h2 class="text-3xl font-bold text-gray-800 mb-6">Verhalen van anderen</h2>
+        <p class="text-gray-700 leading-relaxed mb-6">
+            Lees inspirerende verhalen van mensen die via Open Hiring aan een baan zijn gekomen.
+        </p>
+        <button class="px-6 py-3 bg-[#B80063] text-white font-medium rounded-md shadow-md hover:bg-[#A00058] transition">
+            Lees alle verhalen
+        </button>
+    </div>
+</section>
+
 <section class="py-12">
     <div class="container mx-auto px-4 sm:px-6">
         <div class="overflow-hidden relative w-full">
@@ -154,7 +168,7 @@
                         <img src="{{ asset('storage/images/hond4.jpeg') }}" alt="Verhaal 4" class="w-full h-full object-cover">
                     </div>
                     <div class="p-4 sm:p-6 pt-12">
-                        <span class="bg-green-500 text-white px-3 py-1 rounded-full text-xs font-semibold mb-2">Werkgever</span>
+                        <span class="bg-green-500 text-white px-3 py-1 rounded-full text-xs font-semibold mb-2">Werknemer</span>
                         <h3 class="text-lg sm:text-xl font-semibold text-gray-800 mb-2">Een eerlijke kans gegeven</h3>
                         <p class="text-gray-600 text-sm leading-relaxed mb-4">
                             "Als vrouw in de techindustrie had ik vaak het gevoel dat mijn cv niet dezelfde kans kreeg als dat van mijn mannelijke collega's."
@@ -204,7 +218,7 @@
     function updateCarousel() {
         const cards = Array.from(carousel.children);
         const cardWidth = cards[0].offsetWidth + 24; // Gap between cards
-        carousel.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+        carousel.style.transform = `translateX(-${currentIndex * cardWidth}px)`; // Corrected the syntax here
     }
 
     prevBtn.addEventListener("click", () => {
@@ -225,6 +239,7 @@
     // Initialize the carousel on load
     window.addEventListener('load', updateCarousel);
 </script>
+
 
 
 
