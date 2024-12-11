@@ -14,7 +14,7 @@ class vacancyFactory extends Factory
         return [
             'name' => $this->faker->jobTitle(),
             'company_name'=> $this->faker->company(),
-            'images'=>$this->faker->image(),
+            'images'=> $this->faker->imageUrl(),
             'description' => $this->faker->text(),
             'salary' => $this->faker->numberBetween(1000, 10000),
             'location_id' => $this->faker->numberBetween(1, 5),

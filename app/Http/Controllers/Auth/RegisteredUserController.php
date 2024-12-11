@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\RandomNameGenerator;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -35,7 +36,10 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        $name = RandomNameGenerator::generate();
+
         $user = User::create([
+            'name' => $name,
             'email' => $request->email,
             'number' => $request->number,
             'password' => Hash::make($request->password),
@@ -45,6 +49,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        return redirect(route('profile.dashboard', absolute: false));
     }
 }
