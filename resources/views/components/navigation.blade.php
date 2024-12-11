@@ -15,21 +15,49 @@
             <x-nav-link href="/vacancy">Vacatures</x-nav-link>
             <x-nav-link href="/login">Inloggen</x-nav-link>
             <x-nav-link href="/help">Help</x-nav-link>
+            <x-nav-link href="#" id="logout-btn">Logout</x-nav-link>
         </nav>
+
+    </div>
+</div>
+
+<div id="logout-modal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 hidden">
+    <div class="bg-white p-6 rounded-lg w-1/3">
+        <h2 class="text-xl mb-4">Are you sure you want to log out?</h2>
+        <div class="flex justify-between">
+            <button id="cancel-btn" class="px-4 py-2 bg-gray-300 rounded">Cancel</button>
+            <button id="confirm-logout" class="px-4 py-2 bg-red-500 text-white rounded">Logout</button>
+        </div>
     </div>
 </div>
 
 <script>
     document.querySelector('.burger').addEventListener('click', () => {
-        const dropdown = document.querySelector('.dropdown');
+        const dropdown = document.querySelector('.dropdown')
 
         if (dropdown.classList.contains('opacity-0')) {
-            dropdown.classList.remove('opacity-0', 'scale-y-0');
-            dropdown.classList.add('opacity-100', 'scale-y-100');
+            dropdown.classList.remove('opacity-0', 'scale-y-0')
+            dropdown.classList.add('opacity-100', 'scale-y-100')
         } else {
-            dropdown.classList.remove('opacity-100', 'scale-y-100');
-            dropdown.classList.add('opacity-0', 'scale-y-0');
+            dropdown.classList.remove('opacity-100', 'scale-y-100')
+            dropdown.classList.add('opacity-0', 'scale-y-0')
         }
-    });
+    })
+
+    document.querySelector('#logout-btn').addEventListener('click', (e) => {
+        e.preventDefault()
+        document.querySelector('#logout-modal').classList.remove('hidden')
+    })
+
+    document.querySelector('#cancel-btn').addEventListener('click', () => {
+        document.querySelector('#logout-modal').classList.add('hidden')
+    })
+
+    document.querySelector('#confirm-logout').addEventListener('click', () => {
+        document.querySelector('#logout-form').submit()
+    })
 </script>
 
+<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+    @csrf
+</form>
