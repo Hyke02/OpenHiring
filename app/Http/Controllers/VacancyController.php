@@ -92,7 +92,9 @@ class VacancyController extends Controller
     public function show($id, Request $request)
     {
         $vacancy = vacancy::with( 'sector')->findOrFail($id);
-        $invitations = Invatation::where('user_id', Auth::user()->id)->get();
+        $invitations = Auth::check()
+            ? Invatation::where('user_id', Auth::user()->id)->get()
+            : collect();
 
         $fromMyVacancy = $request->query('from') === 'my-vacancy';
 

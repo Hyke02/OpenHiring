@@ -8,7 +8,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Application</title>
 </head>
-<body class="bg-[#FBFCF7] p-10">
+<body class="bg-[#FBFCF7]">
+
+<x-navigation></x-navigation>
+<x-info-icon>Placeholder text</x-info-icon>
 
 <!-- Vacature details -->
 <div class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-lg border-2 border-black">
