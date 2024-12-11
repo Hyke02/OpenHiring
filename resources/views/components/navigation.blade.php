@@ -27,8 +27,8 @@
 </div>
 
 <div id="logout-modal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 hidden">
-    <div class="bg-white p-6 rounded-lg w-full mx-4 relative z-60 text-center">
-        <h2 class="text-xl mb-4">Are you sure you want to log out?</h2>
+    <div class="bg-white p-6 rounded-lg w-full mx-4 relative text-center">
+        <h2 class="text-xl mb-4">Weet je zeker dat je uit wil loggen?</h2>
         <div class="flex justify-between">
             <button id="cancel-btn" class="px-4 py-2 bg-gray-300 rounded">Cancel</button>
             <button id="confirm-logout" class="px-4 py-2 bg-red-500 text-white rounded">Logout</button>
@@ -49,6 +49,7 @@
             dropdown.classList.remove('opacity-100', 'scale-y-100')
             dropdown.classList.add('opacity-0', 'scale-y-0')
         }
+
     })
 
     document.querySelector('#logout-btn').addEventListener('click', (e) => {
@@ -62,6 +63,12 @@
 
     document.querySelector('#confirm-logout').addEventListener('click', () => {
         document.querySelector('#logout-form').submit()
+    })
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            document.querySelector('#logout-modal').classList.add('hidden')
+        }
     })
 </script>
 
