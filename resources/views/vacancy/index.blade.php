@@ -133,8 +133,11 @@
             ...document.querySelectorAll('button'),
             ...document.querySelectorAll('input[placeholder]')
         ];
+
+        // Verzamel alle teksten van de elementen die vertaald moeten worden
         const texts = elements.map(el => el.tagName === 'INPUT' ? el.placeholder : el.innerText);
 
+        // Verstuur de vertaalverzoeken naar de Google Translate API
         fetch(`https://translation.googleapis.com/language/translate/v2?key=${apiKey}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -142,14 +145,24 @@
         })
             .then(response => response.json())
             .then(data => {
-                const translations = data.data.translations;
-                elements.forEach((el, i) => {
-                    if (el.tagName === 'INPUT') el.placeholder = translations[i].translatedText;
-                    else el.innerText = translations[i].translatedText;
-                });
+                if (data.data && data.data.translations) {
+                    const translations = data.data.translations;
+                    elements.forEach((el, i) => {
+                        // Controleer of de vertaling beschikbaar is
+                        if (translations[i] && translations[i].translatedText) {
+                            const translation = translations[i].translatedText;
+                            if (el.tagName === 'INPUT') {
+                                el.placeholder = translation;
+                            } else {
+                                el.innerText = translation;
+                            }
+                        }
+                    });
+                }
             })
             .catch(error => console.error('Translation error:', error));
     }
+
 </script>
 
 </body>
