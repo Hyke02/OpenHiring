@@ -37,3 +37,7 @@ Route::middleware('auth')->group(function () {
 Route::get('/vacancy/{id}', [VacancyController::class, 'show'])->name('vacancy.show');
 
 
+
+
+
+
