@@ -129,10 +129,6 @@
 
     function translatePageContent(targetLanguage) {
         const elements = [
-            ...document.querySelectorAll('.vacancy-title, .vacancy-company, p'),
-            ...document.querySelectorAll('select option'),
-            ...document.querySelectorAll('button'),
-            ...document.querySelectorAll('input[placeholder]'),
         ...document.querySelectorAll('.vacancy-title, .vacancy-company, p, button, .button, select option, input[placeholder]')
         ];
         const texts = elements.map(el => el.tagName === 'INPUT' ? el.placeholder : el.innerText);
