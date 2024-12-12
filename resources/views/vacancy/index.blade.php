@@ -21,7 +21,7 @@
 <body class="overflow-x-hidden">
 
 <x-navigation class="z-20"></x-navigation>
-<x-info-icon></x-info-icon>
+<x-info-icon>placeholder text</x-info-icon>
 <div class="container mx-auto mt-8 max-w-full z-50">
     <!-- Language Selector -->
     <div class="flex justify-end mr-9">
@@ -39,11 +39,11 @@
                 <option value="el">Grieks</option>
                 <option value="hu">Hongaars</option>
             </select>
-            <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+{{--            <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">--}}
 {{--                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5 text-gray-500">--}}
 {{--                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>--}}
 {{--                </svg>--}}
-            </div>
+{{--            </div>--}}
         </div>
     </div>
 </div>
@@ -111,7 +111,7 @@
                 </div>
 
                 <div class="flex justify-center">
-                    <x-sub-button href="{{ route('vacancy.show', $vacancy->id) }}" class="button !py-5 !px-6 !text-base mb-5">
+                    <x-sub-button href="{{ route('vacancy.show', $vacancy->id) }}" class="button !py-3 !px-4 !text-base mb-5">
                         Bekijk vacature
                     </x-sub-button>
                 </div>
