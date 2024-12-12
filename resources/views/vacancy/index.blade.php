@@ -92,7 +92,7 @@
                         <div class="bg-[#f2fade] shadow-[0_0_0_1.5px_#dee8ba] rounded-full p-3 inline-flex items-center w-fit">
                             <p class=" m-0 text-xs lg:text-sm">4-40 uur per week</p>
                         </div>
-                        <div class="bg-[#f2fade] shadow-[0_0_0_1.5px_#dee8ba] rounded-full p-3 inline-block w-fit text-xs lg:text-sm w-fit">
+                        <div class="bg-[#f2fade] shadow-[0_0_0_1.5px_#dee8ba] rounded-full p-3 inline-block text-xs lg:text-sm w-fit">
                             <p>6 tot 16,35 euro per uur</p>
                         </div>
                         <div class="flex gap-2">
