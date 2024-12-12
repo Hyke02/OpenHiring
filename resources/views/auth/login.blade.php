@@ -42,6 +42,13 @@
                                 {{ __('Wachtwoord vergeten') }}
                             </a>
                         </div>
+                        <div>
+                            <a class="underline font-bold text-sm text-[#4A5520] hover:text-[#78AB3B] rounded-md focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('register') }}">
+
+
+                                {{__('Maak account aan')}}
+                            </a>
+                        </div>
                     @endif
                 </div>
 
@@ -52,13 +59,6 @@
 
                     <a class="mt-10 underline font-bold text-sm text-[#4A5520] hover:text-[#78AB3B] rounded-md focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('register') }}">
                         {{ __('Aanmelden') }}
-                    </a>
-                </div>
-                <div>
-                    <a class="mt-10 underline font-bold text-sm text-[#4A5520] hover:text-[#78AB3B] rounded-md focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('register') }}">
-
-
-                    {{__('Maak account aan')}}
                     </a>
                 </div>
             </form>
