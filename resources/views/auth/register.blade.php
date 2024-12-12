@@ -4,7 +4,7 @@
     </x-slot>
 
     <x-slot name="slot2">
-        <p class="mb-10">Uw gegevens worden enkel gebruikt voor inloggen en contact bij uitnodigingen.</p>
+        <p class="mb-10">Uw gegevens worden alleen gebruikt voor het aanmaken van een account en voor contact bij uitnodigingen. U krijgt een willekeurige naam zodat u anoniem blijft.</p>
 
         <form method="POST" action="{{ route('register') }}">
             @csrf
@@ -25,7 +25,7 @@
 
             <!-- Password -->
             <div class="mt-4">
-                <x-input-label for="password" :value="__('Password')" />
+                <x-input-label for="password" :value="__('Wachtwoord')" />
 
                 <x-text-input id="password" class="block mt-1 w-full"
                               type="password"
@@ -37,7 +37,7 @@
 
             <!-- Confirm Password -->
             <div class="mt-4">
-                <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+                <x-input-label for="password_confirmation" :value="__('Wachtwoord bevestigen')" />
 
                 <x-text-input id="password_confirmation" class="block mt-1 w-full"
                               type="password"
@@ -47,13 +47,13 @@
             </div>
 
             <div class="flex items-center justify-center mt-20">
-                <x-primary-button>
+                <x-primary-button class="px-16 py-3 !text-lg">
                     {{ __('Aanmelden') }}
                 </x-primary-button>
             </div>
 
             <div class="flex items-center justify-center mt-10">
-                <a class="underline font-bold text-sm text-[#4A5520] hover:text-[#78AB3B] rounded-md focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
+                <a class="font-radikal underline font-bold text-sm text-[#4A5520] hover:text-[#78AB3B] rounded-md focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
                     {{ __('Ik heb al een account') }}
                 </a>
             </div>

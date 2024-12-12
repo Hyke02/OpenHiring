@@ -15,16 +15,17 @@
              padding-left: 30px; /* ruimte voor het icoon */
          }
      </style>
+     @vite(['resources/css/app.css', 'resources/js/app.js'])
  </head>
 
 <body class="overflow-x-hidden">
 
-<x-navigation></x-navigation>
+<x-navigation class="z-20"></x-navigation>
 <x-info-icon></x-info-icon>
-<div class="container mx-auto mt-8 max-w-full">
+<div class="container mx-auto mt-8 max-w-full z-50">
     <!-- Language Selector -->
     <div class="flex justify-end mr-9">
-        <div class="relative">
+        <div>
             <select id="language-selector" class="block appearance-none bg-white border border-gray-300 text-gray-700 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 px-4 py-2 w-36">
                 <option value="nl">Nederlands</option>
                 <option value="en">Engels</option>
@@ -39,21 +40,21 @@
                 <option value="hu">Hongaars</option>
             </select>
             <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5 text-gray-500">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                </svg>
+{{--                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5 text-gray-500">--}}
+{{--                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>--}}
+{{--                </svg>--}}
             </div>
         </div>
     </div>
 </div>
-<div class="container mx-auto mt-8 max-w-full">
+<div class="mx-auto mt-8 max-w-full z-10">
     <form method="GET" action="{{ route('vacancy.index') }}" class="mb-8">
-        <div class="flex gap-4 items-center mb-4 m-10">
+        <div class="flex gap-4 items-center mb-4 mx-4">
             <div class="flex-1">
-                <select name="sector" id="sector" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                <select name="sector" id="sector" class="p-3 font-medium block w-full [#444343] rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
                     <option value="">Selecteer een Sector</option>
                     @foreach ($sectors as $sector)
-                        <option value="{{ $sector->id }}" {{ request('sector') == $sector->id ? 'selected' : '' }}>
+                        <option class="font-medium" value="{{ $sector->id }}" {{ request('sector') == $sector->id ? 'selected' : '' }}>
                             {{ $sector->name }}
                         </option>
                     @endforeach
@@ -61,20 +62,20 @@
             </div>
 
             <div>
-                <button type="submit" class="bg-[#AA0061] text-white px-4 py-2 rounded-md shadow hover[#AA0061]">Filter</button>
+                <button type="submit" class="bg-[#AA0061] text-white px-4 py-2 rounded-full shadow hover:bg-gray-600 w-full">Filter</button>
             </div>
         </div>
 
-        <div class="flex gap-4 items-center m-10">
+        <div class="flex gap-4 items-center mt-1 mx-4">
             <!-- Zoek form -->
             <div class="flex-1">
                 <input type="text" name="search" placeholder="Zoek" value="{{ request('search') }}"
-                       class="block w-full border-gray-300 rounded-md shadow-sm focus:border-[#D6E2B5]">
+                       class="p-3 font-medium block w-full [#444343] rounded-md shadow-sm focus:border-[#D6E2B5]">
             </div>
 
             <!-- Zoek button -->
             <div>
-                <button type="submit" class="bg-[#AA0061] text-white px-4 py-2 rounded-md shadow hover:bg-gray-600">Zoeken</button>
+                <button type="submit" class="bg-[#AA0061] text-white px-4 py-2 rounded-full shadow hover:bg-gray-600 w-full">Zoeken</button>
             </div>
         </div>
     </form>
@@ -83,22 +84,22 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 m-4 ">
         @foreach ($vacancies as $vacancy)
             <div class="bg-white shadow rounded-lg overflow-hidden border border-[#444343]">
-            <h1 class="text-lg font-semibold px-4 py-2 vacancy-title">{{ $vacancy->name }}</h1>
-                <h2 class="text-lg font px-4 py-2 vacancy-company no-translate">{{ $vacancy->company_name }} - {{ $vacancy->location->location }}</h2>
+            <h1 class="font-black text-2xl px-4 pt-5 vacancy-title">{{ $vacancy->name }}</h1>
+                <h2 class="font-light text-lg font px-4 vacancy-company no-translate">{{ $vacancy->company_name }} - {{ $vacancy->location->location }}</h2>
 
                 <div class="flex flex-row justify-between p-4">
-                    <div class="flex flex-col gap-4 mb-4 lg:mb-0 w-full lg:w-2/3">
-                        <div class="bg-[#D6E2B5] border-3 border-[#E2ECC8] rounded-full p-3 inline-flex items-center w-fit">
-                            <p class="m-0 text-xs lg:text-sm">4-40 uur per week</p>
+                    <div class=" flex flex-col gap-2 mb-2 lg:mb-0 w-full lg:w-2/3">
+                        <div class="bg-[#f2fade] shadow-[0_0_0_1.5px_#dee8ba] rounded-full p-3 inline-flex items-center w-fit">
+                            <p class=" m-0 text-xs lg:text-sm">4-40 uur per week</p>
                         </div>
-                        <div class="bg-[#D6E2B5] border-3 border-[#E2ECC8] rounded-full p-3 inline-block w-fit text-xs lg:text-sm">
+                        <div class="bg-[#f2fade] shadow-[0_0_0_1.5px_#dee8ba] rounded-full p-3 inline-block w-fit text-xs lg:text-sm w-fit">
                             <p>6 tot 16,35 euro per uur</p>
                         </div>
-                        <div class="flex gap-4">
-                            <div class="bg-[#D6E2B5] border-3 border-[#E2ECC8] rounded-full p-3 text-xs lg:text-sm w-fit">
+                        <div class="flex gap-2">
+                            <div class="bg-[#f2fade] shadow-[0_0_0_1.5px_#dee8ba] rounded-full p-3 text-xs lg:text-sm w-fit">
                                 <p>6 nodig</p>
                             </div>
-                            <div class="bg-[#D6E2B5] border-3 border-[#E2ECC8] rounded-full p-3 text-xs lg:text-sm w-fit">
+                            <div class="bg-[#f2fade] shadow-[0_0_0_1.5px_#dee8ba] rounded-full p-3 text-xs lg:text-sm w-fit">
                                 <p>10 wachtende</p>
                             </div>
                         </div>
@@ -109,10 +110,10 @@
 
                 </div>
 
-                <div class="flex justify-center mt-4">
-                    <a href="{{ route('vacancy.show', $vacancy->id) }}" class="bg-[#AA0061] text-white px-4 py-2 rounded-md hover:bg-[#FBFCF7] mb-6">
-                        <p>Bekijk Vacature</p>
-                    </a>
+                <div class="flex justify-center">
+                    <x-sub-button href="{{ route('vacancy.show', $vacancy->id) }}" class="button !py-5 !px-6 !text-base mb-5">
+                        Bekijk vacature
+                    </x-sub-button>
                 </div>
             </div>
         @endforeach
@@ -130,7 +131,8 @@
         const elements = [
             ...document.querySelectorAll('.vacancy-title, .vacancy-company, p'),
             ...document.querySelectorAll('select option'),
-            ...document.querySelectorAll('button'),
+            ...document.querySelectorAll('button',),
+            ...document.querySelectorAll('.button'),
             ...document.querySelectorAll('input[placeholder]')
         ];
 

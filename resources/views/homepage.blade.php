@@ -6,13 +6,14 @@
     <link rel="icon" href="{{ asset('storage/images/logo-oh.png') }}" type="image/png">
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Home Page</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-[#FBFCF7] p-10">
+<body class="bg-[#FBFCF7]">
 <div class="relative z-20">
     <x-navigation /> <!-- Ensure your navigation has proper z-index -->
 </div>
 
-<header class="py-8">
+<header class="py-8 px-6">
     <div class="mx-auto flex flex-col lg:flex-row items-center lg:items-start lg:justify-between space-y-8 lg:space-y-0 lg:space-x-8">
         <!-- Image with mask -->
         <div class="relative w-full sm:w-auto sm:h-64 md:h-80 lg:h-96">
@@ -45,8 +46,8 @@
 </header>
     <div>
         <!-- Text content -->
-        <div class="flex-1 text-center lg:text-left mt-16 lg:mt-0">  <!-- Increased margin-top to mt-16 for more space above -->
-            <h1 class="text-4xl font-bold text-gray-800 mb-6">Een baan zonder sollicitatiegesprek</h1> <!-- Increased mb for more space -->
+        <div class="flex-1 text-center lg:text-left mt-16 lg:mt-0 px-6">  <!-- Increased margin-top to mt-16 for more space above -->
+            <h1 class="font-radikal text-4xl font-bold text-gray-800 mb-6">Een baan zonder sollicitatiegesprek</h1> <!-- Increased mb for more space -->
             <p class="text-lg text-gray-700 leading-relaxed mb-8">  <!-- Increased mb for more space -->
                 Iedereen een eerlijke kans op een baan. Daar draait het om bij Open Hiring. Het gaat er niet om of iemand
                 een diploma, vlotte babbel of bakken ervaring heeft, maar of iemand wíl en kan werken. Bedrijven die mensen
@@ -54,9 +55,9 @@
                 bepalen zelf of ze geschikt zijn voor een baan. Zo maken we de arbeidsmarkt eerlijk. En krijgen we mensen
                 snel (weer) aan het werk.
             </p>
-            <button class="mt-6 px-6 py-3 bg-[#B80063] text-white font-medium rounded-md shadow-md hover:bg-[#A00058] transition">
+            <a href="{{ route('vacancy.index') }}" class="uppercase mt-6 px-6 py-3 bg-[#B80063] text-white font-medium rounded-full shadow-md hover:bg-[#A00058] transition">
                 Bekijk Vacature
-            </button>
+            </a>
         </div>
     </div>
 

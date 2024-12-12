@@ -1,14 +1,14 @@
-<div class="flex relative p-6">
+<div class="flex p-6 sticky">
     <a href="{{ route('home') }}" class="w-16">
         <img src="{{ asset('storage/images/logo-oh.png') }}" alt="logo van open hiring" class="w-17 focus:border-indigo-600">
     </a>
 
     <div class="burger ml-auto text-[48px]">
-        <img src="{{ asset('storage/images/burger-menu.svg') }}" alt="menu icoon" class="w-12" fill="currentcolor">
+        <img src="{{ asset('storage/images/burger-menu.svg') }}" alt="menu icoon" class="w-12">
     </div>
 
     <div class="dropdown opacity-0 scale-y-0 transform origin-top absolute left-0 right-0 top-full
-    mt-2 bg-white min-h-screen transition-all duration-300 pt-[20%]">
+    mt-2 bg-white min-h-screen transition-all duration-300 pt-[20%] z-10">
         <nav class="text-center text-4xl flex flex-col space-y-10">
             @auth()
                 <x-nav-link href="/profile.index">Profiel</x-nav-link>
