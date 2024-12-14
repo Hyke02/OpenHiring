@@ -28,7 +28,7 @@ class Vacancy extends Model
 
     public function location(): BelongsTo
     {
-        return $this->belongsTo(LocationNew::class, 'location_id');
+        return $this->belongsTo(Location::class, 'location_id');
     }
 
     public function invitation(): HasMany
