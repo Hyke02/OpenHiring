@@ -17,7 +17,7 @@ class Vacancy extends Model
 
     public function sector(): BelongsTo
     {
-        return $this->belongsTo(Sector::class);
+        return $this->belongsTo(SectorNew::class);
     }
 
 
@@ -28,12 +28,12 @@ class Vacancy extends Model
 
     public function location(): BelongsTo
     {
-        return $this->belongsTo(Location::class, 'location_id');
+        return $this->belongsTo(LocationNew::class, 'location_id');
     }
 
-    public function invitation(): HasMany
+    public function invitations(): HasMany
     {
-        return $this->hasMany(Invatation::class);
+        return $this->hasMany(InvatationNew::class);
     }
 
 }

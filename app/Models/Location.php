@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Location extends Model
+class LocationNew extends Model
 {
     use HasFactory;
 
-    public function vacancy (): HasMany
+    public function vacancies (): HasMany
     {
-        return $this->hasMany(Vacancy::class);
+        return $this->hasMany(VacancyNew::class);
 
     }
 }
