@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 
-class vacancy extends Model
+class VacancyNew extends Model
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory;
