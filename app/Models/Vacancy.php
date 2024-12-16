@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 
-class vacancy extends Model
+class Vacancy extends Model
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory;
@@ -28,10 +28,10 @@ class vacancy extends Model
 
     public function location(): BelongsTo
     {
-        return $this->belongsTo(location::class, 'location_id');
+        return $this->belongsTo(Location::class, 'location_id');
     }
 
-    public function invitation(): HasMany
+    public function invitations(): HasMany
     {
         return $this->hasMany(Invatation::class);
     }

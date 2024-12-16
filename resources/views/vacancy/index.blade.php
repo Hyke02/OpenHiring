@@ -123,61 +123,30 @@
 <script>
     const apiKey = 'AIzaSyDwysuHNeSGLCsqbdKxnjN2sbRTpPxe_0E';
 
-
-
-        // Zet de huidige taal in localStorage, zodat de pagina bij herladen de laatst gekozen taal onthoudt
-        const storedLanguage = localStorage.getItem('selectedLanguage') || 'nl';
-        document.getElementById('language-selector').value = storedLanguage;
-        translatePageContent(storedLanguage);
-
-        // Voeg event listener toe aan de taalselectie
-        document.getElementById('language-selector').addEventListener('change', function () {
-        const selectedLanguage = this.value;
-        localStorage.setItem('selectedLanguage', selectedLanguage);  // Sla de gekozen taal op
-        translatePageContent(selectedLanguage);
+    document.getElementById('language-selector').addEventListener('change', function () {
+        translatePageContent(this.value);
     });
 
-        function translatePageContent(targetLanguage) {
-        // Verzamel alle vertaalbare elementen
+    function translatePageContent(targetLanguage) {
         const elements = [
         ...document.querySelectorAll('.vacancy-title, .vacancy-company, p, button, .button, select option, input[placeholder]')
         ];
+        const texts = elements.map(el => el.tagName === 'INPUT' ? el.placeholder : el.innerText);
 
-        // Verzamel de tekst van deze elementen
-        const texts = elements.map(el => {
-        if (el.tagName === 'SELECT') {
-        return Array.from(el.options).map(option => option.innerText);
-    }
-        return el.tagName === 'INPUT' ? el.placeholder : el.innerText;
-    }).flat();
-
-        // Maak een POST-aanroep naar de Google Translate API
         fetch(`https://translation.googleapis.com/language/translate/v2?key=${apiKey}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ q: texts, target: targetLanguage, format: 'text' })
-    })
-        .then(response => response.json())
-        .then(data => {
-        const translations = data.data.translations;
-        let index = 0;
-
-        // Pas de vertaling toe op de elementen
-        elements.forEach(el => {
-        if (el.tagName === 'INPUT') {
-        el.placeholder = translations[index].translatedText;
-    } else if (el.tagName === 'SELECT') {
-        Array.from(el.options).forEach(option => {
-        option.innerText = translations[index].translatedText;
-        index++;
-    });
-    } else {
-        el.innerText = translations[index].translatedText;
-    }
-        index++;
-    });
-    })
-        .catch(error => console.error('Translation error:', error));
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ q: texts, target: targetLanguage, format: 'text' })
+        })
+            .then(response => response.json())
+            .then(data => {
+                const translations = data.data.translations;
+                elements.forEach((el, i) => {
+                    if (el.tagName === 'INPUT') el.placeholder = translations[i].translatedText;
+                    else el.innerText = translations[i].translatedText;
+                });
+            })
+            .catch(error => console.error('Translation error:', error));
     }
 </script>
 
