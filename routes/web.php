@@ -4,7 +4,6 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\MyVacancyController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SmsController;
 use App\Http\Controllers\VacancyController;
 use Illuminate\Support\Facades\Route;
 
@@ -49,11 +48,3 @@ Route::post('/vacancy/store', [VacancyController::class, 'storeUser_id'])->name(
 
 // Route voor mijn vacatures
 Route::get('/my-vacancy', [MyVacancyController::class, 'index'])->name('my-vacancy.index');
-
-// Route voor SMS
-Route::post('/send-sms', [SmsController::class, 'sendSms']);
-
-
-
-
-
