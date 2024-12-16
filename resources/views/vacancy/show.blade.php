@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Application</title>
-    @vite('resources/js/app.js')
+    @vite(['resources/js/app.js', 'resources/css/app.css'])
 </head>
 <body class="bg-[#FBFCF7]">
 
@@ -134,9 +134,9 @@
             </button>
         @endif
     @else
-        <a href="{{ route('login') }}" class="w-full py-3 bg-[#AA0061] text-white font-semibold rounded-full hover:bg-[#8b004e] transition duration-300 text-center block">
-            Login om te solliciteren
-        </a>
+        <div class="flex justify-center items-center h-full mt-6">
+            <x-sub-button href="{{ route('login') }}" class="px-4 py-3 !text-lg my-10">Login om te solliciteren</x-sub-button>
+        </div>
     @endauth
 
     <div id="applyModal" class="modal hidden flex fixed inset-0 items-center justify-center bg-gray-900 bg-opacity-50">
