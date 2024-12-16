@@ -9,5 +9,9 @@
                 {{ auth()->user()->name }}
             </div>
         </div>
+
+        <div class="my-6 px-6 py-4 border-y-2">
+            <a class="font-radikal font-normal text-gray-700">Profiel bewerken</a>
+        </div>
     </x-slot>
 </x-guest-layout>
