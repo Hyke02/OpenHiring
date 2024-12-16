@@ -1,4 +1,4 @@
-<div class="flex relative p-6">
+<div class="flex relative p-6 ">
     <a href="{{ route('home') }}" class="w-">
         <img src="{{ asset('storage/images/logo-oh.png') }}" alt="logo van open hiring" class="w-12 focus:border-indigo-600">
     </a>
@@ -7,8 +7,8 @@
         <img src="{{ asset('storage/images/burger-menu.svg') }}" alt="menu icoon" class="w-12" >
     </div>
 
-    <div class="dropdown opacity-0 scale-y-0 transform origin-top absolute left-0 right-0 top-full
-    mt-2 bg-white min-h-screen transition-all duration-300 pt-[20%]">
+    <div class="dropdown  opacity-0 scale-y-0 transform origin-top absolute left-0 right-0 top-full
+    mt-2 bg-[#FBFCF7] min-h-screen transition-all duration-300 pt-[20%]">
         <nav class="text-center text-4xl flex flex-col space-y-10">
             @auth()
                 <x-nav-link href="/profile.index">Profiel</x-nav-link>

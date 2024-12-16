@@ -15,22 +15,25 @@
 <x-info-icon>Placeholder text</x-info-icon>
 
 <!-- Vacature details -->
-<div class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-lg border-2 border-black">
+<div class="max-w-3xl mx-auto p-6">
+    <div class="flex justify-center items-center h-full">
+        <div class="w-1/2 flex justify-end">
+            <img src="{{ asset('storage/images/mac_logo.png') }}" alt="" class="">
+        </div>
+    </div>
 
     <!-- Bedrijf en vacature naam -->
-    <h1 class="text-2xl font-bold text-gray-900 mt-2">{{ $vacancy->name }}</h1>
+    <h1 class="text-4xl font-bold text-gray-900 mt-2 text-center">{{ $vacancy->name }}</h1>
+
 {{--    img live example--}}
     <div>
         <img src="{{$vacancy->images}}" alt="">
     </div>
     <div>
-        <h2 class="text-lg font-semibold text-gray-800 mt-5">{{ $vacancy->company_name }}</h2>
-        <div class="w-1/2 flex justify-end">
-            <img src="{{ asset('storage/images/mac_logo.png') }}" alt="" class="">
-        </div>
+        <h2 class="text-xl font-normal text-gray-800 text-center">{{ $vacancy->company_name }}</h2>
     </div>
-    {{--    icon company--}}
 
+    <div class="border-t border-gray-300 my-4"></div>
 
     <!-- Informatie sectie met icoontjes -->
     <div class="flex flex-wrap items-center mt-4 gap-4"> <!-- gap-4 in plaats van gap-8 -->
