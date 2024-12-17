@@ -4,7 +4,9 @@
         background-repeat: no-repeat;
         background-position: 10px center;
         background-size: 20px 20px;
-        padding-left: 30px; /* ruimte voor het icoon */
+        padding-left: 30px;
+        padding-right: 10px;
+        border: black 1px solid;
     }
 </style>
 
@@ -49,7 +51,7 @@
 
     function translatePageContent(targetLanguage) {
         const elements = [
-            ...document.querySelectorAll('.vacancy-title, p, button:not(#info-icon), .button, select option, input[placeholder], strong, h3, li, span, a')
+            ...document.querySelectorAll('.vacancy-title, p, button:not(#info-icon), .button, select option, input[placeholder], strong, h3, li, span, a, h1, h2, label, button.applybutton')
         ];
 
         const texts = elements.map(el => {

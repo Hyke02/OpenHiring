@@ -61,17 +61,17 @@
                 <div class="flex flex-row justify-between p-4">
                     <div class=" flex flex-col gap-2 mb-2 lg:mb-0 w-full lg:w-2/3">
                         <div class="bg-[#f2fade] shadow-[0_0_0_1.5px_#dee8ba] rounded-full p-3 inline-flex items-center w-fit">
-                            <p class=" m-0 text-xs lg:text-sm">4-40 uur per week</p>
+                            <p class=" m-0 text-xs lg:text-sm">{{ $vacancy->hours }} uur per week</p>
                         </div>
                         <div class="bg-[#f2fade] shadow-[0_0_0_1.5px_#dee8ba] rounded-full p-3 inline-block text-xs lg:text-sm w-fit">
-                            <p>6 tot 16,35 euro per uur</p>
+                            <p>{{ $vacancy->salary }} euro per maand</p>
                         </div>
                         <div class="flex gap-2">
                             <div class="bg-[#f2fade] shadow-[0_0_0_1.5px_#dee8ba] rounded-full p-3 text-xs lg:text-sm w-fit">
-                                <p>6 nodig</p>
+                                <p>{{ $vacancy->wanted }} nodig</p>
                             </div>
                             <div class="bg-[#f2fade] shadow-[0_0_0_1.5px_#dee8ba] rounded-full p-3 text-xs lg:text-sm w-fit">
-                                <p>10 wachtende</p>
+                                <p>{{ $vacancy->awaiting}} wachtende</p>
                             </div>
                         </div>
                     </div>
