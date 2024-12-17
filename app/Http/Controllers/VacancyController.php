@@ -17,23 +17,25 @@ class VacancyController extends Controller
         $sectors = Sector::all();
         $searchTerm = $request->input('search');
 
-        $vacancyQuery = Vacancy::with('user', 'sector');
+        // Start de query met de benodigde relaties
+        $vacancyQuery = Vacancy::with('user', 'sector', 'location');
 
         if ($searchTerm) {
             $vacancyQuery->where(function ($query) use ($searchTerm) {
                 $query->where('name', 'LIKE', '%' . $searchTerm . '%')
                     ->orWhere('company_name', 'LIKE', '%' . $searchTerm . '%')
-                    ->orWhere('location', 'LIKE', '%' . $searchTerm . '%');
-
+                    ->orWhereHas('location', function($q) use ($searchTerm) {
+                        $q->where('location', 'LIKE', '%' . $searchTerm . '%');
+                    });
             });
         }
 
-
-
+        // Als er een sector is geselecteerd, voeg deze filter toe
         if ($request->has('sector') && !empty($request->sector)) {
             $vacancyQuery->where('sector_id', $request->sector);
         }
 
+        // Haal de vacatures op
         $vacancies = $vacancyQuery->get();
 
         return view('vacancy.index', compact('sectors', 'vacancies'));
