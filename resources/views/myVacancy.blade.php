@@ -35,7 +35,7 @@
                 </div>
                 <x-sub-button
                     onclick="readJobDetails(this)"
-                    class="button !py-3 !px-4 !text-base mb-5">
+                    class="button !py-3 !px-4 !text-base mb-5 mt-3">
                     Lees voor
                 </x-sub-button>
             </div>
