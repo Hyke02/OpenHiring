@@ -191,10 +191,10 @@
         let text = ''
 
         headings.forEach(heading => {
-            text += heading.textContent + '. '
+            text += heading.textContent + ' '
         })
         paragraphs.forEach(paragraph => {
-            text += paragraph.textContent + '. '
+            text += paragraph.textContent + ' '
         })
         responsiveVoice.speak(text, "Dutch Male")
     }

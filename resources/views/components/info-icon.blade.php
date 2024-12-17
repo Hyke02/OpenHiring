@@ -70,11 +70,11 @@
         let text = ''
 
         headings.forEach(heading => {
-            text += heading.textContent + '. '
+            text += heading.textContent + ' '
         })
 
         listItems.forEach(item => {
-            text += item.textContent + '. '
+            text += item.textContent + ' '
         })
 
         if (text) {
