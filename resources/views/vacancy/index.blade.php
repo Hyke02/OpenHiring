@@ -9,7 +9,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="overflow-x-hidden">
+<body class="overflow-x-hidden bg-[#FBFCF7]">
 
 <x-navigation class="z-20"></x-navigation>
 <x-info-icon>placeholder text</x-info-icon>
@@ -19,7 +19,7 @@
 
 </div>
 
-<div class="mx-auto mt-8 max-w-full z-10">
+<div class="mx-auto mt-8 max-w-full z-10 ">
     <form method="GET" action="{{ route('vacancy.index') }}" class="mb-8">
         <div class="flex gap-4 items-center mb-4 mx-4">
             <div class="flex-1">

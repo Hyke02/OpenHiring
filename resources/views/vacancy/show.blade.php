@@ -132,10 +132,12 @@
                 Terug naar Mijn Vacatures
             </a>
         @else
-            <button
-                    class="applybutton w-full py-3 bg-[#AA0061] text-white font-semibold rounded-full hover:bg-[#8b004e] transition duration-300"> <!-- Voeg onclick event toe -->
-                Solliciteer
-            </button>
+            <div class="flex justify-center">
+                <button
+                    class="uppercase applybutton mt-4 mb-3 px-4 w-fit py-3 bg-[#AA0061] text-white font-semibold rounded-full hover:bg-[#8b004e] transition duration-300"> <!-- Voeg onclick event toe -->
+                    Solliciteer
+                </button>
+            </div>
         @endif
     @else
         <div class="flex justify-center items-center h-full mt-6">
@@ -152,7 +154,7 @@
                 <input type="hidden" name="vacancy_id" value="{{ $vacancy->id }}">
                 <div class="flex justify-center mt-4">
                     <button type="submit" class="bg-[#AA0061] text-white mx-2 py-2 px-4 rounded-full">Bevestigen</button>
-                    <button type="button" class="modalClose bg-gray-400 text-white mx-2 py-2 px-4 rounded-full mr-2">Annuleren</button>
+                    <button type="button" id="modalClose" class="modalClose bg-gray-400 text-white mx-2 py-2 px-4 rounded-full mr-2">Annuleren</button>
                 </div>
             </form>
         </div>

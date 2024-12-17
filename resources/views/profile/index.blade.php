@@ -2,7 +2,7 @@
     <x-slot name="slot1">
         <x-navigation></x-navigation>
         @if(auth()->user()->role == 'employer')
-
+            <a href="{{ route('employer.index') }}">jabadoe</a>
         @else
             <div class="px-6 py-2">
                 <h1 class="text-2xl font-radikal font-normal">Mijn alias</h1>

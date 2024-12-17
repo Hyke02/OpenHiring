@@ -1,4 +1,5 @@
-<div class="flex relative p-6 sticky top-0 bg-white z-50">
+<div class="flex relative p-6 sticky top-0 z-50 lg:mx-10 lg:h-fit lg:py-3
+bg-[#FBFCF778] shadow-[0_-6px_30px_rgba(0,0,0,0.1)] backdrop-blur-[4px] border border-[rgba(244,251,216,0.28)]">
     <a href="{{ route('home') }}" class="w-">
         <img src="{{ asset('storage/images/logo-oh.png') }}" alt="logo van open hiring" class="w-12 focus:border-indigo-600">
     </a>
@@ -34,8 +35,10 @@
     <div class="bg-white p-6 rounded-lg w-full mx-4 relative text-center">
         <h2 class="text-xl mb-4">Weet je zeker dat je uit wil loggen?</h2>
         <div class="flex justify-between">
-            <button id="cancel-btn" class="px-4 py-2 bg-gray-300 rounded">Cancel</button>
-            <button id="confirm-logout" class="px-4 py-2 bg-red-500 text-white rounded">Logout</button>
+            <button id="confirm-logout" class="bg-[#AA0061] text-white mx-2 py-2 px-4 rounded-full">Bevestigen</button>
+            <button id="cancel-btn" class="modalClose bg-gray-400 text-white mx-2 py-2 px-4 rounded-full mr-2">Annuleren</button>
+{{--            <button id="cancel-btn" class="px-4 py-2 bg-gray-300 rounded-full">Cancel</button>--}}
+{{--            <button id="confirm-logout" class="px-4 py-2 bg-red-500 text-white rounded">Logout</button>--}}
         </div>
     </div>
 </div>

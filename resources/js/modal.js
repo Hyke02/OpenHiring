@@ -1,17 +1,14 @@
 const modal = document.getElementById('modal');
 const modalText = document.getElementById('modalText');
 const modalForm = document.getElementById('modalForm');
-const modalClose = document.querySelector('.modalClose');
+const modalClose = document.getElementById('modalClose');
 
 document.querySelectorAll('.unapplyButton').forEach(button => {
     button.addEventListener('click', () => {
-        console.log('hoi')
 
         const vacancyId = button.getAttribute('data-id');
         const vacancyName = button.getAttribute('data-name');
         const actionUrl = button    .getAttribute('data-url');
-
-        console.log('harro')
 
         // Update modal text
         modalText.textContent = `Weet u zeker dat u zich wilt uitschrijven voor de vacature "${vacancyName}"?`;
