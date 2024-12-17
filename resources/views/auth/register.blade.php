@@ -19,7 +19,7 @@
             <!-- Phone number -->
             <div class="mt-4">
                 <x-input-label for="number" :value="__('Telefoon')" />
-                <x-text-input id="number" class="block mt-1 w-full" type="tel" name="number" :value="old('number')" maxlength="8" required placeholder="Bv. 12345678"/>
+                <x-text-input id="number" class="block mt-1 w-full" type="tel" name="number" :value="old('number')" maxlength="8" min="8" required placeholder="Bv. 12345678"/>
                 <x-input-error :messages="$errors->get('number')" class="mt-2" />
             </div>
 
