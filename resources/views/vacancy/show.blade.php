@@ -24,7 +24,7 @@
         <img src="{{$vacancy->images}}" alt="">
     </div>
     <div>
-        <h2 class="text-lg font-semibold text-gray-800 mt-5">{{ $vacancy->company_name }}</h2>
+        <h2 class="text-lg font-semibold text-gray-800 mt-5 no-translate">{{ $vacancy->company_name }}</h2>
         <div class="w-1/2 flex justify-end">
             <img src="{{ asset('storage/images/mac_logo.png') }}" alt="" class="">
         </div>
@@ -39,7 +39,7 @@
             <img src="{{ asset('storage/images/8665257_clock_watch_icon.svg') }}" alt="Clock Icon" class="w-7 h-auto">
             <span class="ml-4">4-40 uur per week</span>
         </p>
-        <p class="flex items-center text-gray-600">
+        <p class="flex items-center text-gray-600 no-translate">
             <img src="{{ asset('storage/images/3669413_location_ic_on_icon.svg') }}" alt="Location Icon" class="w-8 h-auto">
             <span class="ml-4">{{$vacancy->location->location}}</span>
         </p>
