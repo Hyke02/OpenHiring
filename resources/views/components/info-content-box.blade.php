@@ -33,6 +33,7 @@
         <h3 class="text-2xl font-bold mb-4">Stap 3: Wacht op een uitnodiging</h3>
         <x-info-content-item>Zodra je op plek 0 op de wachtlijst staat, ontvang je een uitnodiging voor de baan.</x-info-content-item>
     </div>
+    <li>Let op! Kleine bedrijven nemen gemiddeld 2-3 dagen om naar de vacatures te kijken. Grote bedrijven meestal 7-10 dagen.</li>
 @endif
 
 @if(Route::currentRouteName() == "invitation.index")
