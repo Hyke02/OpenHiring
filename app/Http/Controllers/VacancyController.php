@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Invatation;
-use App\Models\vacancy;
+use App\Models\Vacancy;
 use App\Models\Sector;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -64,7 +64,7 @@ class VacancyController extends Controller
             $imagePath = $request->file('images')->store('images/vacancy', 'public');
         }
 
-        vacancy::create([
+        Vacancy::create([
             'vacancy_name' => $request->vacancy_name,
             'sector_id' => $request->sector_id,
             'description' => $request->description,
@@ -91,7 +91,7 @@ class VacancyController extends Controller
     // Toon een specifieke vacancy
     public function show($id, Request $request)
     {
-        $vacancy = vacancy::with( 'sector')->findOrFail($id);
+        $vacancy = Vacancy::with( 'sector')->findOrFail($id);
         $invitations = Auth::check()
             ? Invatation::where('user_id', Auth::user()->id)->get()
             : collect();
@@ -105,7 +105,7 @@ class VacancyController extends Controller
     // Formulier voor het bewerken van een bestaande vacancy
     public function edit($id)
     {
-        $vacancy = vacancy::findOrFail($id);
+        $vacancy = Vacancy::findOrFail($id);
         $sectors = Sector::all();
 
         if ($vacancy->user_id !== Auth::id() && Auth::user()->status != 1) {
@@ -118,7 +118,7 @@ class VacancyController extends Controller
     // Update een bestaande vacancy
     public function update(Request $request, $id)
     {
-        $vacancy = vacancy::findOrFail($id);
+        $vacancy = Vacancy::findOrFail($id);
 
         if ($vacancy->user_id !== Auth::id() && Auth::user()->status != 1) {
             return redirect()->route('vacancy.index')->with('error', 'Je hebt geen rechten om deze vacancy te bewerken.');
@@ -150,7 +150,7 @@ class VacancyController extends Controller
     // Verwijder een vacancy
     public function destroy($id)
     {
-        $vacancy = vacancy::findOrFail($id);
+        $vacancy = Vacancy::findOrFail($id);
 
         if ($vacancy->user_id === Auth::id() || Auth::user()->status == 1) {
             $vacancy->delete();

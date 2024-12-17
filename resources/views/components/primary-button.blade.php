@@ -30,7 +30,7 @@
  dark:focus:ring-offset-gray-800
  transition-all
  ease-in-out
- duration-500'
+ duration-400'
  ]) }}>
     {{ $slot }}
 </button>

@@ -32,8 +32,9 @@
                     @endforeach
                 </select>
             </div>
+
             <div>
-                <button type="submit" class="bg-[#AA0061] text-white px-4 py-2 rounded-full shadow hover:bg-gray-600 w-full">Filter</button>
+                <button type="submit" class="bg-[#AA0061] text-white px-4 py-2 rounded-full shadow hover:bg-gray-600 w-full uppercase">Filter</button>
             </div>
         </div>
 
@@ -43,11 +44,10 @@
                 <input type="text" name="search" placeholder="Zoek" value="{{ request('search') }}"
                        class="p-3 font-medium block w-full [#444343] rounded-md shadow-sm focus:border-[#D6E2B5]">
             </div>
+
             <!-- Zoek button -->
             <div>
-                <button type="submit" class="bg-[#AA0061] text-white px-4 py-2 rounded-full shadow hover:bg-gray-600 w-full" data-context="een zoek knop">
-                    Zoeken
-                </button>
+                <button type="submit" class="bg-[#AA0061] text-white px-4 py-2 rounded-full shadow hover:bg-gray-600 w-full uppercase">Zoeken</button>
             </div>
         </div>
     </form>

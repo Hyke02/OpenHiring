@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Application</title>
-    @vite('resources/js/app.js')
+    @vite(['resources/js/app.js', 'resources/css/app.css'])
 </head>
 <body class="bg-[#FBFCF7]">
 
@@ -15,22 +15,26 @@
 <x-info-icon>Placeholder text</x-info-icon>
 
 <!-- Vacature details -->
-<div class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-lg border-2 border-black">
+<div class="max-w-3xl mx-auto p-6">
+    <div class="flex justify-center items-center h-full">
+        <div class="w-1/2 flex justify-end">
+            <img src="{{ asset('storage/images/mac_logo.png') }}" alt="" class="">
+        </div>
+    </div>
 
     <!-- Bedrijf en vacature naam -->
-    <h1 class="text-2xl font-bold text-gray-900 mt-2">{{ $vacancy->name }}</h1>
+    <h1 class="text-4xl font-bold text-gray-900 mt-2 text-center">{{ $vacancy->name }}</h1>
+
 {{--    img live example--}}
     <div>
         <img src="{{$vacancy->images}}" alt="">
     </div>
     <div>
-        <h2 class="text-lg font-semibold text-gray-800 mt-5 no-translate">{{ $vacancy->company_name }}</h2>
-        <div class="w-1/2 flex justify-end">
-            <img src="{{ asset('storage/images/mac_logo.png') }}" alt="" class="">
-        </div>
+        <h2 class="text-xl font-normal text-gray-800 text-center">{{ $vacancy->company_name }}</h2>
     </div>
     {{--    icon company--}}
 
+    <div class="border-t border-gray-300 my-4"></div>
 
     <!-- Informatie sectie met icoontjes -->
     <div class="flex flex-wrap items-center mt-4 gap-4"> <!-- gap-4 in plaats van gap-8 -->
@@ -39,7 +43,7 @@
             <img src="{{ asset('storage/images/8665257_clock_watch_icon.svg') }}" alt="Clock Icon" class="w-7 h-auto">
             <span class="ml-4">4-40 uur per week</span>
         </p>
-        <p class="flex items-center text-gray-600 no-translate">
+        <p class="flex items-center text-gray-600">
             <img src="{{ asset('storage/images/3669413_location_ic_on_icon.svg') }}" alt="Location Icon" class="w-8 h-auto">
             <span class="ml-4">{{$vacancy->location->location}}</span>
         </p>
@@ -134,9 +138,9 @@
             </button>
         @endif
     @else
-        <a href="{{ route('login') }}" class="w-full py-3 bg-[#AA0061] text-white font-semibold rounded-full hover:bg-[#8b004e] transition duration-300 text-center block">
-            Login om te solliciteren
-        </a>
+        <div class="flex justify-center items-center h-full mt-6">
+            <x-sub-button href="{{ route('login') }}" class="px-4 py-3 !text-lg my-10">Login om te solliciteren</x-sub-button>
+        </div>
     @endauth
 
     <div id="applyModal" class="modal hidden flex fixed inset-0 items-center justify-center bg-gray-900 bg-opacity-50">

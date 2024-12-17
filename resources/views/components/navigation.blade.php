@@ -1,14 +1,14 @@
-<div class="flex relative p-6">
+<div class="flex relative p-6 sticky top-0 bg-white z-50">
     <a href="{{ route('home') }}" class="w-">
         <img src="{{ asset('storage/images/logo-oh.png') }}" alt="logo van open hiring" class="w-12 focus:border-indigo-600">
     </a>
 
     <div class="burger ml-auto text-[48px]">
-        <img src="{{ asset('storage/images/burger-menu.svg') }}" alt="menu icoon" class="w-12" >
+        <img src="{{ asset('storage/images/burger-menu.svg') }}" alt="menu icoon" class="w-12">
     </div>
 
-    <div class="dropdown opacity-0 scale-y-0 transform origin-top absolute left-0 right-0 top-full
-    mt-2 bg-white min-h-screen transition-all duration-300 pt-[20%]">
+    <div class="dropdown  opacity-0 scale-y-0 transform origin-top absolute left-0 right-0 top-full
+    mt-2 bg-[#FBFCF7] min-h-screen transition-all duration-300 pt-[20%]">
         <nav class="text-center text-4xl flex flex-col space-y-10">
             @auth()
                 <x-nav-link href="/profile.index">Profiel</x-nav-link>
@@ -26,9 +26,9 @@
                 <x-language-selector></x-language-selector>
             @endauth
         </nav>
-
     </div>
 </div>
+
 
 <div id="logout-modal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 hidden">
     <div class="bg-white p-6 rounded-lg w-full mx-4 relative text-center">
@@ -45,16 +45,32 @@
 <script>
     document.querySelector('.burger').addEventListener('click', () => {
         const dropdown = document.querySelector('.dropdown')
+        const infoBar = document.getElementById('info-bar')
+        const infoIcon = document.getElementById('info-icon')
 
         if (dropdown.classList.contains('opacity-0')) {
             dropdown.classList.remove('opacity-0', 'scale-y-0')
             dropdown.classList.add('opacity-100', 'scale-y-100')
+
+            if (infoBar) {
+                infoBar.classList.add('opacity-0', 'scale-y-0')
+            }
+            if (infoIcon) {
+                infoIcon.classList.add('invisible')
+            }
         } else {
             dropdown.classList.remove('opacity-100', 'scale-y-100')
             dropdown.classList.add('opacity-0', 'scale-y-0')
-        }
 
+            if (infoBar) {
+                infoBar.classList.remove('opacity-0', 'scale-y-0')
+            }
+            if (infoIcon) {
+                infoIcon.classList.remove('invisible')
+            }
+        }
     })
+
 
     document.querySelector('#logout-btn').addEventListener('click', (e) => {
         e.preventDefault()
