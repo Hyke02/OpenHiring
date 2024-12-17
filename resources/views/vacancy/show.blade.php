@@ -32,6 +32,7 @@
     <div>
         <h2 class="text-xl font-normal text-gray-800 text-center">{{ $vacancy->company_name }}</h2>
     </div>
+    {{--    icon company--}}
 
     <div class="border-t border-gray-300 my-4"></div>
 

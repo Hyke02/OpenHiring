@@ -9,18 +9,18 @@
     <title>OpenHiring</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-[#FBFCF7] overflow-x-hidden">
+<body class="bg-[#FBFCF7]">
 <x-navigation></x-navigation>
 <x-info-icon></x-info-icon>
 
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 m-4">
+<section class="ml-5 mr-5">
     @foreach($vacanciesWithPosition as $vacancyData)
             <div class=" bg-white shadow rounded-lg overflow-hidden border border-[#444343] px-3 py-4">
                 <h1 class="font-black text-2xl vacancy-title">{{ $vacancyData['vacancy']->name }}</h1>
                 <h2 class="font-light text-lg font vacancy-company no-translate">{{ $vacancyData['vacancy']->company_name }} - {{ $vacancyData['vacancy']->location->location }}</h2>
 
                 <p class="bg-[#f2fade] shadow-[0_0_0_1.5px_#dee8ba] rounded-full p-3 inline-block text-xs lg:text-sm w-fit my-5">wachtlijst positie: <strong class="ml-1">{{ $vacancyData['position'] }}</strong></p>
-
+                <p class=" text-gray-500">Ingeschreven op: {{ $vacancyData['invitation']->created_at->format('d-m-Y') }}</p>
                 <div class="flex justify-between items-center">
                     <x-sub-button href="{{ url(route('vacancy.show',['id' => $vacancyData['vacancy']->id,  'from' => 'my-vacancy'])) }}" class="button !py-3 !px-4 !text-base " >Bekijk vacature</x-sub-button>
 
