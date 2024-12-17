@@ -11,7 +11,7 @@
     mt-2 bg-[#FBFCF7] min-h-screen transition-all duration-300 pt-[20%]">
         <nav class="text-center text-4xl flex flex-col space-y-10">
             @auth()
-                <x-nav-link href="/profile.index">Profiel</x-nav-link>
+                <x-nav-link href="{{ route('profile.index') }}">Profiel</x-nav-link>
                 <x-nav-link href="/my-vacancy">Mijn Vacatures</x-nav-link>
                 <x-nav-link href="/vacancy">Vacatures</x-nav-link>
                 <x-nav-link href="/help">Help</x-nav-link>

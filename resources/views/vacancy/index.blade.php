@@ -81,7 +81,7 @@
     </form>
 
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 m-4 ">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 m-4">
         @foreach ($vacancies as $vacancy)
             <div class="bg-white shadow rounded-lg overflow-hidden border border-[#444343]">
             <h1 class="font-black text-2xl px-4 pt-5 vacancy-title">{{ $vacancy->name }}</h1>
