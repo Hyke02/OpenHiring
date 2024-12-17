@@ -7,6 +7,7 @@
     <link rel="icon" href="{{ asset('storage/images/logo-oh.png') }}" type="image/png">
     <script src="https://cdn.tailwindcss.com"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+     <script src="https://code.responsivevoice.org/responsivevoice.js?key=h2R8yjzX"></script>
 </head>
 
 <body class="overflow-x-hidden bg-[#FBFCF7]">
@@ -61,29 +62,46 @@
 
                 <div class="flex flex-row justify-between p-4">
                     <div class=" flex flex-col gap-2 mb-2 lg:mb-0 w-full lg:w-2/3">
-                        <div class="bg-[#f2fade] shadow-[0_0_0_1.5px_#dee8ba] rounded-full p-3 inline-flex items-center w-fit">
-                            <p class=" m-0 text-xs lg:text-sm">{{ $vacancy->hours }} uur per week</p>
+                        <div class="flex mt-2" >
+                             <img src="{{ asset('storage/images/8665257_clock_watch_icon.svg') }}" alt="Clock Icon" class="w-7 h-auto mr-2 mt-1">
+                             <div class="bg-[#f2fade] shadow-[0_0_0_1.5px_#dee8ba] rounded-full p-3 inline-flex items-center w-fit">
+                                 <p class=" m-0 text-xs lg:text-sm"> {{ $vacancy->hours }} uur per week </p>
+                             </div>
                         </div>
-                        <div class="bg-[#f2fade] shadow-[0_0_0_1.5px_#dee8ba] rounded-full p-3 inline-block text-xs lg:text-sm w-fit">
-                            <p>{{ $vacancy->salary }} euro per maand</p>
-                        </div>
-                        <div class="flex gap-2">
-                            <div class="bg-[#f2fade] shadow-[0_0_0_1.5px_#dee8ba] rounded-full p-3 text-xs lg:text-sm w-fit">
-                                <p>{{ $vacancy->wanted }} nodig</p>
+                        <div class="flex mt-2">
+                            <img src="{{ asset('storage/images/3669346_ic_symbol_euro_icon.svg') }}" alt="Euro Icon" class="w-8 h-auto mr-2">
+                            <div class="bg-[#f2fade] shadow-[0_0_0_1.5px_#dee8ba] rounded-full p-3 inline-block text-xs lg:text-sm w-fit">
+                                <p>{{ $vacancy->salary }} euro per maand</p>
                             </div>
-                            <div class="bg-[#f2fade] shadow-[0_0_0_1.5px_#dee8ba] rounded-full p-3 text-xs lg:text-sm w-fit">
-                                <p>{{ $vacancy->awaiting}} wachtende</p>
+                        </div>
+                            <div class="flex mt-2">
+                                <img src="{{ asset('storage/images/9004762_search_find_zoom_magnifier_icon.svg') }}" alt="Search Icon" class="w-8 h-auto mr-2">
+                                <div class="bg-[#f2fade] shadow-[0_0_0_1.5px_#dee8ba] rounded-full p-3 text-xs lg:text-sm w-fit">
+                                    <p>{{ $vacancy->wanted }} nodig</p>
+                                </div>
+                            </div>
+                        <div class="flex mt-2">
+                            <img src="{{ asset('storage/images/8541636_clipboard_list_icon.svg') }}" alt="Clipboard Icon" class="w-8 h-auto mr-2">
+                            <div class="flex gap-2">
+                                <div class="bg-[#f2fade] shadow-[0_0_0_1.5px_#dee8ba] rounded-full p-3 text-xs lg:text-sm w-fit">
+                                    <p>{{ $vacancy->awaiting}} wachtende</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="flex justify-center lg:justify-end items-center w-full lg:w-1/3">
-                        <img src="{{ asset('storage/' . $vacancy->images) }}" alt="{{ $vacancy->vacancy_name }}" class="max-w-[145px] max-h-[145px] object-cover rounded-md">
-                    </div>
+{{--                    <div class="flex justify-center lg:justify-end items-center w-full lg:w-1/3">--}}
+{{--                        <img src="{{ asset('storage/' . $vacancy->images) }}" alt="{{ $vacancy->vacancy_name }}" class="max-w-[145px] max-h-[145px] object-cover rounded-md">--}}
+{{--                    </div>--}}
                 </div>
 
-                <div class="flex justify-center">
+                <div class="flex justify-between m-4">
                     <x-sub-button href="{{ route('vacancy.show', $vacancy->id) }}" class="button !py-3 !px-4 !text-base mb-5">
                         Bekijk vacature
+                    </x-sub-button>
+                    <x-sub-button
+                        onclick="readJobDetails(this)"
+                        class="button !py-3 !px-4 !text-base mb-5">
+                        Lees voor
                     </x-sub-button>
                 </div>
             </div>
@@ -93,3 +111,22 @@
 
 </body>
 </html>
+
+<script>
+    function readJobDetails(button) {
+        const parent = button.closest('.bg-white')
+        const headings = parent.querySelectorAll('h1, h2')
+        const paragraphs = parent.querySelectorAll('p')
+
+        let text = ''
+        headings.forEach(heading => {
+            text += heading.textContent + ' '
+        })
+        paragraphs.forEach(paragraph => {
+            text += paragraph.textContent + ' '
+        })
+        if (text) {
+            responsiveVoice.speak(text, "Dutch Male")
+        }
+    }
+</script>

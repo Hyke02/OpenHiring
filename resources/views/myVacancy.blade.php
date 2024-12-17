@@ -8,6 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>OpenHiring</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=h2R8yjzX"></script>
 </head>
 <body class="bg-[#FBFCF7]">
 <x-navigation></x-navigation>
@@ -32,7 +33,11 @@
                     </button>
                 </div>
                 <p class="mt-4 text-gray-500">Ingeschreven op: {{ $vacancyData['invitation']->created_at->format('d-m-Y') }}</p>
-
+                <x-sub-button
+                    onclick="readJobDetails(this)"
+                    class="button !py-3 !px-4 !text-base mb-5 mt-3">
+                    Lees voor
+                </x-sub-button>
             </div>
     @endforeach
 </section>
@@ -54,3 +59,21 @@
 
 </body>
 </html>
+<script>
+    function readJobDetails(button) {
+        const parent = button.closest('div')
+        const headings = parent.querySelectorAll('h1, h2')
+        const paragraphs = parent.querySelectorAll('p')
+
+        let text = '';
+        headings.forEach(heading => {
+            text += heading.textContent + ' '
+        })
+        paragraphs.forEach(paragraph => {
+            text += paragraph.textContent + ' '
+        })
+        if (text) {
+            responsiveVoice.speak(text, "Dutch Male")
+        }
+    }
+</script>
