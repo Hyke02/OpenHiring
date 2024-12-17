@@ -99,7 +99,7 @@
                         Bekijk vacature
                     </x-sub-button>
                     <x-sub-button
-                        onclick="readJobDetails('{{ addslashes($vacancy->name) }}', '{{ addslashes($vacancy->company_name) }}', '{{ addslashes($vacancy->location->location) }}', '{{ $vacancy->hours }}', '{{ $vacancy->salary }}', '{{ $vacancy->wanted }}', '{{ $vacancy->awaiting }}')"
+                        onclick="readJobDetails(this)"
                         class="button !py-3 !px-4 !text-base mb-5">
                         Lees voor
                     </x-sub-button>
@@ -113,16 +113,20 @@
 </html>
 
 <script>
-    function readJobDetails(name, company, location, hours, salary, wanted, awaiting) {
-        const locationText = location ? location : "Locatie onbekend"
-        const text = `
-        Vacature naam: ${name}.
-        Bedrijf: ${company}.
-        Locatie: ${locationText}.
-        Uren per week: ${hours}.
-        Salaris: ${salary} euro per maand.
-        Gezocht aantal: ${wanted}.
-        Aantal wachtenden: ${awaiting}.`
-        responsiveVoice.speak(text, "Dutch Male")
+    function readJobDetails(button) {
+        const parent = button.closest('.bg-white')
+        const headings = parent.querySelectorAll('h1, h2')
+        const paragraphs = parent.querySelectorAll('p')
+
+        let text = ''
+        headings.forEach(heading => {
+            text += heading.textContent + '. '
+        })
+        paragraphs.forEach(paragraph => {
+            text += paragraph.textContent + '. '
+        })
+        if (text) {
+            responsiveVoice.speak(text, "Dutch Male")
+        }
     }
 </script>
