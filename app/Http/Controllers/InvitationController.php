@@ -41,7 +41,6 @@ class InvitationController extends Controller
         $waitingEmployees = $vacancy->waitingEmployees()->take($numInvitations)->get();
 
 
-
         foreach ($waitingEmployees as $employee) {
             $invatation = Invatation::where('vacancy_id', $vacancy->id)
                 ->where('user_id', $employee->user_id)
@@ -57,6 +56,7 @@ class InvitationController extends Controller
         }
 
         $vacancy->decrement('awaiting', $numInvitations);
+dd($waitingEmployees);
 
         return redirect()->route('employer.index', $vacancy)->with('success', 'Uitnodigingen verstuurd!');
     }
