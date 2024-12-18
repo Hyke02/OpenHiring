@@ -14,7 +14,7 @@ return new class extends Migration
         if (!Schema::hasTable('sectors')) {
             Schema::create('sectors', function (Blueprint $table) {
                 $table->id();
-                $table->integer('name');
+                $table->string('name');
                 $table->timestamps();
             });
         }
