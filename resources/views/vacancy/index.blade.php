@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="nl">
- <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>OpenHiring</title>
     <link rel="icon" href="{{ asset('storage/images/logo-oh.png') }}" type="image/png">
     <script src="https://cdn.tailwindcss.com"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-     <script src="https://code.responsivevoice.org/responsivevoice.js?key=h2R8yjzX"></script>
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=h2R8yjzX"></script>
 </head>
 
 <body class="overflow-x-hidden bg-[#FBFCF7]">
@@ -17,10 +17,8 @@
 <div class="container mx-auto mt-8 max-w-full z-50">
 
 
-
 </div>
-
-<div class="mx-auto mt-8 max-w-full z-10 ">
+<div class="mx-auto mt-8 max-w-full z-10">
     <form method="GET" action="{{ route('vacancy.index') }}" class="mb-8">
         <div class="flex gap-4 items-center mb-4 mx-4">
             <div class="flex-1">
@@ -57,8 +55,9 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 m-4">
         @foreach ($vacancies as $vacancy)
             <div class="bg-white shadow rounded-lg overflow-hidden border border-[#444343]">
-                <h1 class="font-black text-2xl px-4 pt-5 vacancy-title">{{ $vacancy->name }}</h1>
-                <h2 class="font-light text-lg font px-4 vacancy-company no-translate vacancy-location no-translate">{{ $vacancy->company_name }} - {{ $vacancy->location->location }}</h2>
+                <h1 class="font-black text-2xl px-4 pt-5 vacancy-title">{{ $vacancy->job_title }}</h1>
+                <h2 class="font-light text-lg font px-4 vacancy-company no-translate">{{ $vacancy->company_name }}
+                    - {{ $vacancy->location->name }}</h2>
 
                 <div class="flex flex-row justify-between p-4">
                     <div class=" flex flex-col gap-2 mb-2 lg:mb-0 w-full lg:w-2/3">
@@ -88,11 +87,10 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="flex justify-center lg:justify-end items-center w-full lg:w-1/3">
+                            <img src="{{ asset('storage/'. $vacancy->logo) }}" alt="{{ $vacancy->company_name }} logos -l public/storage" class="max-w-[145px] max-h-[145px] object-cover rounded-md">
+                        </div>
                     </div>
-                    <div class="flex justify-center lg:justify-end items-center w-full lg:w-1/3">
-                        <img src="{{ asset('storage/' . $vacancy->images) }}" alt="{{ $vacancy->vacancy_name }}" class="max-w-[145px] max-h-[145px] object-cover rounded-md">
-                    </div>
-                </div>
 
                 <div class="flex justify-between m-4">
                     <x-sub-button href="{{ route('vacancy.show', $vacancy->id) }}" class="button !py-3 !px-4 !text-base mb-5">

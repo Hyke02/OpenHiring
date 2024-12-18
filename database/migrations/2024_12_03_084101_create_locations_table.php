@@ -15,8 +15,7 @@ return new class extends Migration
 
         Schema::create('locations', function (Blueprint $table) {
             $table->id()->foreign('vacancies.location_id');
-            $table->string('location');
-            $table->string('adress');
+            $table->string('name')->unique();
             $table->timestamps();
         });
 
