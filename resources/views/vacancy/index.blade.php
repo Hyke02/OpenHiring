@@ -7,9 +7,10 @@
     <link rel="icon" href="{{ asset('storage/images/logo-oh.png') }}" type="image/png">
     <script src="https://cdn.tailwindcss.com"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+     <script src="https://code.responsivevoice.org/responsivevoice.js?key=h2R8yjzX"></script>
 </head>
 
-<body class="overflow-x-hidden">
+<body class="overflow-x-hidden bg-[#FBFCF7]">
 
 <x-navigation class="z-20"></x-navigation>
 <x-info-icon>placeholder text</x-info-icon>
@@ -19,7 +20,7 @@
 
 </div>
 
-<div class="mx-auto mt-8 max-w-full z-10">
+<div class="mx-auto mt-8 max-w-full z-10 ">
     <form method="GET" action="{{ route('vacancy.index') }}" class="mb-8">
         <div class="flex gap-4 items-center mb-4 mx-4">
             <div class="flex-1">
@@ -93,9 +94,14 @@
                     </div>
                 </div>
 
-                <div class="flex justify-center">
+                <div class="flex justify-between m-4">
                     <x-sub-button href="{{ route('vacancy.show', $vacancy->id) }}" class="button !py-3 !px-4 !text-base mb-5">
                         Bekijk vacature
+                    </x-sub-button>
+                    <x-sub-button
+                        onclick="readJobDetails(this)"
+                        class="button !py-3 !px-4 !text-base mb-5">
+                        Lees voor
                     </x-sub-button>
                 </div>
             </div>
@@ -105,3 +111,22 @@
 
 </body>
 </html>
+
+<script>
+    function readJobDetails(button) {
+        const parent = button.closest('.bg-white')
+        const headings = parent.querySelectorAll('h1, h2')
+        const paragraphs = parent.querySelectorAll('p')
+
+        let text = ''
+        headings.forEach(heading => {
+            text += heading.textContent + ' '
+        })
+        paragraphs.forEach(paragraph => {
+            text += paragraph.textContent + ' '
+        })
+        if (text) {
+            responsiveVoice.speak(text, "Dutch Male")
+        }
+    }
+</script>
