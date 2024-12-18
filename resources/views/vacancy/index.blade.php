@@ -16,11 +16,16 @@
 <x-info-icon>placeholder text</x-info-icon>
 <div class="container mx-auto mt-8 max-w-full z-50">
 
+    <button onclick="readPageContent()"
+            class="bg-[#AA0061] text-white px-6 py-3 rounded-full shadow hover:bg-gray-600 uppercase w-full lg:w-auto">
+        Lees alles voor
+    </button>
+
 
 
 </div>
 
-<div class="mx-auto mt-8 max-w-full z-10 ">
+<div id="main" class="mx-auto mt-8 max-w-full z-10 ">
     <form method="GET" action="{{ route('vacancy.index') }}" class="mb-8">
         <div class="flex gap-4 items-center mb-4 mx-4">
             <div class="flex-1">
@@ -145,6 +150,41 @@
 
         if (text) {
             responsiveVoice.speak(text, voice);
+        }
+    }
+</script>
+
+<script>
+    function readPageContent() {
+        const voiceMapping = {
+            nl: "Dutch Male",
+            en: "UK English Male",
+            de: "Deutsch Male",
+            pt: "Brazilian Portuguese Male",
+            it: "Italian Male",
+            pl: "Polish Male",
+            ro: "Romanian Male",
+            el: "Greek Male",
+            hu: "Hungarian Male"
+        }
+
+        const languageSelector = document.getElementById('language-selector')
+        const languageCode = languageSelector ? languageSelector.value : 'nl'
+        const voice = voiceMapping[languageCode] || "Dutch Male"
+
+        const mainElement = document.getElementById('main')
+
+        if (mainElement) {
+            let text = ''
+            mainElement.querySelectorAll('h1, h2, h3, p').forEach(el => {
+                if (el.textContent.trim()) {
+                    text += el.textContent.trim() + ' '
+                }
+            })
+
+            if (text) {
+                responsiveVoice.speak(text, voice)
+            }
         }
     }
 </script>

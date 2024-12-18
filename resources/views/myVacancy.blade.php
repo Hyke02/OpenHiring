@@ -13,8 +13,13 @@
 <body class="bg-[#FBFCF7]">
 <x-navigation></x-navigation>
 <x-info-icon></x-info-icon>
+<button onclick="readPageContent()"
+        class="bg-[#AA0061] text-white px-6 py-3 rounded-full shadow hover:bg-gray-600 uppercase w-full
+         lg:w-auto">
+    Lees alles voor
+</button>
 
-<section class="ml-5 mr-5">
+<section id="main" class="ml-5 mr-5">
     @foreach($vacanciesWithPosition as $vacancyData)
             <div class=" bg-white shadow rounded-lg overflow-hidden border border-[#444343] px-3 py-4">
                 <h1 class="font-black text-2xl vacancy-title">{{ $vacancyData['vacancy']->name }}</h1>
@@ -74,6 +79,44 @@
         })
         if (text) {
             responsiveVoice.speak(text, "Dutch Male")
+        }
+    }
+</script>
+<script>
+    function readPageContent() {
+        const voiceMapping = {
+            nl: "Dutch Male",
+            en: "UK English Male",
+            de: "Deutsch Male",
+            pt: "Brazilian Portuguese Male",
+            it: "Italian Male",
+            pl: "Polish Male",
+            ro: "Romanian Male",
+            el: "Greek Male",
+            hu: "Hungarian Male"
+        }
+
+        const languageSelector = document.getElementById('language-selector')
+        const languageCode = languageSelector ? languageSelector.value : 'nl'
+        const voice = voiceMapping[languageCode] || "Dutch Male"
+
+        const mainElement = document.getElementById('main')
+
+        if (mainElement) {
+            let text = ''
+            mainElement.querySelectorAll('h1, h2, h3, p').forEach(el => {
+                if (el.textContent.trim()) {
+                    let content = el.textContent.trim()
+                    if (content) {
+                        content = content.replace(/([.?!])\s*(?=[A-Za-z])/g, '$1 ')
+                        text += content + ' '
+                    }
+                }
+            })
+
+            if (text) {
+                responsiveVoice.speak(text, voice)
+            }
         }
     }
 </script>

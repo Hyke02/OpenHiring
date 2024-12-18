@@ -1,6 +1,6 @@
 <script src="https://code.responsivevoice.org/responsivevoice.js?key=h2R8yjzX"></script>
 
-<div class="flex items-center space-x-4 w-full pr-[1.5rem]">
+<div id="info" class="flex items-center space-x-4 w-full pr-[1.5rem]">
     <button id="info-icon" class="z-20 m-[10px] group">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1" width="50" height="50">
             <circle cx="12" cy="12" r="10" stroke="currentColor" class="group-hover:stroke-[#AA0061]" />
