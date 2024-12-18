@@ -23,7 +23,7 @@ class EmployerController extends Controller
 
     public function showJobDetails(Vacancy $vacancy)
     {
-        $waitingEmployees = $vacancy->waitingEmployees;
+        $waitingEmployees = $vacancy->awaiting;
 
         return view('employer.show', compact('vacancy', 'waitingEmployees'));
     }

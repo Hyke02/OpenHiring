@@ -1,6 +1,6 @@
 <x-guest-layout>
     <x-slot name="slot1">
-        <h1>{{ $vacancy->name }}</h1>
+        <h1>{{ $vacancy->job_title }}</h1>
         <p>Wachtende: {{ $vacancy->awaiting }} in de wacht</p>
 
         <form action="{{ route('employer.job.invite', $vacancy) }}" method="POST">
@@ -18,9 +18,9 @@
         </form>
 
         <h3>Wachtrij van werknemers</h3>
-        @foreach($waitingEmployees as $employee)
-            <div>{{ $employee->name }}</div>
-        @endforeach
+{{--        @foreach($waitingEmployees as $employee)--}}
+{{--            <div>{{ $employee->name }}</div>--}}
+{{--        @endforeach--}}
     </x-slot>
 
 </x-guest-layout>

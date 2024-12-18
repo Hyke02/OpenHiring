@@ -17,7 +17,7 @@ class MyVacancyController extends Controller
         $invitations = Invatation::where('user_id', $userId)
             ->whereIn('status', ['pending', 'awaiting'])
             ->with('vacancy')
-            ->get();
+            ->latest()->get();
 
         $vacanciesWithDetails = $invitations->map(function ($invitation) {
             $position = Invatation::where('vacancy_id', $invitation->vacancy_id)
