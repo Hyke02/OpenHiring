@@ -8,10 +8,8 @@
     <title>Home Page</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
+<x-navigation /> <!-- Ensure your navigation has proper z-index -->
 <body class="bg-[#FBFCF7]">
-<div class="relative z-20">
-    <x-navigation /> <!-- Ensure your navigation has proper z-index -->
-</div>
 
 <header class="py-8 px-6">
     <div class="mx-auto flex flex-col lg:flex-row items-center lg:items-start lg:justify-between space-y-8 lg:space-y-0 lg:space-x-8">

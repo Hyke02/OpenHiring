@@ -3,9 +3,12 @@
 <x-invitation>
     <h2 class="text-[30px] font-bold my-[20px] flex justify-center">U bent uitgenodigd!</h2>
 <div>
+    @dd($invitation)
     <form action="{{ route('invitation.store') }}" method="POST">
         @CSRF
-
+        <div>
+            <p><strong>Vacature:</strong> {{ $invitation->vacancy->name }}</p>
+        </div>
         <div class="flex-col space-x-4">
             <div>
                 <div class="flex justify-center gap-5 m-10">
