@@ -13,8 +13,13 @@
 <body class="bg-[#FBFCF7]">
 <x-navigation></x-navigation>
 <x-info-icon></x-info-icon>
+<x-sub-button onclick="readPageContent()"
+              onclick="readPageContent(this)"
+              class="button !py-3 !pl-4 !text-base ml-4">
+    Lees alles voor
+</x-sub-button>
 
-<section class="ml-5 mr-5">
+<section class="ml-5 mr-5 main">
     @if($vacanciesCount === 0)
         <div>
             <div class="mb-3 ">
@@ -95,6 +100,44 @@
         })
         if (text) {
             responsiveVoice.speak(text, "Dutch Male")
+        }
+    }
+</script>
+<script>
+    function readPageContent() {
+        const voiceMapping = {
+            nl: "Dutch Male",
+            en: "UK English Male",
+            de: "Deutsch Male",
+            pt: "Brazilian Portuguese Male",
+            it: "Italian Male",
+            pl: "Polish Male",
+            ro: "Romanian Male",
+            el: "Greek Male",
+            hu: "Hungarian Male"
+        }
+
+        const languageSelector = document.getElementById('language-selector')
+        const languageCode = languageSelector ? languageSelector.value : 'nl'
+        const voice = voiceMapping[languageCode] || "Dutch Male"
+
+        const mainElement = document.getElementById('main')
+
+        if (mainElement) {
+            let text = ''
+            mainElement.querySelectorAll('h1, h2, h3, p, button, a').forEach(el => {
+                if (el.textContent.trim()) {
+                    let content = el.textContent.trim()
+                    if (content) {
+                        content = content.replace(/([.?!])\s*(?=[A-Za-z])/g, '$1 ')
+                        text += content + ' '
+                    }
+                }
+            })
+
+            if (text) {
+                responsiveVoice.speak(text, voice)
+            }
         }
     }
 </script>
