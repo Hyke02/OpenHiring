@@ -15,6 +15,13 @@
 <x-info-icon></x-info-icon>
 
 <section class="ml-5 mr-5">
+    @if($vacanciesWithPosition === 0)
+        <div>
+            <h3>Het lijkt erop dat u nog geen inschrijvingen heeft.</h3>
+            <p>Schrijf uzelf in voor een vacature en dan kunt u hier bekijken op welke plek u staat.</p>
+            <x-button href="{{ route('vacancy.index') }}">Bekijk vacatures</x-button>
+        </div>
+    @endif
     @foreach($vacanciesWithPosition as $vacancyData)
             <div class=" bg-white shadow rounded-lg overflow-hidden border border-[#444343] px-3 py-4 mb-5">
                 <h1 class="font-black text-2xl vacancy-title">{{ $vacancyData['vacancy']->name }}</h1>
