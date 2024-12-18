@@ -3,12 +3,9 @@
 <x-invitation>
     <h2 class="text-[30px] font-bold my-[20px] flex justify-center">U bent uitgenodigd!</h2>
 <div>
-    @dd($invitation)
     <form action="{{ route('invitation.store') }}" method="POST">
         @CSRF
-        <div>
-            <p><strong>Vacature:</strong> {{ $invitation->vacancy->name }}</p>
-        </div>
+
         <div class="flex-col space-x-4">
             <div>
                 <div class="flex justify-center gap-5 m-10">
@@ -17,6 +14,14 @@
                 </div>
             </div>
             <div class="flex justify-around space-x-4 ">
+                <div>
+                    <label>Select users to notify</label>
+                    <input type="text" name="users" value="{{$userNumber}}">
+                </div>
+                <div>
+                    <label for="body">Notification Message</label>
+                    <textarea name="body" class="form-control" rows="3"></textarea>
+                </div>
                 <div>
                     <label for="accept" class="block text-lg font-medium">Accepteer</label>
                     <button type="submit" name="action" value="1" class="px-16 py-4 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400">V</button>

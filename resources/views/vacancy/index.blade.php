@@ -57,8 +57,8 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 m-4">
         @foreach ($vacancies as $vacancy)
             <div class="bg-white shadow rounded-lg overflow-hidden border border-[#444343]">
-                <h1 class="font-radikal font-black text-2xl px-4 pt-5 vacancy-title">{{ $vacancy->name }}</h1>
-                <h2 class="font-light text-lg font px-4 vacancy-company no-translate">{{ $vacancy->company_name }} - {{ $vacancy->location->location }}</h2>
+                <h1 class="font-black text-2xl px-4 pt-5 vacancy-title">{{ $vacancy->name }}</h1>
+                <h2 class="font-light text-lg font px-4 vacancy-company no-translate vacancy-location no-translate">{{ $vacancy->company_name }} - {{ $vacancy->location->location }}</h2>
 
                 <div class="flex flex-row justify-between p-4">
                     <div class=" flex flex-col gap-2 mb-2 lg:mb-0 w-full lg:w-2/3">
@@ -89,9 +89,9 @@
                             </div>
                         </div>
                     </div>
-{{--                    <div class="flex justify-center lg:justify-end items-center w-full lg:w-1/3">--}}
-{{--                        <img src="{{ asset('storage/' . $vacancy->images) }}" alt="{{ $vacancy->vacancy_name }}" class="max-w-[145px] max-h-[145px] object-cover rounded-md">--}}
-{{--                    </div>--}}
+                    <div class="flex justify-center lg:justify-end items-center w-full lg:w-1/3">
+                        <img src="{{ asset('storage/' . $vacancy->images) }}" alt="{{ $vacancy->vacancy_name }}" class="max-w-[145px] max-h-[145px] object-cover rounded-md">
+                    </div>
                 </div>
 
                 <div class="flex justify-between m-4">
@@ -108,25 +108,45 @@
         @endforeach
     </div>
 </div>
+<x-footer />
+
 
 </body>
 </html>
 
 <script>
-    function readJobDetails(button) {
-        const parent = button.closest('.bg-white')
-        const headings = parent.querySelectorAll('h1, h2')
-        const paragraphs = parent.querySelectorAll('p')
 
-        let text = ''
+    const voiceMapping = {
+        nl: "Dutch Male",
+        en: "UK English Male",
+        de: "Deutsch Male",
+        pt: "Brazilian Portuguese Male",
+        it: "Italian Male",
+        pl: "Polish Male",
+        ro: "Romanian Male",
+        el: "Greek Male",
+        hu: "Hungarian Male"
+    };
+
+    function readJobDetails(button) {
+        const parent = button.closest('.bg-white');
+        const headings = parent.querySelectorAll('h1, h2');
+        const paragraphs = parent.querySelectorAll('p');
+
+        // Haal de geselecteerde taal op uit de dropdown
+        const languageCode = document.getElementById('language-selector').value;
+        const voice = voiceMapping[languageCode];
+
+        let text = '';
         headings.forEach(heading => {
-            text += heading.textContent + ' '
-        })
+            text += heading.textContent + ' ';
+        });
         paragraphs.forEach(paragraph => {
-            text += paragraph.textContent + ' '
-        })
+            text += paragraph.textContent + ' ';
+        });
+
         if (text) {
-            responsiveVoice.speak(text, "Dutch Male")
+            responsiveVoice.speak(text, voice);
         }
     }
 </script>
