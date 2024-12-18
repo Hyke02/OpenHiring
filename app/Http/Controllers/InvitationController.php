@@ -12,14 +12,15 @@ class InvitationController extends Controller
 {
     public function index($vacancyId)
     {
+        if (Auth::check()) {
         $userNumber= Auth::user()->number;
+            $vacancy = Vacancy::findOrFail($vacancyId);
+            $awaitingUsers = $vacancy->awaitingUsers();
 
-        $vacancy = Vacancy::findOrFail($vacancyId);
-
-
-        $awaitingUsers = $vacancy->awaitingUsers();
-
-        return view('invitation/invitation', compact('vacancy', 'awaitingUsers', 'userNumber'));
+            return view('invitation/invitation', compact('vacancy', 'awaitingUsers', 'userNumber'));
+        } else {
+            return view('auth.login');
+        }
     }
 
     private function sendMessage($message, $recipient)
@@ -79,9 +80,9 @@ class InvitationController extends Controller
         // als er op accepteer wordt geklikt status gaat naar 1 (accepted) of op afwijzen naar 2(denied)
 
         if ($request->input('action') === '1') {
-            $invitation->status = 'accepted';
+            $invitation->status = 1;
         } elseif ($request->input('action') === '2') {
-            $invitation->status = 'denied';
+            $invitation->status = 2;
         }
 
         $invitation->date=$request->input('date', now()->format('d-m-Y'));

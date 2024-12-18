@@ -103,6 +103,33 @@
                 </div>
             </div>
         @endforeach
+{{--@dd($vacancies)--}}
+            <div class="flex justify-between">
+            @if ($vacancies->onFirstPage())
+                    <x-button disabled> Vorige pagina</x-button>
+            @else
+                    <a href="{{ $vacancies->previousPageUrl() }}" class="bg-[#AA0061] text-white px-4 py-2 rounded-md shadow hover[#AA0061]">
+                        Vorige pagina
+                    </a>
+            @endif
+
+            @if ($vacancies->hasMorePages())
+                    <a href="{{ $vacancies->nextPageUrl() }} " class="bg-[#AA0061] text-white px-4 py-2 rounded-md shadow hover[#AA0061]">
+                        Volgende pagina
+                    </a>
+            @else
+                <x-button disabled> Volgende pagina</x-button>
+            @endif
+        </div>
+            <div class="flex justify-center gap-1">
+                @for ($page = 1; $page <= $vacancies->lastPage(); $page++)
+                    @if ($page == $vacancies->currentPage())
+                        <span class="bg-[#AA0061] text-white px-4 py-2 rounded shadow">{{ $page }}</span>
+                    @else
+                        <a href="{{ $vacancies->url($page) }}" class="bg-gray-300 text-gray-600 px-4 py-2 rounded hover:bg-gray-400">{{ $page }}</a>
+                    @endif
+                @endfor
+            </div>
     </div>
 </div>
 

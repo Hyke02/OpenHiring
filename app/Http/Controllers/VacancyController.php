@@ -37,7 +37,7 @@ class VacancyController extends Controller
         }
 
         // Haal de vacatures op
-        $vacancies = $vacancyQuery->get();
+        $vacancies = $vacancyQuery->paginate(10);
 
         return view('vacancy.index', compact('sectors', 'vacancies'));
     }
@@ -110,9 +110,8 @@ class VacancyController extends Controller
         $invatation->user_id = Auth::id();
         $invatation->vacancy_id = $request->vacancy_id;
 
-
         $invatation->save();
-        return redirect()->route('vacancy.index');
+        return redirect()->route('my-vacancy.index');
     }
 
     // Toon een specifieke vacancy
