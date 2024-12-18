@@ -15,11 +15,11 @@
 <x-navigation class="z-20"></x-navigation>
 <x-info-icon>placeholder text</x-info-icon>
 <div class="container mx-auto mt-8 max-w-full z-50">
-
-    <button onclick="readPageContent()"
-            class="bg-[#AA0061] text-white px-6 py-3 rounded-full shadow hover:bg-gray-600 uppercase w-full lg:w-auto">
+    <x-sub-button onclick="readPageContent()"
+        onclick="readPageContent(this)"
+        class="button !py-3 !pl-4 !text-base ml-4">
         Lees alles voor
-    </button>
+    </x-sub-button>
 
 
 
@@ -198,7 +198,7 @@
 
         if (mainElement) {
             let text = ''
-            mainElement.querySelectorAll('h1, h2, h3, p').forEach(el => {
+            mainElement.querySelectorAll('h1, h2, h3, p, button, a').forEach(el => {
                 if (el.textContent.trim()) {
                     text += el.textContent.trim() + ' '
                 }
