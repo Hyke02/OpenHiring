@@ -55,7 +55,7 @@
         @foreach ($vacancies as $vacancy)
             <div class="bg-white shadow rounded-lg overflow-hidden border border-[#444343]">
                 <h1 class="font-black text-2xl px-4 pt-5 vacancy-title">{{ $vacancy->name }}</h1>
-                <h2 class="font-light text-lg font px-4 vacancy-company no-translate vacancy-location no-translate">{{ $vacancy->company_name }} - {{ $vacancy->location->location }}</h2>
+                <h2 class="font-light text-lg font px-4 vacancy-company no-translate vacancy-location no-translate">{{ $vacancy->company_name }} - {{ $vacancy->location->name }}</h2>
 
                 <div class="flex flex-row justify-between p-4">
                     <div class=" flex flex-col gap-2 mb-2 lg:mb-0 w-full lg:w-2/3">
@@ -87,7 +87,7 @@
                         </div>
                     </div>
                     <div class="flex justify-center lg:justify-end items-center w-full lg:w-1/3">
-                        <img src="{{ asset('storage/' . $vacancy->images) }}" alt="{{ $vacancy->vacancy_name }}" class="max-w-[145px] max-h-[145px] object-cover rounded-md">
+                        <img src="{{ asset('storage/' . $vacancy->logo) }}" alt="{{ $vacancy->vacancy_name }}" class="max-w-[145px] max-h-[145px] object-cover rounded-md">
                     </div>
                 </div>
 

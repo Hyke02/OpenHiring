@@ -26,7 +26,7 @@ class VacancyController extends Controller
                 $query->where('name', 'LIKE', '%' . $searchTerm . '%')
                     ->orWhere('company_name', 'LIKE', '%' . $searchTerm . '%')
                     ->orWhereHas('location', function($q) use ($searchTerm) {
-                        $q->where('location', 'LIKE', '%' . $searchTerm . '%');
+                        $q->where('name', 'LIKE', '%' . $searchTerm . '%');
                     });
             });
         }
