@@ -14,7 +14,7 @@ class MyVacancyController extends Controller
     public function index()
     {
         $userId = Auth::id();
-        $invitations = Invatation::where('user_id', $userId)->get();
+        $invitations = Invatation::where('user_id', $userId)->latest()->get();
 
         $vacanciesWithPosition = $invitations->map(function ($invitation) use ($userId) {
             $position = Invatation::where('vacancy_id', $invitation->vacancy_id)

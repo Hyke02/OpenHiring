@@ -129,13 +129,13 @@
 
     @auth()
         @if($fromMyVacancy)
-            <a href="{{ route('vacancy.index') }}" class="w-full py-3 bg-[#AA0061] text-white font-semibold rounded-full hover:bg-[#8b004e] transition duration-300 text-center block">
+            <a href="{{ route('my-vacancy.index') }}" class="w-full py-3 bg-[#AA0061] text-white font-semibold rounded-full hover:bg-[#8b004e] transition duration-300 text-center block">
                 Terug naar Mijn Vacatures
             </a>
         @else
             <div class="flex justify-center">
                 <button
-                    class="uppercase applybutton mt-4 mb-3 px-4 w-fit py-3 bg-[#AA0061] text-white font-semibold rounded-full hover:bg-[#8b004e] transition duration-300"> <!-- Voeg onclick event toe -->
+                    id="applybutton" class="uppercase applybutton mt-4 mb-3 px-4 w-fit py-3 bg-[#AA0061] text-white font-semibold rounded-full hover:bg-[#8b004e] transition duration-300"> <!-- Voeg onclick event toe -->
                     Solliciteer
                 </button>
             </div>
@@ -160,7 +160,7 @@
                 <input type="hidden" name="vacancy_id" value="{{ $vacancy->id }}">
                 <div class="flex justify-center mt-4">
                     <button type="submit" class="bg-[#AA0061] text-white mx-2 py-2 px-4 rounded-full">Bevestigen</button>
-                    <button type="button" class="modalClose bg-gray-400 text-white mx-2 py-2 px-4 rounded-full mr-2">Annuleren</button>
+                    <button type="button" id="modalClose" class="modalClose bg-gray-400 text-white mx-2 py-2 px-4 rounded-full mr-2">Annuleren</button>
                 </div>
             </form>
         </div>
