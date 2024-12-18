@@ -45,9 +45,9 @@ require __DIR__.'/auth.php';
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
 // Routes voor Vacatures
-Route::get('/vacancy', [VacancyController::class, 'index'])->name('vacancy.index')->middleware(ValidateAdmin::class);
+Route::get('/vacancy', [VacancyController::class, 'index'])->name('vacancy.index');
 Route::middleware('auth')->group(function () {
-    Route::get('/vacancy/create', [VacancyController::class, 'create'])->name('vacancy.create');
+    Route::get('/vacancy/create', [VacancyController::class, 'create'])->name('vacancy.create')->middleware(ValidateAdmin::class);
     Route::post('/vacancy', [VacancyController::class, 'store'])->name('vacancy.store');
     Route::get('/vacancy/{id}/edit', [VacancyController::class, 'edit'])->name('vacancy.edit');
     Route::put('/vacancy/{id}', [VacancyController::class, 'update'])->name('vacancy.update');

@@ -16,7 +16,7 @@ class ValidateAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::user()->role == 'admin') {
+        if (Auth::user()->role !== 'admin') {
             return redirect('/');
         }
         return $next($request);
