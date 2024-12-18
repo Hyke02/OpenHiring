@@ -8,10 +8,8 @@
     <title>Home Page</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
+<x-navigation /> <!-- Ensure your navigation has proper z-index -->
 <body class="bg-[#FBFCF7]">
-<div class="relative z-20">
-    <x-navigation /> <!-- Ensure your navigation has proper z-index -->
-</div>
 
 <header class="py-8 px-6">
     <div class="mx-auto flex flex-col lg:flex-row items-center lg:items-start lg:justify-between space-y-8 lg:space-y-0 lg:space-x-8">
@@ -56,7 +54,7 @@
                 snel (weer) aan het werk.
             </p>
             <a href="{{ route('vacancy.index') }}" class="uppercase mt-6 px-6 py-3 bg-[#B80063] text-white font-medium rounded-full shadow-md hover:bg-[#A00058] transition">
-                Bekijk Vacature
+                Bekijk Vacatures
             </a>
         </div>
     </div>
@@ -222,7 +220,7 @@
 </section>
 
 <!-- Button to view all stories centered -->
-<div class="text-center mt-8">
+<div class="text-center mt-8 mb-8">
     <button class="px-6 py-3 bg-[#B80063] text-white font-medium rounded-md shadow-md hover:bg-[#A00058] transition">
         Lees alle verhalen
     </button>

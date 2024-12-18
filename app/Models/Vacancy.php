@@ -11,9 +11,8 @@ class Vacancy extends Model
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory;
-    protected $fillable = [
+    protected $fillable = ['name', 'company_name', 'user_id', 'awaiting'];
 
-    ];
 
     public function sector(): BelongsTo
     {
@@ -28,12 +27,32 @@ class Vacancy extends Model
 
     public function location(): BelongsTo
     {
-        return $this->belongsTo(Location::class, 'location_id');
+        return $this->belongsTo(Location::class);
     }
 
     public function invitations(): HasMany
     {
-        return $this->hasMany(Invatation::class);
+        return $this->hasMany(Invatation::class, 'vacancy_id');
+    }
+
+    public function waitingEmployees()
+    {
+        return $this->hasMany(Invatation::class)
+            ->where('status', 'awaiting')
+            ->with('user');
+    }
+
+    public function sendInvitations($userIds)
+    {
+
+        foreach ($userIds as $userId) {
+            Invatation::create([
+                'vacancy_id' => $this->id,
+                'user_id' => $userId,
+                'status' => 'pending',
+                'date' => now()->format('d-m-Y'),
+            ]);
+        }
     }
 
 }

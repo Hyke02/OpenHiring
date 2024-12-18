@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Invatation;
+use App\Models\Location;
 use App\Models\Vacancy;
 use App\Models\Sector;
 use Illuminate\Http\Request;
@@ -51,27 +52,53 @@ class VacancyController extends Controller
     // Opslaan van een nieuwe vacancy
     public function store(Request $request)
     {
-        $request->validate([
-            'vacancy_name' => 'required|string|max:255',
-            'sector_id' => 'required|integer',
-            'description' => 'required|string',
-            'images' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        $validated = $request->validate([
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+//            'media' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'job_title' => 'required|string|max:255',
+            'company_name' => 'required|string|max:255',
+            'hours' => 'required|integer|max:50',
+            'location' => 'required|string|max:255',
+            'salary' => 'required|numeric|min:0',
+            'sector_id' => 'required|exists:sectors,id',
+            'wanted' => 'required|integer|max:255',
+            'awaiting' => 'required|integer',
+            'requirements' => 'required|string|max:1000',
+            'description' => 'required|string|max:1000',
+            'offers' => 'required|string|max:1000',
         ]);
 
-        $imagePath = null;
-
-        if ($request->hasFile('images')) {
-            $imagePath = $request->file('images')->store('images/vacancy', 'public');
+        // Opslaan van het logo
+        if ($request->hasFile('logo')) {
+            $imagePath2 = $request->file('logo')->store('/images/logo', 'public');
         }
 
-        Vacancy::create([
-            'vacancy_name' => $request->vacancy_name,
-            'sector_id' => $request->sector_id,
-            'description' => $request->description,
-            'images' => $imagePath,
-            'user_id' => Auth::id(),
-            'is_active' => 1,
-        ]);
+         //Opslaan van de media (vacaturefoto)
+        if ($request->hasFile('media')) {
+            $imagePath = $request->file('media')->store('/images/media', 'public');
+        }
+
+        $location = Location::firstOrCreate(
+            ['name' => $validated['location']],
+            ['name' => $validated['location']]
+        );
+
+        $vacancy = new Vacancy();
+        $vacancy->logo = $imagePath2;
+        $vacancy->media = $imagePath;
+        $vacancy->job_title =$request->input('job_title');
+        $vacancy->company_name =$request->input('company_name');
+        $vacancy->hours =$request->input('hours');
+        $vacancy->location_id = $location->id;
+        $vacancy->salary =$request->input('salary');
+        $vacancy->sector_id =$request->input('sector_id');
+        $vacancy->wanted =$request->input('wanted');
+        $vacancy->awaiting =$request->input('awaiting');
+        $vacancy->requirements =$request->input('requirements');
+        $vacancy->description =$request->input('description');
+        $vacancy->offers =$request->input('offers');
+        $vacancy->user_id = auth()->user()->id;
+        $vacancy->save();
 
         return redirect()->route('vacancy.index')->with('success', 'Vacature succesvol aangemaakt.');
     }

@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Vacancy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class EmployerController extends Controller
 {
-    public function showJobListings()
+    public function showJobListing()
     {
         $user = Auth::user();
 
@@ -18,5 +19,12 @@ class EmployerController extends Controller
 
 
         return view('employer.index', compact('vacancies', 'companyName'));
+    }
+
+    public function showJobDetails(Vacancy $vacancy)
+    {
+        $waitingEmployees = $vacancy->waitingEmployees;
+
+        return view('employer.show', compact('vacancy', 'waitingEmployees'));
     }
 }

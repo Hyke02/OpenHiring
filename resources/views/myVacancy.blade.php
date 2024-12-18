@@ -28,8 +28,9 @@
             </div>
         </div>
     @endif
-    @foreach($vacanciesWithPosition as $vacancyData)
-            <div class=" bg-white shadow rounded-lg overflow-hidden border border-[#444343] px-3 py-4 mb-5">
+    @foreach($vacanciesWithDetails as $vacancyData)
+            <div class="my-2 bg-white shadow rounded-lg overflow-hidden border px-3 py-4
+            @if($vacancyData['invitation'] && $vacancyData['invitation']->status === 'pending') border-[#ffc14f] @else border-[#444343] @endif">
                 <h1 class="font-black text-2xl vacancy-title">{{ $vacancyData['vacancy']->name }}</h1>
                 <h2 class="font-light text-lg font vacancy-company no-translate">{{ $vacancyData['vacancy']->company_name }} - {{ $vacancyData['vacancy']->location->location }}</h2>
 
@@ -46,11 +47,18 @@
                     </button>
                 </div>
                 <p class="mt-4 text-gray-500">Ingeschreven op: {{ $vacancyData['invitation']->created_at->format('d-m-Y') }}</p>
-                <x-sub-button
-                    onclick="readJobDetails(this)"
-                    class="button !py-3 !px-4 !text-base mb-5 mt-3">
-                    Lees voor
-                </x-sub-button>
+                <div>
+                    <x-sub-button
+                        onclick="readJobDetails(this)"
+                        class="button !py-3 !px-4 !text-base mt-3">
+                        Lees voor
+                    </x-sub-button>
+                    @if($vacancyData['invitation'] && $vacancyData['invitation']->status === 'pending')
+                        <x-sub-button href="{{ route('invitation.show', ['id' => $vacancyData['invitation']->id]) }}">
+                            Uitnodiging
+                        </x-sub-button>
+                    @endif
+                </div>
             </div>
     @endforeach
 </section>

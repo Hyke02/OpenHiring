@@ -14,9 +14,12 @@ class MyVacancyController extends Controller
     public function index()
     {
         $userId = Auth::id();
-        $invitations = Invatation::where('user_id', $userId)->latest()->get();
+        $invitations = Invatation::where('user_id', $userId)
+            ->whereIn('status', ['pending', 'awaiting'])
+            ->with('vacancy')
+            ->get();
 
-        $vacanciesWithPosition = $invitations->map(function ($invitation) use ($userId) {
+        $vacanciesWithDetails = $invitations->map(function ($invitation) {
             $position = Invatation::where('vacancy_id', $invitation->vacancy_id)
                 ->where('created_at', '<=', $invitation->created_at)
                 ->count();
@@ -28,11 +31,11 @@ class MyVacancyController extends Controller
             ];
         });
 
-        $vacanciesCount = count($vacanciesWithPosition);
+        $vacanciesCount = count($vacanciesWithDetails);
         if(Auth::check()){
-        return view('myVacancy', compact('vacanciesWithPosition', 'invitations', 'vacanciesCount'));
+        return view('myVacancy', compact('vacanciesWithDetails', 'invitations', 'vacanciesCount'));
         } else{
             return view('auth.login');
         }
     }
-    }
+}

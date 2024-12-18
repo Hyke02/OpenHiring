@@ -19,16 +19,16 @@
 <div class="max-w-3xl mx-auto p-6">
     <div class="flex justify-center items-center h-full">
         <div class="w-1/2 flex justify-end">
-            <img src="{{ asset('storage/images/mac_logo.png') }}" alt="" class="">
+            <img src="{{ $vacancy->logo }}" alt="" class="">
         </div>
     </div>
 
     <!-- Bedrijf en vacature naam -->
-    <h1 class="text-4xl font-bold text-gray-900 mt-2 text-center">{{ $vacancy->name }}</h1>
+    <h1 class="text-4xl font-bold text-gray-900 mt-2 text-center">{{ $vacancy->job_title }}</h1>
 
 {{--    img live example--}}
     <div>
-        <img src="{{$vacancy->images}}" alt="">
+        <img src="{{asset('storage/' . $vacancy->media)}}" alt="vacancy example">
     </div>
     <div>
         <h2 class="text-xl font-normal text-gray-800 text-center">{{ $vacancy->company_name }}</h2>
@@ -42,27 +42,27 @@
         <!-- Klokje met w-7 -->
         <p class="flex items-center text-gray-600">
             <img src="{{ asset('storage/images/8665257_clock_watch_icon.svg') }}" alt="Clock Icon" class="w-7 h-auto">
-            <span class="ml-4">4-40 uur per week</span>
+            <span class="ml-4">{{$vacancy->hours}} uur per week</span>
         </p>
         <p class="flex items-center text-gray-600">
             <img src="{{ asset('storage/images/3669413_location_ic_on_icon.svg') }}" alt="Location Icon" class="w-8 h-auto">
-            <span class="ml-4">{{$vacancy->location->location}}</span>
+            <span class="ml-4">{{$vacancy->location->name}}</span>
         </p>
         <p class="flex items-center text-gray-600">
             <img src="{{ asset('storage/images/3669346_ic_symbol_euro_icon.svg') }}" alt="Euro Icon" class="w-8 h-auto">
-            <span class="ml-4">6-16,35 per uur</span>
+            <span class="ml-4">{{$vacancy->salary}} euro per uur</span>
         </p>
         <p class="flex items-center text-gray-600">
             <img src="{{ asset('storage/images/factory.svg') }}" alt="Sector icon" class="w-8 h-auto">
-            <span class="ml-4">Restaurants, cafe & catering</span>
+            <span class="ml-4">{{$vacancy->sector->name}}</span>
         </p>
         <p class="flex items-center text-gray-600">
             <img src="{{ asset('storage/images/9004762_search_find_zoom_magnifier_icon.svg') }}" alt="Search Icon" class="w-8 h-auto">
-            <span class="ml-4">6 nodig</span>
+            <span class="ml-4">{{$vacancy->wanted}} nodig</span>
         </p>
         <p class="flex items-center text-gray-600">
             <img src="{{ asset('storage/images/8541636_clipboard_list_icon.svg') }}" alt="Clipboard Icon" class="w-8 h-auto">
-            <span class="ml-4">10 wachtende</span>
+            <span class="ml-4">{{$vacancy->awaiting}} wachtende</span>
         </p>
     </div>
 
@@ -78,10 +78,7 @@
             </button>
             <div id="desc1" class="hidden bg-white px-4 py-3 border border-gray-200 rounded-b-md">
                 <ul class="list-disc pl-5 text-gray-700"> <!-- Maak het een lijst met bulletpoints -->
-                    <li>Goed kunnen communiceren</li>
-                    <li>Ervaring met klantenservice</li>
-                    <li>Flexibel en teamgericht</li>
-                    <li>Oog voor detail</li>
+                    {{$vacancy->requirements}}
                 </ul>
             </div>
 
@@ -97,11 +94,7 @@
             </button>
             <div id="desc2" class="hidden bg-white px-4 py-3 border border-gray-200 rounded-b-md">
                 <ul class="list-disc pl-5 text-gray-700">
-                    <li>Klantenservice: je begroet klanten, helpt hen met bestellingen en zorgt voor een positieve ervaring.</li>
-                    <li>Bereiden van eten en drinken: je maakt McDonald's producten zoals hamburgers en friet volgens de kwaliteitseisen.</li>
-                    <li>Kassa en betalingen: je verwerkt bestellingen aan de kassa en ontvangt betalingen.</li>
-                    <li>Opruimen en hygiëne: je houdt de werkplek schoon en voldoet aan de hygiënevoorschriften.</li>
-                    <li>Teamwerk: je werkt samen met collega’s om een vlotte service te garanderen.</li>
+                  {{$vacancy->description}}
                 </ul>
             </div>
         </div>
@@ -116,12 +109,7 @@
             </button>
             <div id="desc3" class="hidden bg-white px-4 py-3 border border-gray-200 rounded-b-md">
                 <ul class="list-disc pl-5 text-gray-700">
-                    <li>Flexibele werktijden die passen bij jouw schema.</li>
-                    <li>Opleiding en doorgroeimogelijkheden binnen het bedrijf.</li>
-                    <li>Een gezellige werksfeer en teamwork.</li>
-                    <li>Een marktconform salaris en aantrekkelijke secundaire arbeidsvoorwaarden.</li>
-                    <li>Gezondheids- en welzijnsinitiatieven voor medewerkers.</li>
-                    <li>Werken bij een wereldwijd gerenommeerd bedrijf, ideaal voor je cv.</li>
+                    {{$vacancy->offers}}
                 </ul>
             </div>
         </div>
