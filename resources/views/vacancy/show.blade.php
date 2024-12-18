@@ -8,6 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Application</title>
     @vite(['resources/js/app.js', 'resources/css/app.css'])
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=h2R8yjzX"></script>
 </head>
 <body class="bg-[#FBFCF7]">
 
@@ -132,19 +133,26 @@
                 Terug naar Mijn Vacatures
             </a>
         @else
-            <button
-                    class="applybutton w-full py-3 bg-[#AA0061] text-white font-semibold rounded-full hover:bg-[#8b004e] transition duration-300"> <!-- Voeg onclick event toe -->
-                Solliciteer
-            </button>
+            <div class="flex justify-center">
+                <button
+                    class="uppercase applybutton mt-4 mb-3 px-4 w-fit py-3 bg-[#AA0061] text-white font-semibold rounded-full hover:bg-[#8b004e] transition duration-300"> <!-- Voeg onclick event toe -->
+                    Solliciteer
+                </button>
+            </div>
         @endif
+            <button
+                onclick="readJobDetails(this)"
+                class="w-full py-3 bg-[#AA0061] text-white font-semibold rounded-full hover:bg-[#8b004e] transition duration-300 text-center block">
+                Lees voor
+            </button>
     @else
         <div class="flex justify-center items-center h-full mt-6">
             <x-sub-button href="{{ route('login') }}" class="px-4 py-3 !text-lg my-10">Login om te solliciteren</x-sub-button>
         </div>
     @endauth
 
-    <div id="applyModal" class="modal hidden flex fixed inset-0 items-center justify-center bg-gray-900 bg-opacity-50">
-        <div class="modal-content bg-white p-6 rounded-lg">
+    <div id="modal" class="modal hidden flex fixed inset-0 items-center justify-center bg-gray-900 bg-opacity-50">
+        <div class="modal-content bg-white p-6 rounded-lg mx-6">
             <h2 class="text-xl font-semibold">Bevestig Sollicitatie</h2>
             <p>Weet je zeker dat je wilt solliciteren voor deze vacature?</p>
             <form action="{{route('vacancy.storeUser_id')}}" method="POST">
@@ -152,7 +160,7 @@
                 <input type="hidden" name="vacancy_id" value="{{ $vacancy->id }}">
                 <div class="flex justify-center mt-4">
                     <button type="submit" class="bg-[#AA0061] text-white mx-2 py-2 px-4 rounded-full">Bevestigen</button>
-                    <button class="modalClose bg-gray-400 text-white mx-2 py-2 px-4 rounded-full mr-2">Annuleren</button>
+                    <button type="button" class="modalClose bg-gray-400 text-white mx-2 py-2 px-4 rounded-full mr-2">Annuleren</button>
                 </div>
             </form>
         </div>
@@ -172,6 +180,23 @@
     function toggleAccordion(id) {
         const content = document.getElementById(id);
         content.classList.toggle('hidden');
+    }
+
+    //functie for text to speech
+    function readJobDetails(button) {
+        const parent = button.closest('.max-w-3xl')
+        const headings = parent.querySelectorAll('h1, h2')
+        const paragraphs = parent.querySelectorAll('p')
+
+        let text = ''
+
+        headings.forEach(heading => {
+            text += heading.textContent + ' '
+        })
+        paragraphs.forEach(paragraph => {
+            text += paragraph.textContent + ' '
+        })
+        responsiveVoice.speak(text, "Dutch Male")
     }
 </script>
 

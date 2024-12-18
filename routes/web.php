@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\EmployerController;
 use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\MyVacancyController;
 use App\Http\Controllers\ProfileController;
@@ -11,11 +12,15 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+//Route::get('/dashboard', function () {
+//    return view('dashboard');
+//})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/', function(){ return view('homepage');})->name('home');
+
+Route::middleware('auth')->group(function(){
+    Route::get('/employer/index', [EmployerController::class, 'showJobListings'])->name('employer.index');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile/index', [ProfileController::class, 'index'])->name('profile.index');
