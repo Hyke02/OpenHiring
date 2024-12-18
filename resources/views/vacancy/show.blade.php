@@ -117,7 +117,7 @@
 
     @auth()
         @if($fromMyVacancy)
-            <a href="{{ route('my-vacancy.index') }}" class="w-full py-3 bg-[#AA0061] text-white font-semibold rounded-full hover:bg-[#8b004e] transition duration-300 text-center block">
+            <a href="{{ route('my-vacancy.index') }}" class="w-full py-3 bg-[#AA0061] text-white font-semibold rounded-full hover:bg-[#8b004e] transition duration-300 text-center block mb-4">
                 Terug naar Mijn Vacatures
             </a>
         @else
@@ -143,7 +143,8 @@
         <div class="modal-content bg-white p-6 rounded-lg mx-6">
             <h2 class="text-xl font-semibold">Bevestig Sollicitatie</h2>
             <p>Weet je zeker dat je wilt solliciteren voor deze vacature?</p>
-            <form action="{{route('vacancy.storeUser_id')}}" method="POST">
+            <form action="{{route('vacancy.storeUser_id',$vacancy)}}" method="POST">
+{{--                @method('PUT')--}}
                 @csrf
                 <input type="hidden" name="vacancy_id" value="{{ $vacancy->id }}">
                 <div class="flex justify-center mt-4">

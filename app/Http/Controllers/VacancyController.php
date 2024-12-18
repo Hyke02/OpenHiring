@@ -104,12 +104,15 @@ class VacancyController extends Controller
     }
 
     // user_id en vancacy_id in invatation tabel wordt gelinked
-    public function storeUser_id(Request $request)
+    public function storeUser_id(Request $request, Vacancy $vacancy)
     {
         $invatation = new Invatation();
         $invatation->user_id = Auth::id();
         $invatation->vacancy_id = $request->vacancy_id;
+        $invatation->status = 'awaiting';
+        $vacancy->awaiting = +1;
 
+        $vacancy->save();
         $invatation->save();
         return redirect()->route('my-vacancy.index');
     }
