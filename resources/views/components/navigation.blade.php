@@ -16,12 +16,12 @@ bg-[#FBFCF778] shadow-[0_-6px_30px_rgba(0,0,0,0.1)] backdrop-blur-[4px] border b
                 <x-nav-link href="{{ route('profile.index') }}">Profiel</x-nav-link>
                 <x-nav-link href="/my-vacancy">Mijn Vacatures</x-nav-link>
                 <x-nav-link href="/vacancy">Vacatures</x-nav-link>
-                <x-nav-link href="/help">Help</x-nav-link>
+{{--                <x-nav-link href="/help">Help</x-nav-link>--}}
                 <x-nav-link href="#" id="logout-btn">Logout</x-nav-link>
                 <x-language-selector></x-language-selector>
             @else
                 <x-nav-link href="/vacancy">Vacatures</x-nav-link>
-                <x-nav-link href="/help">Hulp nodig</x-nav-link>
+{{--                <x-nav-link href="/help">Hulp nodig</x-nav-link>--}}
                 <x-nav-link href="/login">Inloggen</x-nav-link>
                 <x-language-selector></x-language-selector>
             @endauth

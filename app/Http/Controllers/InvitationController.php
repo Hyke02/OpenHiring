@@ -11,8 +11,12 @@ class InvitationController extends Controller
 {
     public function index()
     {
+        if (Auth::check()) {
         $userNumber= Auth::user()->number;
         return view('invitation/invitation', compact('userNumber'));
+        } else {
+            return view('auth.login');
+        }
     }
 
     private function sendMessage($message, $recipient)

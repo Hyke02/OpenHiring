@@ -37,8 +37,6 @@ class VacancyController extends Controller
 
         // Haal de vacatures op
         $vacancies = $vacancyQuery->paginate(10);
-//        $nextPage = $vacancies->currentPage() + 1;
-//        $prevPage = $vacancies->currentPage() - 1;
 
         return view('vacancy.index', compact('sectors', 'vacancies'));
     }

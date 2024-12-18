@@ -28,6 +28,11 @@ class MyVacancyController extends Controller
             ];
         });
 
-        return view('myVacancy', compact('vacanciesWithPosition', 'invitations'));
+        $vacanciesCount = count($vacanciesWithPosition);
+        if(Auth::check()){
+        return view('myVacancy', compact('vacanciesWithPosition', 'invitations', 'vacanciesCount'));
+        } else{
+            return view('auth.login');
+        }
     }
     }
