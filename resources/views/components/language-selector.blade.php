@@ -7,10 +7,12 @@
         padding-left: 30px;
         padding-right: 10px;
         border: black 1px solid;
+        margin: 5px;
+
     }
 </style>
 
-<div class="flex justify-end mr-9">
+<div class="flex justify-center">
     <div>
         <select id="language-selector" class="block">
             <option value="nl">Nederlands</option>
@@ -51,7 +53,7 @@
 
     function translatePageContent(targetLanguage) {
         const elements = [
-            ...document.querySelectorAll('.vacancy-title, p, button:not(#info-icon), .button, select option, input[placeholder], strong, h3, li, span, a, h1, h2, label, button.applybutton')
+            ...document.querySelectorAll('.vacancy-title, p, button:not(#info-icon), .button, select option, input[placeholder], strong, h3, li, span, a, h1, h2:not(.vacancy-company.no-translate.vacancy-location.no-translate), label, button.applybutton')
         ];
 
         const texts = elements.map(el => {
