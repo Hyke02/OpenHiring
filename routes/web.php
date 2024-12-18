@@ -6,6 +6,8 @@ use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\MyVacancyController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VacancyController;
+use App\Http\Middleware\ValidateAdmin;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -18,7 +20,7 @@ Route::get('/', function () {
 
 Route::get('/', function(){ return view('homepage');})->name('home');
 
-Route::middleware('auth')->group(function(){
+Route::middleware(['auth', ValidateAdmin::class])->group(function(){
     Route::get('/employer/index', [EmployerController::class, 'showJobListing'])->name('employer.index');
     Route::get('/employer/show/{vacancy}', [EmployerController::class, 'showJobDetails'])->name('employer.job.show');
     Route::post('/employer/show/{vacancy}/invite', [invitationController::class, 'sendInvitations'])->name('employer.job.invite');
@@ -43,7 +45,7 @@ require __DIR__.'/auth.php';
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
 // Routes voor Vacatures
-Route::get('/vacancy', [VacancyController::class, 'index'])->name('vacancy.index');
+Route::get('/vacancy', [VacancyController::class, 'index'])->name('vacancy.index')->middleware(ValidateAdmin::class);
 Route::middleware('auth')->group(function () {
     Route::get('/vacancy/create', [VacancyController::class, 'create'])->name('vacancy.create');
     Route::post('/vacancy', [VacancyController::class, 'store'])->name('vacancy.store');
