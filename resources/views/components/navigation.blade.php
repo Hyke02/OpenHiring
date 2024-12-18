@@ -1,6 +1,6 @@
 <div class="flex relative p-6 sticky top-0 z-50 lg:mx-10 lg:h-fit lg:py-3
 bg-[#FBFCF778] shadow-[0_-6px_30px_rgba(0,0,0,0.1)] backdrop-blur-[4px] border border-[rgba(244,251,216,0.28)]">
-    <a href="{{ route('home') }}" class="w-">
+    <a href="{{ route('home') }}">
         <img src="{{ asset('storage/images/logo-oh.png') }}" alt="logo van open hiring" class="w-12 focus:border-indigo-600">
     </a>
 
@@ -8,8 +8,9 @@ bg-[#FBFCF778] shadow-[0_-6px_30px_rgba(0,0,0,0.1)] backdrop-blur-[4px] border b
         <img src="{{ asset('storage/images/burger-menu.svg') }}" alt="menu icoon" class="w-12">
     </div>
 
-    <div class="dropdown  opacity-0 scale-y-0 transform origin-top absolute left-0 right-0 top-full
-    mt-2 bg-[#FBFCF7] min-h-screen transition-all duration-300 pt-[20%]">
+    <!-- Dropdown -->
+    <div class="dropdown opacity-0 scale-y-0 transform origin-top absolute left-0 right-0 top-full
+    bg-[#FBFCF7] h-[calc(100vh-96px)] overflow-y-auto transition-all duration-300 pb-[20%] pt-[5%]">
         <nav class="text-center text-4xl flex flex-col space-y-10">
             @auth()
                 <x-nav-link href="{{ route('profile.index') }}">Profiel</x-nav-link>
@@ -18,8 +19,6 @@ bg-[#FBFCF778] shadow-[0_-6px_30px_rgba(0,0,0,0.1)] backdrop-blur-[4px] border b
                 <x-nav-link href="/help">Help</x-nav-link>
                 <x-nav-link href="#" id="logout-btn">Logout</x-nav-link>
                 <x-language-selector></x-language-selector>
-
-
             @else
                 <x-nav-link href="/vacancy">Vacatures</x-nav-link>
                 <x-nav-link href="/help">Hulp nodig</x-nav-link>
@@ -29,6 +28,8 @@ bg-[#FBFCF778] shadow-[0_-6px_30px_rgba(0,0,0,0.1)] backdrop-blur-[4px] border b
         </nav>
     </div>
 </div>
+
+
 
 
 <div id="logout-modal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 hidden">
