@@ -258,6 +258,6 @@
     // Initialize the carousel on load
     window.addEventListener('load', updateCarousel);
 </script>
-
+<x-footer></x-footer>
 </body>
 </html>

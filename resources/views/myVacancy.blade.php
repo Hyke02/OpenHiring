@@ -15,21 +15,22 @@
 <x-info-icon></x-info-icon>
 
 <section class="ml-5 mr-5">
+    <h1 class="font-black text-5xl vacancy-title mb-7">Mijn vacatures</h1>
     @if($vacanciesCount === 0)
         <div>
             <div class="mb-3 ">
-                <h3>Het lijkt erop dat u nog geen inschrijvingen heeft.</h3>
+                <h3 class="font-radikal text-xl">Het lijkt erop dat u nog geen inschrijvingen heeft.</h3>
             </div>
-            <div class="mb-3">
-                <p>Schrijf uzelf in voor een vacature en dan kunt u hier bekijken op welke plek u staat.</p>
+            <div class="mb-6">
+                <p class="font-radikal text-lg ">Schrijf uzelf in voor een vacature en dan kunt u hier bekijken op welke plek u staat.</p>
             </div>
-            <div class="mb-3">
+            <div class="mb-10">
                 <a href="{{ route('vacancy.index') }}" class="bg-[#AA0061] text-white px-4 py-2 rounded-md shadow hover[#AA0061]">Bekijk vacatures</a>
             </div>
         </div>
     @endif
     @foreach($vacanciesWithDetails as $vacancyData)
-            <div class="my-2 bg-white shadow rounded-lg overflow-hidden border px-3 py-4
+            <div class="my-2 bg-white shadow rounded-lg overflow-hidden border px-3 py-4 mb-10
             @if($vacancyData['invitation'] && $vacancyData['invitation']->status === 'pending') border-[#ffc14f] @else border-[#444343] @endif">
                 <h1 class="font-black text-2xl vacancy-title">{{ $vacancyData['vacancy']->job_title }}</h1>
                 <h2 class="font-light text-lg font vacancy-company no-translate">{{ $vacancyData['vacancy']->company_name }} - {{ $vacancyData['vacancy']->location->name }}</h2>
@@ -77,6 +78,7 @@
         </form>
     </div>
 </div>
+<x-footer></x-footer>
 
 </body>
 </html>
