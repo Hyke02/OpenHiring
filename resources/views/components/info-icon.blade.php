@@ -32,7 +32,7 @@
         <button
             id="close-info"
             class="text-2xl bg-[#AA0061] text-white px-4 py-4 rounded-md shadow hover:bg-white hover:text-[#AA0061] hover:border-[#AA0061] border-2 border-transparent mt-5 w-full">
-            terug
+            Terug
         </button>
         <button
             id="read-info"

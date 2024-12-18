@@ -19,11 +19,25 @@
     Lees alles voor
 </button>
 
-<section id="main" class="ml-5 mr-5">
-    @foreach($vacanciesWithPosition as $vacancyData)
-            <div class=" bg-white shadow rounded-lg overflow-hidden border border-[#444343] px-3 py-4">
-                <h1 class="font-black text-2xl vacancy-title">{{ $vacancyData['vacancy']->name }}</h1>
-                <h2 class="font-light text-lg font vacancy-company no-translate">{{ $vacancyData['vacancy']->company_name }} - {{ $vacancyData['vacancy']->location->location }}</h2>
+<section class="ml-5 mr-5 main">
+    @if($vacanciesCount === 0)
+        <div>
+            <div class="mb-3 ">
+                <h3>Het lijkt erop dat u nog geen inschrijvingen heeft.</h3>
+            </div>
+            <div class="mb-3">
+                <p>Schrijf uzelf in voor een vacature en dan kunt u hier bekijken op welke plek u staat.</p>
+            </div>
+            <div class="mb-3">
+                <a href="{{ route('vacancy.index') }}" class="bg-[#AA0061] text-white px-4 py-2 rounded-md shadow hover[#AA0061]">Bekijk vacatures</a>
+            </div>
+        </div>
+    @endif
+    @foreach($vacanciesWithDetails as $vacancyData)
+            <div class="my-2 bg-white shadow rounded-lg overflow-hidden border px-3 py-4
+            @if($vacancyData['invitation'] && $vacancyData['invitation']->status === 'pending') border-[#ffc14f] @else border-[#444343] @endif">
+                <h1 class="font-black text-2xl vacancy-title">{{ $vacancyData['vacancy']->job_title }}</h1>
+                <h2 class="font-light text-lg font vacancy-company no-translate">{{ $vacancyData['vacancy']->company_name }} - {{ $vacancyData['vacancy']->location->name }}</h2>
 
                 <p class="bg-[#f2fade] shadow-[0_0_0_1.5px_#dee8ba] rounded-full p-3 inline-block text-xs lg:text-sm w-fit my-5">wachtlijst positie: <strong class="ml-1">{{ $vacancyData['position'] }}</strong></p>
                 <div class="flex justify-between items-center">
@@ -38,11 +52,18 @@
                     </button>
                 </div>
                 <p class="mt-4 text-gray-500">Ingeschreven op: {{ $vacancyData['invitation']->created_at->format('d-m-Y') }}</p>
-                <x-sub-button
-                    onclick="readJobDetails(this)"
-                    class="button !py-3 !px-4 !text-base mb-5 mt-3">
-                    Lees voor
-                </x-sub-button>
+                <div>
+                    <x-sub-button
+                        onclick="readJobDetails(this)"
+                        class="button !py-3 !px-4 !text-base mt-3">
+                        Lees voor
+                    </x-sub-button>
+                    @if($vacancyData['invitation'] && $vacancyData['invitation']->status === 'pending')
+                        <x-sub-button href="{{ route('invitation.show', ['id' => $vacancyData['invitation']->id]) }}">
+                            Uitnodiging
+                        </x-sub-button>
+                    @endif
+                </div>
             </div>
     @endforeach
 </section>

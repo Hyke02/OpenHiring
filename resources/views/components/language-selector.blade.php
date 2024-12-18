@@ -52,15 +52,15 @@
     });
 
     function translatePageContent(targetLanguage) {
+
         const elements = [
-            ...document.querySelectorAll('.vacancy-title, p, button:not(#info-icon), .button, select option, input[placeholder], strong, h3, li, span, a, h1, h2:not(.vacancy-company.no-translate.vacancy-location.no-translate), label, button.applybutton')
+            ...document.querySelectorAll('p:not(.namen), h2:not(.namen), .vacancy-title, button:not(#info-icon), .button, select option, input[placeholder], strong, h3, li, span, a, h1, label, button.applybutton')
         ];
 
         const texts = elements.map(el => {
             if (el.tagName === 'INPUT') {
                 return el.placeholder.trim();
             } else {
-                // Alleen de tekst van het eerste tekstknooppunt pakken
                 const textNode = Array.from(el.childNodes).find(node => node.nodeType === Node.TEXT_NODE);
                 return textNode ? textNode.textContent.trim() : '';
             }
@@ -71,23 +71,51 @@
             return;
         }
 
-        fetch(`https://translation.googleapis.com/language/translate/v2?key=${apiKey}`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                q: texts,
-                target: targetLanguage,
-                format: 'text',
+        // Split de teksten in kleinere batches
+        const chunkSize = 128;  // Aantal tekstsegmenten per batch
+        const chunks = [];
+
+        for (let i = 0; i < texts.length; i += chunkSize) {
+            chunks.push(texts.slice(i, i + chunkSize));
+        }
+
+        // Vertaal de batches één voor één
+        let translations = [];
+        let batchPromises = chunks.map(chunk => {
+            return fetch(`https://translation.googleapis.com/language/translate/v2?key=${apiKey}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    q: chunk,
+                    target: targetLanguage,
+                    format: 'text',
+                })
             })
-        })
-            .then(response => response.json())
-            .then(data => {
-                const translations = data.data.translations.map(t => t.translatedText);
-                translationsCache[targetLanguage] = translations;
-                updatePageContent(translations, elements);
-            })
-            .catch(error => console.error('Vertaalfout:', error));
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        console.error('API Error:', data.error);
+                        return [];
+                    }
+                    return data.data.translations.map(t => t.translatedText);
+                })
+                .catch(error => {
+                    console.error('Vertaalfout:', error);
+                    return [];
+                });
+        });
+
+        // Wacht op alle vertalingen
+        Promise.all(batchPromises).then(batchResults => {
+            // Combineer alle vertalingen
+            batchResults.forEach(result => translations = translations.concat(result));
+
+            // Cache de vertalingen en update de pagina
+            translationsCache[targetLanguage] = translations;
+            updatePageContent(translations, elements);
+        });
     }
+
 
     const languageNames = {
         'nl': 'Nederlands',
@@ -118,5 +146,6 @@
         });
     }
 </script>
+
 
 

@@ -19,7 +19,9 @@ Route::get('/', function () {
 Route::get('/', function(){ return view('homepage');})->name('home');
 
 Route::middleware('auth')->group(function(){
-    Route::get('/employer/index', [EmployerController::class, 'showJobListings'])->name('employer.index');
+    Route::get('/employer/index', [EmployerController::class, 'showJobListing'])->name('employer.index');
+    Route::get('/employer/show/{vacancy}', [EmployerController::class, 'showJobDetails'])->name('employer.job.show');
+    Route::post('/employer/show/{vacancy}/invite', [invitationController::class, 'sendInvitations'])->name('employer.job.invite');
 });
 
 Route::middleware('auth')->group(function () {
@@ -29,6 +31,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/invitation/{id}', [InvitationController::class, 'showInvitation'])->name('invitation.show');
 Route::get('/invitation', [InvitationController::class, 'index'])->name('invitation.index');
 Route::POST('/invitation', [InvitationController::class, 'store'])->name('invitation.store');
 Route::delete('/invitation{id}', [InvitationController::class, 'destroy'])->name('invitation.destroy');
@@ -49,7 +52,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/vacancy/{id}', [VacancyController::class, 'destroy'])->name('vacancy.destroy');
 });
 Route::get('/vacancy/{id}', [VacancyController::class, 'show'])->name('vacancy.show');
-Route::post('/vacancy/store', [VacancyController::class, 'storeUser_id'])->name('vacancy.storeUser_id');
+Route::post('/vacancy/{vacancy}/store', [VacancyController::class, 'storeUser_id'])->name('vacancy.storeUser_id');
 
 // Route voor mijn vacatures
 Route::get('/my-vacancy', [MyVacancyController::class, 'index'])->name('my-vacancy.index');

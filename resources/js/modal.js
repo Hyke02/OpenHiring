@@ -33,7 +33,7 @@ window.addEventListener('click', (e) => {
     }
 });
 
-document.querySelector('.applybutton').addEventListener('click', () => {
+document.getElementById('applybutton').addEventListener('click', () => {
     console.log('harro')
     document.getElementById('modal').classList.remove('hidden');
 });

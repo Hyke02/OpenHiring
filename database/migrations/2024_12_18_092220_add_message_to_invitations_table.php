@@ -11,15 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::disableForeignKeyConstraints();
-
-        Schema::create('locations', function (Blueprint $table) {
-            $table->id()->foreign('vacancies.location_id');
-            $table->string('name')->unique();
-            $table->timestamps();
+        Schema::table('invatations', function (Blueprint $table) {
+            $table->text('message')->nullable();
         });
-
-        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -27,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('locations');
+        Schema::table('invatations', function (Blueprint $table) {
+            //
+        });
     }
 };

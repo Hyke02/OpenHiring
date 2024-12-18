@@ -15,22 +15,23 @@ return new class extends Migration
 
         Schema::create('vacancies', function (Blueprint $table) {
             $table->id()->foreign('invatations.vacancy_id');
-            $table->string('name');
+            $table->string('logo')->nullable();
+            $table->string('job_title');
             $table->string('company_name');
-            $table->string('images');
-            $table->bigInteger('location_id');
-            $table->bigInteger('salary');
+            $table->string('media')->nullable();
+            $table->foreignId('location_id')->constrained()->onDelete('cascade');
+            $table->decimal('salary', 8, 2);
             $table->bigInteger('sector_id');
             $table->string('description');
-            $table->bigInteger('requirements');
-            $table->boolean('hours');
-            $table->bigInteger('awaiting');
+            $table->string('requirements');
+            $table->integer('hours');
+            $table->bigInteger('awaiting')->nullable()->default(0);
             $table->bigInteger('wanted');
+            $table->string('offers');
             $table->bigInteger('user_id');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');
         });
 
         Schema::enableForeignKeyConstraints();

@@ -3,16 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\Invatation;
+use App\Models\Vacancy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Twilio\Rest\Client;
 
 class InvitationController extends Controller
 {
-    public function index()
+    public function index($vacancyId)
     {
+        if (Auth::check()) {
         $userNumber= Auth::user()->number;
-        return view('invitation/invitation', compact('userNumber'));
+            $vacancy = Vacancy::findOrFail($vacancyId);
+            $awaitingUsers = $vacancy->awaitingUsers();
+
+            return view('invitation/invitation', compact('vacancy', 'awaitingUsers', 'userNumber'));
+        } else {
+            return view('auth.login');
+        }
     }
 
     private function sendMessage($message, $recipient)
@@ -23,6 +31,34 @@ class InvitationController extends Controller
         $client = new Client($account_sid, $auth_token);
         $client->messages->create($recipient,
             ['from' => $twilio_number, 'body' => $message] );
+    }
+
+    public function sendInvitations(Request $request, Vacancy $vacancy)
+    {
+        $numInvitations = $request->input('num_invitations');
+        $message = $request->input('message');
+
+        $waitingEmployees = $vacancy->waitingEmployees()->take($numInvitations)->get();
+
+
+
+        foreach ($waitingEmployees as $employee) {
+            $invatation = Invatation::where('vacancy_id', $vacancy->id)
+                ->where('user_id', $employee->user_id)
+                ->first();
+
+            $invatation->update([
+                'vacancy_id' => $vacancy->id,
+                'user_id' => $employee->user_id,
+                'status' => 'pending',
+                'message' => $message,
+                'date' => now()->format('d-m-Y'),
+            ]);
+        }
+
+        $vacancy->decrement('awaiting', $numInvitations);
+
+        return redirect()->route('employer.index', $vacancy)->with('success', 'Uitnodigingen verstuurd!');
     }
 
     public function store(Request $request)
@@ -39,7 +75,7 @@ class InvitationController extends Controller
 
         $this->sendMessage($validatedData["body"], $recipient);
 
-        $invitation = new Invatation();
+        $invitation = Invatation::findOrFail($request->input('invitation_id'));
 
         // als er op accepteer wordt geklikt status gaat naar 1 (accepted) of op afwijzen naar 2(denied)
 
@@ -64,8 +100,22 @@ class InvitationController extends Controller
 
         if ($invitation->user_id === Auth::user()->id) {
             $invitation->delete();
-            return redirect()->back();
+            return redirect()->back()->with('message', 'Uitnodiging is afgewezen');
         }
-        return redirect()->back();
+        return redirect()->back()->with('error', 'U bent niet geauthorizeerd om deze uitnodiging te verwijderen');
+
+
     }
+
+    public function showInvitation($id)
+    {
+        $invitation = Invatation::with('vacancy')->findOrFail($id);
+
+        if ($invitation->user_id !== Auth::id()) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        return view('invitation.invitation', compact('invitation'));
+    }
+
 }

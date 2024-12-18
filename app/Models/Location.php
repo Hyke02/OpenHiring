@@ -10,6 +10,7 @@ class Location extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name'];
     public function vacancies (): HasMany
     {
         return $this->hasMany(Vacancy::class);
