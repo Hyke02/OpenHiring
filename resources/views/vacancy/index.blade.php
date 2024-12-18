@@ -108,6 +108,8 @@
         @endforeach
     </div>
 </div>
+<x-footer />
+
 
 </body>
 </html>
