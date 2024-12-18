@@ -88,9 +88,9 @@
                             </div>
                         </div>
                     </div>
-{{--                    <div class="flex justify-center lg:justify-end items-center w-full lg:w-1/3">--}}
-{{--                        <img src="{{ asset('storage/' . $vacancy->images) }}" alt="{{ $vacancy->vacancy_name }}" class="max-w-[145px] max-h-[145px] object-cover rounded-md">--}}
-{{--                    </div>--}}
+                    <div class="flex justify-center lg:justify-end items-center w-full lg:w-1/3">
+                        <img src="{{ asset('storage/' . $vacancy->images) }}" alt="{{ $vacancy->vacancy_name }}" class="max-w-[145px] max-h-[145px] object-cover rounded-md">
+                    </div>
                 </div>
 
                 <div class="flex justify-center">
