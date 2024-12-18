@@ -25,7 +25,7 @@
     </div>
 </div>
 
-<div id="info-box" class="fixed inset-0 bg-white text-2xl opacity-0 scale-y-0 transform origin-top transition-all duration-300 p-5 overflow-y-auto z-30">
+<div id="info-box" class="fixed z-[100] pb-10 inset-0 bg-white text-2xl opacity-0 scale-y-0 transform origin-top transition-all duration-300 p-5 overflow-y-auto">
     <div class="text-center">
         <h2 class="text-3xl font-bold mb-4">Zo solliciteer je</h2>
         <x-info-content-box>content</x-info-content-box>
