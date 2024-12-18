@@ -12,14 +12,14 @@
             <!-- Email Address -->
             <div class="mt-4">
                 <x-input-label for="email" :value="__('Email')" />
-                <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
+                <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" placeholder="john@doe.com" required autocomplete="username" />
                 <x-input-error :messages="$errors->get('email')" class="mt-2" />
             </div>
 
             <!-- Phone number -->
             <div class="mt-4">
                 <x-input-label for="number" :value="__('Telefoon')" />
-                <x-text-input id="number" class="block mt-1 w-full" type="tel" name="number" :value="old('number')" required />
+                <x-text-input id="number" class="block mt-1 w-full" type="tel" name="number" :value="old('number')" maxlength="8" placeholder="12345678" required />
                 <x-input-error :messages="$errors->get('number')" class="mt-2" />
             </div>
 
