@@ -16,7 +16,7 @@
 
 <section class="ml-5 mr-5">
     @foreach($vacanciesWithPosition as $vacancyData)
-            <div class=" bg-white shadow rounded-lg overflow-hidden border border-[#444343] px-3 py-4">
+            <div class=" bg-white shadow rounded-lg overflow-hidden border border-[#444343] px-3 py-4 mb-5">
                 <h1 class="font-black text-2xl vacancy-title">{{ $vacancyData['vacancy']->name }}</h1>
                 <h2 class="font-light text-lg font vacancy-company no-translate">{{ $vacancyData['vacancy']->company_name }} - {{ $vacancyData['vacancy']->location->location }}</h2>
 

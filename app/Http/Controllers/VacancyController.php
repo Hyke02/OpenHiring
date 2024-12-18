@@ -83,9 +83,8 @@ class VacancyController extends Controller
         $invatation->user_id = Auth::id();
         $invatation->vacancy_id = $request->vacancy_id;
 
-
         $invatation->save();
-        return redirect()->route('vacancy.index');
+        return redirect()->route('my-vacancy.index');
     }
 
     // Toon een specifieke vacancy
