@@ -56,7 +56,7 @@
                 snel (weer) aan het werk.
             </p>
             <a href="{{ route('vacancy.index') }}" class="uppercase mt-6 px-6 py-3 bg-[#B80063] text-white font-medium rounded-full shadow-md hover:bg-[#A00058] transition">
-                Bekijk Vacature
+                Bekijk Vacatures
             </a>
         </div>
     </div>
@@ -222,7 +222,7 @@
 </section>
 
 <!-- Button to view all stories centered -->
-<div class="text-center mt-8">
+<div class="text-center mt-8 mb-8">
     <button class="px-6 py-3 bg-[#B80063] text-white font-medium rounded-md shadow-md hover:bg-[#A00058] transition">
         Lees alle verhalen
     </button>
