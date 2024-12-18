@@ -106,4 +106,16 @@ class InvitationController extends Controller
 
 
     }
+
+    public function showInvitation($id)
+    {
+        $invitation = Invatation::with('vacancy')->findOrFail($id);
+
+        if ($invitation->user_id !== Auth::id()) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        return view('invitation.invitation', compact('invitation'));
+    }
+
 }

@@ -14,10 +14,10 @@
                 </div>
             </div>
             <div class="flex justify-around space-x-4 ">
-                <div>
-                    <label>Select users to notify</label>
-                    <input type="text" name="users" value="{{$userNumber}}">
-                </div>
+{{--                <div>--}}
+{{--                    <label>Select users to notify</label>--}}
+{{--                    <input type="text" name="users" value="{{$userNumber}}">--}}
+{{--                </div>--}}
                 <div>
                     <label for="body">Notification Message</label>
                     <textarea name="body" class="form-control" rows="3"></textarea>
