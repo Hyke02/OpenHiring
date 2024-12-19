@@ -35,7 +35,7 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/invitation/{id}', [InvitationController::class, 'showInvitation'])->name('invitation.show');
 Route::get('/invitation', [InvitationController::class, 'index'])->name('invitation.index');
-Route::POST('/invitation', [InvitationController::class, 'store'])->name('invitation.store');
+Route::post('/invitation/{invitation}/store', [InvitationController::class, 'store'])->name('invitation.store');
 Route::delete('/invitation{id}', [InvitationController::class, 'destroy'])->name('invitation.destroy');
 
 

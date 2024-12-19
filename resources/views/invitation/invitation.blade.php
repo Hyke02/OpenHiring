@@ -16,11 +16,9 @@
         </div>
     </div>
 <div>
-    <form action="{{ route('invitation.store') }}" method="POST">
-        @CSRF
-    @if($errors->any())
-        {{ implode('', $errors->all('<div>:message</div>')) }}
-    @endif
+    <form action="{{ route('invitation.store', $invitation) }}" method="POST">
+{{--        @dd($invitation)--}}
+        @csrf
 
         <div class="flex-col space-x-4">
             <div>

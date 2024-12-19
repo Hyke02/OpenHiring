@@ -51,7 +51,7 @@ class InvitationController extends Controller
                 'user_id' => $employee->user_id,
                 'status' => 'pending',
                 'message' => $message,
-                'date' => now()->format('d-m-Y'),
+                'date' => $request->input('date'),
             ]);
         }
 
@@ -61,22 +61,23 @@ class InvitationController extends Controller
         return redirect()->route('employer.index', $vacancy)->with('success', 'Uitnodigingen verstuurd!');
     }
 
-    public function store(Request $request)
+    public function store(Request $request, Invatation $invitation)
     {
         // custom messsage SMS
         $validatedData = $request->validate([
             'users' => 'required',
             'body' => 'required',
         ]);
-        dd($validatedData);
 
         $recipient = $validatedData["users"];
+
 
 //         iterate over the array of recipients and send a twilio request for each
 
 //        $this->sendMessage($validatedData["body"], $recipient);
 
-        $invitation = Invatation::findOrFail($request->input('invitation_id'));
+//        $invitation = Invatation::findOrFail($request->input('invitation_id'));
+//        $invitation = Invatation::findOrFail($request);
 
 
         // als er op accepteer wordt geklikt status gaat naar 1 (accepted) of op afwijzen naar 2(denied)
