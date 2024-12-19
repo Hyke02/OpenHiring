@@ -20,8 +20,8 @@
                 </div>
                 <div class="flex justify-center">
                     <div class="flex flex-col justify-center w-2/5">
-                        <label for="body" class="font-radikal text-lg">Bericht voor bevestiging SMS :</label>
-                        <textarea name="body" rows="3"></textarea>
+                        <label for="message" class="font-radikal text-lg">Bericht voor bevestiging SMS :</label>
+                        <textarea name="message" rows="3"></textarea>
                     </div>
                 </div>
 {{--                <div class="flex justify-center">--}}

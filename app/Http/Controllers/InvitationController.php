@@ -56,7 +56,7 @@ class InvitationController extends Controller
         }
 
         $vacancy->decrement('awaiting', $numInvitations);
-dd($waitingEmployees);
+//dd($waitingEmployees);
 
         return redirect()->route('employer.index', $vacancy)->with('success', 'Uitnodigingen verstuurd!');
     }
@@ -68,21 +68,23 @@ dd($waitingEmployees);
             'users' => 'required',
             'body' => 'required',
         ]);
+        dd($validatedData);
 
         $recipient = $validatedData["users"];
 
 //         iterate over the array of recipients and send a twilio request for each
 
-        $this->sendMessage($validatedData["body"], $recipient);
+//        $this->sendMessage($validatedData["body"], $recipient);
 
         $invitation = Invatation::findOrFail($request->input('invitation_id'));
+
 
         // als er op accepteer wordt geklikt status gaat naar 1 (accepted) of op afwijzen naar 2(denied)
 
         if ($request->input('action') === '1') {
-            $invitation->status = 1;
+            $invitation->status = 'accepted';
         } elseif ($request->input('action') === '2') {
-            $invitation->status = 2;
+            $invitation->status = 'denied';
         }
 
         $invitation->date=$request->input('date', now()->format('d-m-Y'));
@@ -90,6 +92,7 @@ dd($waitingEmployees);
         $invitation->user_id = Auth::user()->id;
         $invitation->vacancy_id = $request->input('vacancy_id');
 
+        dd($invitation);
         $invitation->save();
         return redirect()->route('vacancy.index')->with('success', 'Succesvol ingeschreven.');
     }
