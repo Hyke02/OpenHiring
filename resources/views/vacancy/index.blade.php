@@ -15,9 +15,17 @@
 <x-navigation class="z-20"></x-navigation>
 <x-info-icon>placeholder text</x-info-icon>
 <div class="container mx-auto mt-8 max-w-full z-50">
+    <x-sub-button onclick="readPageContent()"
+        onclick="readPageContent(this)"
+        class="button !py-3 !pl-4 !text-base ml-4">
+        Lees alles voor
+    </x-sub-button>
+
+
+
 </div>
 
-<div class="mx-auto mt-8 max-w-full z-10 ">
+<div id="main" class="mx-auto mt-8 max-w-full z-10 ">
     <form method="GET" action="{{ route('vacancy.index') }}" class="mb-8">
         <div class="flex gap-4 items-center mb-4 mx-4">
             <div class="flex-1">
@@ -68,7 +76,7 @@
                         <div class="flex mt-2">
                             <img src="{{ asset('storage/images/3669346_ic_symbol_euro_icon.svg') }}" alt="Euro Icon" class="w-8 h-auto mr-2">
                             <div class="bg-[#f2fade] shadow-[0_0_0_1.5px_#dee8ba] rounded-full p-3 inline-block text-xs lg:text-sm w-fit">
-                                <p>{{ $vacancy->salary }} euro per maand</p>
+                                <p>{{ $vacancy->salary }} euro per uur</p>
                             </div>
                         </div>
                         <div class="flex mt-2">
@@ -164,6 +172,41 @@
         });
         if (text) {
             responsiveVoice.speak(text, voice);
+        }
+    }
+</script>
+
+<script>
+    function readPageContent() {
+        const voiceMapping = {
+            nl: "Dutch Male",
+            en: "UK English Male",
+            de: "Deutsch Male",
+            pt: "Brazilian Portuguese Male",
+            it: "Italian Male",
+            pl: "Polish Male",
+            ro: "Romanian Male",
+            el: "Greek Male",
+            hu: "Hungarian Male"
+        }
+
+        const languageSelector = document.getElementById('language-selector')
+        const languageCode = languageSelector ? languageSelector.value : 'nl'
+        const voice = voiceMapping[languageCode] || "Dutch Male"
+
+        const mainElement = document.getElementById('main')
+
+        if (mainElement) {
+            let text = ''
+            mainElement.querySelectorAll('h1, h2, h3, p, button, a').forEach(el => {
+                if (el.textContent.trim()) {
+                    text += el.textContent.trim() + ' '
+                }
+            })
+
+            if (text) {
+                responsiveVoice.speak(text, voice)
+            }
         }
     }
 </script>
