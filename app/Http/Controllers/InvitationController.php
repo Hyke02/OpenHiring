@@ -74,7 +74,7 @@ class InvitationController extends Controller
 
 //         iterate over the array of recipients and send a twilio request for each
 
-//        $this->sendMessage($validatedData["body"], $recipient);
+        $this->sendMessage($validatedData["body"], $recipient);
 
 //        $invitation = Invatation::findOrFail($request->input('invitation_id'));
 //        $invitation = Invatation::findOrFail($request);
@@ -93,7 +93,6 @@ class InvitationController extends Controller
         $invitation->user_id = Auth::user()->id;
         $invitation->vacancy_id = $request->input('vacancy_id');
 
-        dd($invitation);
         $invitation->save();
         return redirect()->route('vacancy.index')->with('success', 'Succesvol ingeschreven.');
     }
