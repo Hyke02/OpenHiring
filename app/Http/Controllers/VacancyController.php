@@ -135,46 +135,66 @@ class VacancyController extends Controller
     public function edit($id)
     {
         $vacancy = Vacancy::findOrFail($id);
-        $sectors = Sector::all();
-
-        if ($vacancy->user_id !== Auth::id() && Auth::user()->status != 1) {
-            return redirect()->route('vacancy.index')->with('error', 'Je hebt geen toegang om deze vacancy te bewerken.');
-        }
-
+        $sectors = Sector::all(); // Assuming you have a Sector model
         return view('vacancy.edit', compact('vacancy', 'sectors'));
     }
 
-    // Update een bestaande vacancy
     public function update(Request $request, $id)
     {
+        $validated = $request->validate([
+            'company_name' => 'required|string|max:255',
+            'job_title' => 'required|string|max:255',
+            'hours' => 'required|integer|min:1',
+            'location' => 'required|string|max:255',
+            'salary' => 'required|numeric|min:0',
+            'sector_id' => 'required|exists:sectors,id',
+            'wanted' => 'required|integer|min:1',
+            'requirements' => 'required|string',
+            'description' => 'required|string',
+            'offers' => 'required|string',
+            'logo' => 'nullable|image|max:2048',
+            'media' => 'nullable|image|max:2048',
+        ]);
+
         $vacancy = Vacancy::findOrFail($id);
 
-        if ($vacancy->user_id !== Auth::id() && Auth::user()->status != 1) {
-            return redirect()->route('vacancy.index')->with('error', 'Je hebt geen rechten om deze vacancy te bewerken.');
+        $location = Location::firstOrCreate(
+            ['name' => $validated['location']],
+            ['name' => $validated['location']]
+        );
+
+        //updating all fields
+        $vacancy->company_name = $request->company_name;
+        $vacancy->job_title = $request->job_title;
+        $vacancy->hours = $request->hours;
+        $vacancy->location_id = $location->id;
+        $vacancy->salary = $request->salary;
+        $vacancy->sector_id = $request->sector_id;
+        $vacancy->wanted = $request->wanted;
+        $vacancy->requirements = $request->requirements;
+        $vacancy->description = $request->description;
+        $vacancy->offers = $request->offers;
+
+        // Handle file uploads
+        if ($request->hasFile('logo')) {
+//            if ($vacancy->logo) {
+//                Storage::delete($vacancy->logo);
+//            }
+            $vacancy->logo = $request->file('logo')->store('/images/logo', 'public');
         }
 
-        $request->validate([
-            'vacancy_name' => 'required|string|max:255',
-            'sector_id' => 'required|integer',
-            'description' => 'required|string',
-            'images' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
-
-        $imagePath = $vacancy->images;
-
-        if ($request->hasFile('images')) {
-            $imagePath = $request->file('images')->store('images/vacancy', 'public');
+        if ($request->hasFile('media')) {
+//            if ($vacancy->media) {
+//                Storage::delete($vacancy->media);
+//            }
+            $vacancy->media = $request->file('media')->store('/images/media', 'public');
         }
 
-        $vacancy->update([
-            'vacancy_name' => $request->vacancy_name,
-            'sector_id' => $request->sector_id,
-            'description' => $request->description,
-            'images' => $imagePath,
-        ]);
+        $vacancy->save();
 
-        return redirect()->route('vacancy.index')->with('success', 'Vacature succesvol bijgewerkt.');
+        return redirect()->route('vacancy.index')->with('success', 'Vacature bijgewerkt.');
     }
+
 
     // Verwijder een vacancy
     public function destroy($id)

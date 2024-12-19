@@ -76,7 +76,7 @@
                         <div class="flex mt-2">
                             <img src="{{ asset('storage/images/3669346_ic_symbol_euro_icon.svg') }}" alt="Euro Icon" class="w-8 h-auto mr-2">
                             <div class="bg-[#f2fade] shadow-[0_0_0_1.5px_#dee8ba] rounded-full p-3 inline-block text-xs lg:text-sm w-fit">
-                                <p>{{ $vacancy->salary }} euro per maand</p>
+                                <p>{{ $vacancy->salary }} euro per uur</p>
                             </div>
                         </div>
                         <div class="flex mt-2">
